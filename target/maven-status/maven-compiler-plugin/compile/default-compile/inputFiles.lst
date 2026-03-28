@@ -1,0 +1,9 @@
+/home/raquel/git/prog-concorrente/BestMatching/best-matching-java/src/main/java/imd/ufrn/App.java
+/home/raquel/git/prog-concorrente/BestMatching/best-matching-java/src/main/java/imd/ufrn/serial/SerialMatcher.java
+/home/raquel/git/prog-concorrente/BestMatching/best-matching-java/src/main/java/imd/ufrn/concurrent/VirtualThreadMatcher.java
+/home/raquel/git/prog-concorrente/BestMatching/best-matching-java/src/main/java/imd/ufrn/utils/DatasetLoader.java
+/home/raquel/git/prog-concorrente/BestMatching/best-matching-java/src/main/java/imd/ufrn/concurrent/HybridMatcher.java
+/home/raquel/git/prog-concorrente/BestMatching/best-matching-java/src/main/java/imd/ufrn/core/BestMatcherStrategy.java
+/home/raquel/git/prog-concorrente/BestMatching/best-matching-java/src/main/java/imd/ufrn/concurrent/PlatformThreadMatcher.java
+/home/raquel/git/prog-concorrente/BestMatching/best-matching-java/src/main/java/imd/ufrn/server/JMeterServer.java
+/home/raquel/git/prog-concorrente/BestMatching/best-matching-java/src/main/java/imd/ufrn/core/LevenshteinAlgorithm.java

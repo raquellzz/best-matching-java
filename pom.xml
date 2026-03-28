@@ -5,10 +5,10 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>imd.ufrn</groupId>
-    <artifactId>best-matching</artifactId>
+    <artifactId>best-matching-java</artifactId>
     <version>1.0-SNAPSHOT</version>
 
-    <name>best-matching</name>
+    <name>Best Matching Java</name>
     <!-- FIXME change it to the project's website -->
     <url>http://www.example.com</url>
 
