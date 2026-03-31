@@ -20,7 +20,7 @@ public class App
         BestMatcherStrategy matcher = new SerialMatcher();
 
         long startTime = System.currentTimeMillis();
-        List<String> resultados = matcher.findMatches("indio", database, 2);
+        List<String> resultados = matcher.findMatches("iracema", database, 2);
         long endTime = System.currentTimeMillis();
 
         System.out.println("Encontrados: " + resultados.size());
