@@ -4,7 +4,6 @@ imd/ufrn/App.class
 imd/ufrn/benchmark/jmh_generated/MatcherBenchmark_jmhType_B2.class
 imd/ufrn/core/BestMatcherStrategy.class
 imd/ufrn/concurrent/HybridMatcher.class
-imd/ufrn/concurrent/VirtualThreadMatcher.class
 imd/ufrn/utils/DatasetLoader.class
 imd/ufrn/benchmark/jmh_generated/MatcherBenchmark_jmhType.class
 imd/ufrn/server/JMeterServer.class
@@ -13,5 +12,4 @@ imd/ufrn/benchmark/jmh_generated/MatcherBenchmark_jmhType_B1.class
 imd/ufrn/serial/SerialMatcher.class
 imd/ufrn/core/LevenshteinAlgorithm.class
 META-INF/BenchmarkList
-imd/ufrn/concurrent/PlatformThreadMatcher.class
 imd/ufrn/benchmark/jmh_generated/MatcherBenchmark_jmhType_B3.class

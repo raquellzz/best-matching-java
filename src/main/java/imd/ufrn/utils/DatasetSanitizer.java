@@ -9,7 +9,7 @@ import java.util.regex.Pattern;
 
 public class DatasetSanitizer {
     public static void main(String[] args) throws IOException {
-        String content = Files.readString(Path.of("src/main/resources/iracema.txt"));
+        String content = Files.readString(Path.of("src/main/resources/Os-Miseraveis.txt"));
         
         content = Normalizer.normalize(content, Normalizer.Form.NFD)
                 .replaceAll("\\p{InCombiningDiacriticalMarks}+", "");
@@ -24,7 +24,7 @@ public class DatasetSanitizer {
             cleanDataset.append(matcher.group()).append("\n");
         }
 
-        Files.writeString(Path.of("src/main/resources/iracema_clean.txt"), cleanDataset.toString());
+        Files.writeString(Path.of("src/main/resources/Os-Miseraveis-clean.txt"), cleanDataset.toString());
         System.out.println("Dataset limpo gerado com sucesso!");
     }
 }
