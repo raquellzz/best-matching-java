@@ -1,21 +1,24 @@
-package imd.ufrn.concurrent;
+package imd.ufrn.concurrent.PlatformThreads;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Queue;
+import java.util.concurrent.ConcurrentLinkedQueue;
 
-import imd.ufrn.core.BestMatcherStrategy;
 import imd.ufrn.core.LevenshteinAlgorithm;
+import imd.ufrn.core.BestMatcherStrategy;
 
-public class PlatformThreadMutexMatcher implements BestMatcherStrategy {
-
+public class PTVolatileMatcher implements BestMatcherStrategy {
+    private volatile boolean exactMatchFound = false;
     @Override
     public List<String> findMatches(String target, List<String> textDatabase, int maxDistance) {
-        List<String> sharedMatches = new ArrayList<>();
+        // List<String> sharedMatches = new ArrayList<>();
+        Queue<String> sharedMatches = new ConcurrentLinkedQueue<>();
         String targetLower = target.toLowerCase();
-        final Object lock = new Object();
 
-        int numThreads = Runtime.getRuntime().availableProcessors()/2; // Usar metade dos núcleos para evitar sobrecarga
-        System.out.println("Usando " + numThreads + " threads para processamento.");
+        exactMatchFound = false;
+
+        int numThreads = Runtime.getRuntime().availableProcessors();
         int totalWords = textDatabase.size();
         int chunkSize = (int) Math.ceil((double) totalWords / numThreads);
 
@@ -25,10 +28,14 @@ public class PlatformThreadMutexMatcher implements BestMatcherStrategy {
             final int start = i * chunkSize;
             final int end = Math.min(start + chunkSize, totalWords);
 
-            if (start >= end) break;
+            // if (start >= end) break;
 
             Thread t = new Thread(() -> {
                 for (int j = start; j < end; j++) {
+                    if (exactMatchFound) {
+                        break; 
+                    }
+                    
                     String word = textDatabase.get(j);
                     if (word == null || word.isEmpty()) continue;
 
@@ -36,8 +43,9 @@ public class PlatformThreadMutexMatcher implements BestMatcherStrategy {
                     
                     if (distance <= maxDistance) {
                         // região crítica
-                        synchronized (lock) {
-                            sharedMatches.add(word); 
+                        sharedMatches.add(word); 
+                        if (distance == 0) {
+                            exactMatchFound = true; 
                         }
                     }
                 }
@@ -56,6 +64,6 @@ public class PlatformThreadMutexMatcher implements BestMatcherStrategy {
             }
         }
 
-        return sharedMatches;
+        return new ArrayList<>(sharedMatches);
     }
 }

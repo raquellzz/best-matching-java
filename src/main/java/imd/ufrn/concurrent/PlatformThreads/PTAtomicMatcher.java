@@ -1,19 +1,21 @@
-package imd.ufrn.concurrent;
+package imd.ufrn.concurrent.PlatformThreads;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Queue;
+import java.util.concurrent.ConcurrentLinkedQueue;
 
-import imd.ufrn.core.BestMatcherStrategy;
 import imd.ufrn.core.LevenshteinAlgorithm;
+import imd.ufrn.core.BestMatcherStrategy;
 
-public class PlatformThreadBasicoMatcher implements BestMatcherStrategy {
-
+public class PTAtomicMatcher implements BestMatcherStrategy {
     @Override
     public List<String> findMatches(String target, List<String> textDatabase, int maxDistance) {
-        List<String> sharedMatches = new ArrayList<>();
+        //List<String> sharedMatches = new ArrayList<>();
+        Queue<String> sharedMatches = new ConcurrentLinkedQueue<>();
         String targetLower = target.toLowerCase();
 
-        int numThreads = Runtime.getRuntime().availableProcessors()/2; // Usar metade dos núcleos para evitar sobrecarga
+        int numThreads = Runtime.getRuntime().availableProcessors();
         int totalWords = textDatabase.size();
         int chunkSize = (int) Math.ceil((double) totalWords / numThreads);
 
@@ -52,6 +54,6 @@ public class PlatformThreadBasicoMatcher implements BestMatcherStrategy {
             }
         }
 
-        return sharedMatches;
+        return new ArrayList<>(sharedMatches);
     }
 }

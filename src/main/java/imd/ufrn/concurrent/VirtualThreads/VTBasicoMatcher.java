@@ -1,4 +1,4 @@
-package imd.ufrn.concurrent;
+package imd.ufrn.concurrent.VirtualThreads;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,7 +8,7 @@ import java.util.concurrent.Executors;
 import imd.ufrn.core.BestMatcherStrategy;
 import imd.ufrn.core.LevenshteinAlgorithm;
 
-public class VirtualThreadBasicoMatcher implements BestMatcherStrategy {
+public class VTBasicoMatcher implements BestMatcherStrategy {
 
     @Override
     public List<String> findMatches(String target, List<String> textDatabase, int maxDistance) {
