@@ -9,14 +9,21 @@ import imd.ufrn.concurrent.PlatformThreads.PTMutexMatcher;
 import imd.ufrn.concurrent.PlatformThreads.PTReentrantMatcher;
 import imd.ufrn.concurrent.PlatformThreads.PTSemaphoreMatcher;
 import imd.ufrn.concurrent.PlatformThreads.PTVolatileMatcher;
-import imd.ufrn.concurrent.PlatformThreads.PTVolatileRLMatcher;
 import imd.ufrn.concurrent.PlatformThreads.PTLatchMatcher;
 import imd.ufrn.concurrent.VirtualThreads.VTMutexMatcher;
 import imd.ufrn.concurrent.VirtualThreads.VTReentrantMatcher;
+import imd.ufrn.concurrent.VirtualThreads.VTSemaphoreMatcher;
 import imd.ufrn.concurrent.VirtualThreads.VTAtomicMatcher;
 import imd.ufrn.concurrent.VirtualThreads.VTVolatileMatcher;
-import imd.ufrn.concurrent.VirtualThreads.VTVolatileRTMatcher;
 import imd.ufrn.concurrent.VirtualThreads.VTLatchMatcher;
+import imd.ufrn.concurrent.PlatformThreadsExecutor.PTEAtomicMatcher;
+import imd.ufrn.concurrent.PlatformThreadsExecutor.PTEBasicoMatcher;
+import imd.ufrn.concurrent.PlatformThreadsExecutor.PTELatchMatcher;
+import imd.ufrn.concurrent.PlatformThreadsExecutor.PTEMutexMatcher;
+import imd.ufrn.concurrent.PlatformThreadsExecutor.PTEReentrantMatcher;
+import imd.ufrn.concurrent.PlatformThreadsExecutor.PTESemaphoreMatcher;
+import imd.ufrn.concurrent.PlatformThreadsExecutor.PTEVolatileMatcher;
+
 import imd.ufrn.core.BestMatcherStrategy;
 import imd.ufrn.utils.DatasetLoader;
 
@@ -40,9 +47,17 @@ public class App
         // BestMatcherStrategy matcher = new VTBasicoMatcher();
         // BestMatcherStrategy matcher = new VTMutexMatcher();
         // BestMatcherStrategy matcher = new VTReentrantMatcher();
-        BestMatcherStrategy matcher = new VTVolatileMatcher();
+        // BestMatcherStrategy matcher = new VTVolatileMatcher();
         // BestMatcherStrategy matcher = new VTVolatileRTMatcher();
         // BestMatcherStrategy matcher = new VTLatchMatcher();
+        BestMatcherStrategy matcher = new VTSemaphoreMatcher();
+        // BestMatcherStrategy matcher = new PTEBasicoMatcher();
+        // BestMatcherStrategy matcher = new PTEMutexMatcher();
+        // BestMatcherStrategy matcher = new PTEReentrantMatcher();
+        // BestMatcherStrategy matcher = new PTESemaphoreMatcher();
+        // BestMatcherStrategy matcher = new PTEAtomicMatcher();
+        // BestMatcherStrategy matcher = new PTELatchMatcher();
+        // BestMatcherStrategy matcher = new PTEVolatileMatcher();
 
         long startTime = System.currentTimeMillis();
         List<String> resultados = matcher.findMatches("morte", database, 2);

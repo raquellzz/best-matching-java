@@ -12,7 +12,7 @@ public class PTVolatileMatcher implements BestMatcherStrategy {
     private volatile boolean exactMatchFound = false;
     @Override
     public List<String> findMatches(String target, List<String> textDatabase, int maxDistance) {
-        List<String> sharedMatches = new ArrayList<>();
+        Queue<String> sharedMatches = new ConcurrentLinkedQueue<>();
         String targetLower = target.toLowerCase();
 
         exactMatchFound = false;
@@ -26,7 +26,6 @@ public class PTVolatileMatcher implements BestMatcherStrategy {
         for (int i = 0; i < numThreads; i++) {
             final int start = i * chunkSize;
             final int end = Math.min(start + chunkSize, totalWords);
-
 
             Thread t = new Thread(() -> {
                 for (int j = start; j < end; j++) {
@@ -61,7 +60,6 @@ public class PTVolatileMatcher implements BestMatcherStrategy {
                 e.printStackTrace();
             }
         }
-
-        return sharedMatches;
+        return new ArrayList<>(sharedMatches);
     }
 }
