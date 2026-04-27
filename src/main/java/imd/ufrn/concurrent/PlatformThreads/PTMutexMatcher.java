@@ -15,7 +15,6 @@ public class PTMutexMatcher implements BestMatcherStrategy {
         final Object lock = new Object();
 
         int numThreads = Runtime.getRuntime().availableProcessors();
-        System.out.println("Usando " + numThreads + " threads para processamento.");
         int totalWords = textDatabase.size();
         int chunkSize = (int) Math.ceil((double) totalWords / numThreads);
 

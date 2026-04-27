@@ -23,7 +23,7 @@ mvn clean package
 To get precise performance metrics, use the generated benchmark JAR:
 
 ```bash
-java -jar target/benchmarks.jar
+java -jar target/benchmarks.jar -rf csv -rff resultados_benchmark.csv
 ```
 ### Running the Application
 To run the main application logic:
