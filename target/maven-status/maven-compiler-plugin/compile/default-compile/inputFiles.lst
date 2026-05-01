@@ -1,31 +1,31 @@
-C:\Users\Raquel\Desktop\git\prog concorrente\best-matching-java\src\main\java\imd\ufrn\concurrent\PlatformThreads\PTMutexMatcher.java
-C:\Users\Raquel\Desktop\git\prog concorrente\best-matching-java\src\main\java\imd\ufrn\benchmark\MatcherBenchmark.java
-C:\Users\Raquel\Desktop\git\prog concorrente\best-matching-java\src\main\java\imd\ufrn\concurrent\PlatformThreadsExecutor\PTEBasicoMatcher.java
-C:\Users\Raquel\Desktop\git\prog concorrente\best-matching-java\src\main\java\imd\ufrn\serial\SerialMatcher.java
-C:\Users\Raquel\Desktop\git\prog concorrente\best-matching-java\src\main\java\imd\ufrn\concurrent\PlatformThreads\PTLatchMatcher.java
-C:\Users\Raquel\Desktop\git\prog concorrente\best-matching-java\src\main\java\imd\ufrn\concurrent\PlatformThreadsExecutor\PTEVolatileMatcher.java
-C:\Users\Raquel\Desktop\git\prog concorrente\best-matching-java\src\main\java\imd\ufrn\concurrent\PlatformThreadsExecutor\PTEMutexMatcher.java
-C:\Users\Raquel\Desktop\git\prog concorrente\best-matching-java\src\main\java\imd\ufrn\concurrent\VirtualThreads\VTBasicoMatcher.java
-C:\Users\Raquel\Desktop\git\prog concorrente\best-matching-java\src\main\java\imd\ufrn\concurrent\VirtualThreads\VTReentrantMatcher.java
-C:\Users\Raquel\Desktop\git\prog concorrente\best-matching-java\src\main\java\imd\ufrn\concurrent\VirtualThreads\VTSemaphoreMatcher.java
-C:\Users\Raquel\Desktop\git\prog concorrente\best-matching-java\src\main\java\imd\ufrn\concurrent\PlatformThreads\PTBasicoMatcher.java
-C:\Users\Raquel\Desktop\git\prog concorrente\best-matching-java\src\main\java\imd\ufrn\concurrent\VirtualThreads\VTLatchMatcher.java
-C:\Users\Raquel\Desktop\git\prog concorrente\best-matching-java\src\main\java\imd\ufrn\core\BestMatcherStrategy.java
-C:\Users\Raquel\Desktop\git\prog concorrente\best-matching-java\src\main\java\imd\ufrn\server\JMeterServer.java
-C:\Users\Raquel\Desktop\git\prog concorrente\best-matching-java\src\main\java\imd\ufrn\concurrent\PlatformThreads\PTVolatileMatcher.java
-C:\Users\Raquel\Desktop\git\prog concorrente\best-matching-java\src\main\java\imd\ufrn\concurrent\PlatformThreads\PTReentrantMatcher.java
-C:\Users\Raquel\Desktop\git\prog concorrente\best-matching-java\src\main\java\imd\ufrn\concurrent\PlatformThreadsExecutor\PTESemaphoreMatcher.java
-C:\Users\Raquel\Desktop\git\prog concorrente\best-matching-java\src\main\java\imd\ufrn\concurrent\HybridMatcher.java
-C:\Users\Raquel\Desktop\git\prog concorrente\best-matching-java\src\main\java\imd\ufrn\concurrent\PlatformThreads\PTAtomicMatcher.java
-C:\Users\Raquel\Desktop\git\prog concorrente\best-matching-java\src\main\java\imd\ufrn\utils\DatasetLoader.java
-C:\Users\Raquel\Desktop\git\prog concorrente\best-matching-java\src\main\java\imd\ufrn\concurrent\PlatformThreadsExecutor\PTEAtomicMatcher.java
-C:\Users\Raquel\Desktop\git\prog concorrente\best-matching-java\src\main\java\imd\ufrn\App.java
-C:\Users\Raquel\Desktop\git\prog concorrente\best-matching-java\src\main\java\imd\ufrn\concurrent\PlatformThreadsExecutor\PTELatchMatcher.java
-C:\Users\Raquel\Desktop\git\prog concorrente\best-matching-java\src\main\java\imd\ufrn\utils\DatasetSanitizer.java
-C:\Users\Raquel\Desktop\git\prog concorrente\best-matching-java\src\main\java\imd\ufrn\concurrent\VirtualThreads\VTAtomicMatcher.java
-C:\Users\Raquel\Desktop\git\prog concorrente\best-matching-java\src\main\java\imd\ufrn\core\LevenshteinAlgorithm.java
-C:\Users\Raquel\Desktop\git\prog concorrente\best-matching-java\src\main\java\imd\ufrn\concurrent\PlatformThreads\PTSemaphoreMatcher.java
-C:\Users\Raquel\Desktop\git\prog concorrente\best-matching-java\src\main\java\imd\ufrn\Menu.java
-C:\Users\Raquel\Desktop\git\prog concorrente\best-matching-java\src\main\java\imd\ufrn\concurrent\PlatformThreadsExecutor\PTEReentrantMatcher.java
-C:\Users\Raquel\Desktop\git\prog concorrente\best-matching-java\src\main\java\imd\ufrn\concurrent\VirtualThreads\VTMutexMatcher.java
-C:\Users\Raquel\Desktop\git\prog concorrente\best-matching-java\src\main\java\imd\ufrn\concurrent\VirtualThreads\VTVolatileMatcher.java
+/home/raquel/git/prog-concorrente/BestMatching/best-matching-java/src/main/java/imd/ufrn/concurrent/VirtualThreads/VTAtomicMatcher.java
+/home/raquel/git/prog-concorrente/BestMatching/best-matching-java/src/main/java/imd/ufrn/utils/DatasetLoader.java
+/home/raquel/git/prog-concorrente/BestMatching/best-matching-java/src/main/java/imd/ufrn/concurrent/PlatformThreadsExecutor/PTELatchMatcher.java
+/home/raquel/git/prog-concorrente/BestMatching/best-matching-java/src/main/java/imd/ufrn/concurrent/PlatformThreadsExecutor/PTEMutexMatcher.java
+/home/raquel/git/prog-concorrente/BestMatching/best-matching-java/src/main/java/imd/ufrn/concurrent/PlatformThreadsExecutor/PTEReentrantMatcher.java
+/home/raquel/git/prog-concorrente/BestMatching/best-matching-java/src/main/java/imd/ufrn/concurrent/PlatformThreads/PTBasicoMatcher.java
+/home/raquel/git/prog-concorrente/BestMatching/best-matching-java/src/main/java/imd/ufrn/concurrent/PlatformThreads/PTVolatileMatcher.java
+/home/raquel/git/prog-concorrente/BestMatching/best-matching-java/src/main/java/imd/ufrn/utils/DatasetSanitizer.java
+/home/raquel/git/prog-concorrente/BestMatching/best-matching-java/src/main/java/imd/ufrn/serial/SerialMatcher.java
+/home/raquel/git/prog-concorrente/BestMatching/best-matching-java/src/main/java/imd/ufrn/concurrent/PlatformThreadsExecutor/PTEVolatileMatcher.java
+/home/raquel/git/prog-concorrente/BestMatching/best-matching-java/src/main/java/imd/ufrn/concurrent/VirtualThreads/VTSemaphoreMatcher.java
+/home/raquel/git/prog-concorrente/BestMatching/best-matching-java/src/main/java/imd/ufrn/concurrent/PlatformThreads/PTReentrantMatcher.java
+/home/raquel/git/prog-concorrente/BestMatching/best-matching-java/src/main/java/imd/ufrn/concurrent/HybridMatcher.java
+/home/raquel/git/prog-concorrente/BestMatching/best-matching-java/src/main/java/imd/ufrn/core/BestMatcherStrategy.java
+/home/raquel/git/prog-concorrente/BestMatching/best-matching-java/src/main/java/imd/ufrn/server/JMeterServer.java
+/home/raquel/git/prog-concorrente/BestMatching/best-matching-java/src/main/java/imd/ufrn/concurrent/PlatformThreadsExecutor/PTEAtomicMatcher.java
+/home/raquel/git/prog-concorrente/BestMatching/best-matching-java/src/main/java/imd/ufrn/concurrent/PlatformThreadsExecutor/PTESemaphoreMatcher.java
+/home/raquel/git/prog-concorrente/BestMatching/best-matching-java/src/main/java/imd/ufrn/core/LevenshteinAlgorithm.java
+/home/raquel/git/prog-concorrente/BestMatching/best-matching-java/src/main/java/imd/ufrn/concurrent/PlatformThreads/PTAtomicMatcher.java
+/home/raquel/git/prog-concorrente/BestMatching/best-matching-java/src/main/java/imd/ufrn/concurrent/PlatformThreads/PTLatchMatcher.java
+/home/raquel/git/prog-concorrente/BestMatching/best-matching-java/src/main/java/imd/ufrn/concurrent/PlatformThreads/PTMutexMatcher.java
+/home/raquel/git/prog-concorrente/BestMatching/best-matching-java/src/main/java/imd/ufrn/App.java
+/home/raquel/git/prog-concorrente/BestMatching/best-matching-java/src/main/java/imd/ufrn/concurrent/VirtualThreads/VTBasicoMatcher.java
+/home/raquel/git/prog-concorrente/BestMatching/best-matching-java/src/main/java/imd/ufrn/concurrent/VirtualThreads/VTReentrantMatcher.java
+/home/raquel/git/prog-concorrente/BestMatching/best-matching-java/src/main/java/imd/ufrn/concurrent/PlatformThreads/PTSemaphoreMatcher.java
+/home/raquel/git/prog-concorrente/BestMatching/best-matching-java/src/main/java/imd/ufrn/concurrent/VirtualThreads/VTLatchMatcher.java
+/home/raquel/git/prog-concorrente/BestMatching/best-matching-java/src/main/java/imd/ufrn/benchmark/MatcherBenchmark.java
+/home/raquel/git/prog-concorrente/BestMatching/best-matching-java/src/main/java/imd/ufrn/concurrent/PlatformThreadsExecutor/PTEBasicoMatcher.java
+/home/raquel/git/prog-concorrente/BestMatching/best-matching-java/src/main/java/imd/ufrn/concurrent/VirtualThreads/VTVolatileMatcher.java
+/home/raquel/git/prog-concorrente/BestMatching/best-matching-java/src/main/java/imd/ufrn/concurrent/VirtualThreads/VTMutexMatcher.java
+/home/raquel/git/prog-concorrente/BestMatching/best-matching-java/src/main/java/imd/ufrn/Menu.java

@@ -4,23 +4,14 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Scanner;
 
-import imd.ufrn.core.BestMatcherStrategy;
-import imd.ufrn.utils.DatasetLoader;
-import imd.ufrn.serial.SerialMatcher;
+import imd.ufrn.concurrent.HybridMatcher;
 import imd.ufrn.concurrent.PlatformThreads.PTAtomicMatcher;
 import imd.ufrn.concurrent.PlatformThreads.PTBasicoMatcher;
+import imd.ufrn.concurrent.PlatformThreads.PTLatchMatcher;
 import imd.ufrn.concurrent.PlatformThreads.PTMutexMatcher;
 import imd.ufrn.concurrent.PlatformThreads.PTReentrantMatcher;
 import imd.ufrn.concurrent.PlatformThreads.PTSemaphoreMatcher;
 import imd.ufrn.concurrent.PlatformThreads.PTVolatileMatcher;
-import imd.ufrn.concurrent.PlatformThreads.PTLatchMatcher;
-import imd.ufrn.concurrent.VirtualThreads.VTAtomicMatcher;
-import imd.ufrn.concurrent.VirtualThreads.VTBasicoMatcher;
-import imd.ufrn.concurrent.VirtualThreads.VTMutexMatcher;
-import imd.ufrn.concurrent.VirtualThreads.VTReentrantMatcher;
-import imd.ufrn.concurrent.VirtualThreads.VTSemaphoreMatcher;
-import imd.ufrn.concurrent.VirtualThreads.VTVolatileMatcher;
-import imd.ufrn.concurrent.VirtualThreads.VTLatchMatcher;
 import imd.ufrn.concurrent.PlatformThreadsExecutor.PTEAtomicMatcher;
 import imd.ufrn.concurrent.PlatformThreadsExecutor.PTEBasicoMatcher;
 import imd.ufrn.concurrent.PlatformThreadsExecutor.PTELatchMatcher;
@@ -28,6 +19,16 @@ import imd.ufrn.concurrent.PlatformThreadsExecutor.PTEMutexMatcher;
 import imd.ufrn.concurrent.PlatformThreadsExecutor.PTEReentrantMatcher;
 import imd.ufrn.concurrent.PlatformThreadsExecutor.PTESemaphoreMatcher;
 import imd.ufrn.concurrent.PlatformThreadsExecutor.PTEVolatileMatcher;
+import imd.ufrn.concurrent.VirtualThreads.VTAtomicMatcher;
+import imd.ufrn.concurrent.VirtualThreads.VTBasicoMatcher;
+import imd.ufrn.concurrent.VirtualThreads.VTLatchMatcher;
+import imd.ufrn.concurrent.VirtualThreads.VTMutexMatcher;
+import imd.ufrn.concurrent.VirtualThreads.VTReentrantMatcher;
+import imd.ufrn.concurrent.VirtualThreads.VTSemaphoreMatcher;
+import imd.ufrn.concurrent.VirtualThreads.VTVolatileMatcher;
+import imd.ufrn.core.BestMatcherStrategy;
+import imd.ufrn.serial.SerialMatcher;
+import imd.ufrn.utils.DatasetLoader;
 
 public class Menu {
     public static void main(String[] args) {
@@ -81,10 +82,8 @@ public class Menu {
             int stratOption = 0;
 
             switch (modelOption) {
-                case 1: 
-                    strategy = new SerialMatcher();
-                    break;
-                case 2:
+                case 1 -> strategy = new SerialMatcher();
+                case 2 -> {
                     System.out.println("\n--- Estratégias para Platform Threads (SO) ---");
                     System.out.println("0. <-- Voltar ao Menu Principal");
                     System.out.println("1. Básica (Com Race Condition)");
@@ -98,16 +97,17 @@ public class Menu {
                     stratOption = scanner.nextInt();
                     if (stratOption == 0) continue;
                     switch (stratOption) {
-                        case 1: strategy = new PTBasicoMatcher(); break;
-                        case 2: strategy = new PTMutexMatcher(); break;
-                        case 3: strategy = new PTReentrantMatcher(); break;
-                        case 4: strategy = new PTAtomicMatcher(); break;
-                        case 5: strategy = new PTVolatileMatcher(); break;
-                        case 6: strategy = new PTSemaphoreMatcher(); break;
-                        case 7: strategy = new PTLatchMatcher(); break;
+                        case 1 -> strategy = new PTBasicoMatcher();
+                        case 2 -> strategy = new PTMutexMatcher();
+                        case 3 -> strategy = new PTReentrantMatcher();
+                        case 4 -> strategy = new PTAtomicMatcher();
+                        case 5 -> strategy = new PTVolatileMatcher();
+                        case 6 -> strategy = new PTSemaphoreMatcher();
+                        case 7 -> strategy = new PTLatchMatcher();
                     }
-                    break;
-                case 3:
+                }
+
+                case 3 -> {
                     System.out.println("\n--- Estratégias para Platform Threads (Pool de Threads Executor) ---");
                     System.out.println("0. <-- Voltar ao Menu Principal");
                     System.out.println("1. Básica (Com Race Condition)");
@@ -121,16 +121,17 @@ public class Menu {
                     stratOption = scanner.nextInt();
                     if (stratOption == 0) continue;
                     switch (stratOption) {
-                        case 1: strategy = new PTEBasicoMatcher(); break;
-                        case 2: strategy = new PTEMutexMatcher(); break;
-                        case 3: strategy = new PTEReentrantMatcher(); break;
-                        case 4: strategy = new PTEAtomicMatcher(); break;
-                        case 5: strategy = new PTEVolatileMatcher(); break;
-                        case 6: strategy = new PTESemaphoreMatcher(); break;
-                        case 7: strategy = new PTELatchMatcher(); break;
+                        case 1 -> strategy = new PTEBasicoMatcher();
+                        case 2 -> strategy = new PTEMutexMatcher();
+                        case 3 -> strategy = new PTEReentrantMatcher();
+                        case 4 -> strategy = new PTEAtomicMatcher();
+                        case 5 -> strategy = new PTEVolatileMatcher();
+                        case 6 -> strategy = new PTESemaphoreMatcher();
+                        case 7 -> strategy = new PTELatchMatcher();
                     }
-                    break;
-                case 4:
+                }
+
+                case 4 -> {
                     System.out.println("\n--- Estratégias para Virtual Threads ---");
                     System.out.println("0. <-- Voltar ao Menu Principal");
                     System.out.println("1. Básica (Com Race Condition)");
@@ -144,23 +145,20 @@ public class Menu {
                     stratOption = scanner.nextInt();
                     if (stratOption == 0) continue;
                     switch (stratOption) {
-                        case 1: strategy = new VTBasicoMatcher(); break;
-                        case 2: strategy = new VTMutexMatcher(); break;
-                        case 3: strategy = new VTReentrantMatcher(); break;
-                        case 4: strategy = new VTAtomicMatcher(); break;
-                        case 5: strategy = new VTVolatileMatcher(); break;
-                        case 6: strategy = new VTSemaphoreMatcher(); break;
-                        case 7: strategy = new VTLatchMatcher(); break;
+                        case 1 -> strategy = new VTBasicoMatcher();
+                        case 2 -> strategy = new VTMutexMatcher();
+                        case 3 -> strategy = new VTReentrantMatcher();
+                        case 4 -> strategy = new VTAtomicMatcher();
+                        case 5 -> strategy = new VTVolatileMatcher();
+                        case 6 -> strategy = new VTSemaphoreMatcher();
+                        case 7 -> strategy = new VTLatchMatcher();
                     }
-                    break;
-                case 5:
-                    System.out.println("\n--- Estratégias para Virtual Threads ---");
-                    System.out.println("0. <-- Voltar ao Menu Principal");
-                    System.out.println("Não implementado - Híbrido Virtual + Platform Threads");
-                    System.out.print("Opção: ");
-                    stratOption = scanner.nextInt();
-                    if (stratOption == 0) continue;
-                    break;
+                }
+
+                case 5 -> {
+                    HybridMatcher hybridMatcher =  new HybridMatcher("src/main/resources/Os-Miseraveis-clean.txt");
+                    strategy = hybridMatcher;
+                }
             }
             if (strategy == null) {
                 System.out.println("Estratégia não definida ou não comentada no código.");

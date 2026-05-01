@@ -25,6 +25,21 @@ To get precise performance metrics, use the generated benchmark JAR:
 ```bash
 java -jar target/benchmarks.jar -rf csv -rff resultados_benchmark.csv
 ```
+
+## Running MicroBenchmarks with specifics GCs
+    - G1GC
+```bash
+java -XX:+UseG1GC -jar target/benchmarks.jar -prof gc -rf csv -rff resultados_g1gc.csv
+```
+    - ParallelGC
+```bash
+java -XX:+UseParallelGC -jar target/benchmarks.jar -prof gc -rf csv -rff resultados_parallel.csv
+```
+    - ZGC
+```bash
+java -XX:+UseZGC -jar target/benchmarks.jar -prof gc -rf csv -rff resultados_zgc.csv
+```
+
 ### Running the Application
 To run the main application logic:
 

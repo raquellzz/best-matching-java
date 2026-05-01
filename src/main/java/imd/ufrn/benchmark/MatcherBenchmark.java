@@ -58,6 +58,8 @@ public class MatcherBenchmark {
     private BestMatcherStrategy vtVolatileStrategy;
     private BestMatcherStrategy vtLatchStrategy;
 
+    private BestMatcherStrategy hybridStrategy;
+
     @Setup(Level.Trial)
     public void setup() throws IOException {
         dataset = DatasetLoader.loadTextDatabase("src/main/resources/Os-Miseraveis-clean.txt");
@@ -87,6 +89,8 @@ public class MatcherBenchmark {
         vtSemaphoreStrategy = new imd.ufrn.concurrent.VirtualThreads.VTSemaphoreMatcher();
         vtVolatileStrategy = new imd.ufrn.concurrent.VirtualThreads.VTVolatileMatcher();
         vtLatchStrategy = new imd.ufrn.concurrent.VirtualThreads.VTLatchMatcher();
+
+        hybridStrategy = new imd.ufrn.concurrent.HybridMatcher("src/main/resources/Os-Miseraveis-clean.txt");
     }
 
     @Benchmark
@@ -197,5 +201,10 @@ public class MatcherBenchmark {
     @Benchmark
     public List<String> testVTLatchMatcher() {
         return vtLatchStrategy.findMatches(targetWord, dataset, maxDistance);
+    }
+
+    @Benchmark
+    public List<String> testHybridMatcher() {
+        return hybridStrategy.findMatches(targetWord, dataset, maxDistance);
     }
 }

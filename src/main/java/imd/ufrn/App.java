@@ -3,27 +3,7 @@ package imd.ufrn;
 import java.io.IOException;
 import java.util.List;
 
-import imd.ufrn.concurrent.PlatformThreads.PTAtomicMatcher;
-import imd.ufrn.concurrent.PlatformThreads.PTBasicoMatcher;
-import imd.ufrn.concurrent.PlatformThreads.PTMutexMatcher;
-import imd.ufrn.concurrent.PlatformThreads.PTReentrantMatcher;
-import imd.ufrn.concurrent.PlatformThreads.PTSemaphoreMatcher;
-import imd.ufrn.concurrent.PlatformThreads.PTVolatileMatcher;
-import imd.ufrn.concurrent.PlatformThreads.PTLatchMatcher;
-import imd.ufrn.concurrent.VirtualThreads.VTMutexMatcher;
-import imd.ufrn.concurrent.VirtualThreads.VTReentrantMatcher;
 import imd.ufrn.concurrent.VirtualThreads.VTSemaphoreMatcher;
-import imd.ufrn.concurrent.VirtualThreads.VTAtomicMatcher;
-import imd.ufrn.concurrent.VirtualThreads.VTVolatileMatcher;
-import imd.ufrn.concurrent.VirtualThreads.VTLatchMatcher;
-import imd.ufrn.concurrent.PlatformThreadsExecutor.PTEAtomicMatcher;
-import imd.ufrn.concurrent.PlatformThreadsExecutor.PTEBasicoMatcher;
-import imd.ufrn.concurrent.PlatformThreadsExecutor.PTELatchMatcher;
-import imd.ufrn.concurrent.PlatformThreadsExecutor.PTEMutexMatcher;
-import imd.ufrn.concurrent.PlatformThreadsExecutor.PTEReentrantMatcher;
-import imd.ufrn.concurrent.PlatformThreadsExecutor.PTESemaphoreMatcher;
-import imd.ufrn.concurrent.PlatformThreadsExecutor.PTEVolatileMatcher;
-
 import imd.ufrn.core.BestMatcherStrategy;
 import imd.ufrn.utils.DatasetLoader;
 

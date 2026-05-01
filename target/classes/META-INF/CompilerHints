@@ -4,6 +4,7 @@ dontinline,*.*_sample_jmhStub
 dontinline,*.*_ss_jmhStub
 dontinline,*.*_thrpt_jmhStub
 inline,imd/ufrn/benchmark/MatcherBenchmark.setup
+inline,imd/ufrn/benchmark/MatcherBenchmark.testHybridMatcher
 inline,imd/ufrn/benchmark/MatcherBenchmark.testPTAtomicMatcher
 inline,imd/ufrn/benchmark/MatcherBenchmark.testPTBasicoMatcher
 inline,imd/ufrn/benchmark/MatcherBenchmark.testPTEAtomicMatcher
