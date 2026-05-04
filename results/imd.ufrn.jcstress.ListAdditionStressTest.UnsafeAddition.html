@@ -1,0 +1,2380 @@
+
+<html>
+<head>
+<title>Java Concurrency Stress test report</title>
+ <style type="text/css">
+   * { font-family: Arial; }
+   table { font-size: 9pt; }
+   a { color: #000000; }
+   .progress { padding: 0px; }
+   .header { text-align: left; }
+   .section1 { font-size: 12pt; background-color: #BDB76B; color: #000000; font-weight: bold;}
+   .section2 { font-size: 12pt; background-color: #F0E68C; color: #000000; font-weight: bold;}
+   .cell1 { background-color: #FAFAD2; }
+   .cell2 { background-color: #EEE8AA; }
+   .passedProgress { background-color: #00AA00; color: #FFFFFF; text-align: center; font-weight: bold; }
+   .failedProgress { background-color: #FF0000; color: #FFFFFF; text-align: center; font-weight: bold; }
+   .passed { color: #00AA00; text-align: center; font-weight: bold; }
+   .failed { color: #FF0000; text-align: center; font-weight: bold; }
+   .interesting { color: #0000FF; text-align: center; font-weight: bold; }
+   .spec { color: #AAAA00; text-align: center; font-weight: bold; }
+   .endResult { font-size: 48pt; text-align: center; font-weight: bold; }
+ </style>
+</head>
+<body>
+<h1>imd.ufrn.jcstress.ListAdditionStressTest.UnsafeAddition</h1>
+<h3>Description and references</h3>
+<p>null</p>
+<h3>Environment</h3>
+<table>
+<tr>
+<td nowrap>java.specification.name</td>
+<td nowrap>Java Platform API Specification</td>
+</tr>
+<tr>
+<td nowrap>java.specification.vendor</td>
+<td nowrap>Oracle Corporation</td>
+</tr>
+<tr>
+<td nowrap>java.specification.version</td>
+<td nowrap>25</td>
+</tr>
+<tr>
+<td nowrap>java.vendor</td>
+<td nowrap>Ubuntu</td>
+</tr>
+<tr>
+<td nowrap>java.version</td>
+<td nowrap>25.0.2</td>
+</tr>
+<tr>
+<td nowrap>java.vm.name</td>
+<td nowrap>OpenJDK 64-Bit Server VM</td>
+</tr>
+<tr>
+<td nowrap>java.vm.vendor</td>
+<td nowrap>Ubuntu</td>
+</tr>
+<tr>
+<td nowrap>java.vm.version</td>
+<td nowrap>25.0.2+10-Ubuntu-124.04</td>
+</tr>
+<tr>
+<td nowrap>os.arch</td>
+<td nowrap>amd64</td>
+</tr>
+<tr>
+<td nowrap>os.name</td>
+<td nowrap>Linux</td>
+</tr>
+<tr>
+<td nowrap>os.version</td>
+<td nowrap>6.17.0-22-generic</td>
+</tr>
+</table>
+<h3>Results</h3>
+<table cellpadding=5 border=1>
+<tr>
+<th>Compilation Mode</th>
+<th>Scheduling Class</th>
+<th>Java Options</th>
+<th>Status</th>
+<th colspan=2>Observed States</th>
+</tr>
+<tr>
+<th colspan=4></th>
+<th nowrap align='center'>1</th>
+<th nowrap align='center'>2</th>
+</tr>
+<tr>
+<td colspan=4></td>
+<td>Interesting</td>
+<td>Acceptable</td>
+</tr>
+<tr>
+<td colspan=4></td>
+<td>Race Condition! Uma palavra foi perdida.</td>
+<td>Sucesso temporário (Sorte).</td>
+</tr>
+<tr>
+<td nowrap valign=top width=10><pre>split
+    thread1: Interpreter
+    thread2: Interpreter
+</pre></td>
+<td nowrap valign=top width=10><pre>    thread1: package group 0, core group 0
+    thread2: package group 0, core group 0
+</pre></td>
+<td        valign=top width=10>
+</td>
+<td align='center' bgColor='green '>OK</td>
+<td align='right' width='50.0%' bgColor=#00ffff>1036506</td>
+<td align='right' width='50.0%' bgColor=#00ff00>33101625</td>
+</tr>
+<tr>
+<td nowrap valign=top width=10><pre>split
+    thread1: Interpreter
+    thread2: Interpreter
+</pre></td>
+<td nowrap valign=top width=10><pre>    thread1: package group 0, core group 0
+    thread2: package group 0, core group 1
+</pre></td>
+<td        valign=top width=10>
+</td>
+<td align='center' bgColor='green '>OK</td>
+<td align='right' width='50.0%' bgColor=#00ffff>890830</td>
+<td align='right' width='50.0%' bgColor=#00ff00>95148101</td>
+</tr>
+<tr>
+<td nowrap valign=top width=10><pre>split
+    thread1: C1
+    thread2: Interpreter
+</pre></td>
+<td nowrap valign=top width=10><pre>    thread1: package group 0, core group 0
+    thread2: package group 0, core group 0
+</pre></td>
+<td        valign=top width=10>
+</td>
+<td align='center' bgColor='green '>OK</td>
+<td align='right' width='50.0%' bgColor=#00ffff>56647</td>
+<td align='right' width='50.0%' bgColor=#00ff00>52216524</td>
+</tr>
+<tr>
+<td nowrap valign=top width=10><pre>split
+    thread1: C1
+    thread2: Interpreter
+</pre></td>
+<td nowrap valign=top width=10><pre>    thread1: package group 0, core group 0
+    thread2: package group 0, core group 1
+</pre></td>
+<td        valign=top width=10>
+</td>
+<td align='center' bgColor='green '>OK</td>
+<td align='right' width='50.0%' bgColor=#00ffff>818334</td>
+<td align='right' width='50.0%' bgColor=#00ff00>146953077</td>
+</tr>
+<tr>
+<td nowrap valign=top width=10><pre>split
+    thread1: C2
+    thread2: Interpreter
+</pre></td>
+<td nowrap valign=top width=10><pre>    thread1: package group 0, core group 0
+    thread2: package group 0, core group 0
+</pre></td>
+<td        valign=top width=10>
+</td>
+<td align='center' bgColor='green '>OK</td>
+<td align='right' width='50.0%' bgColor=#00ffff>34655</td>
+<td align='right' width='50.0%' bgColor=#00ff00>45142196</td>
+</tr>
+<tr>
+<td nowrap valign=top width=10><pre>split
+    thread1: C2
+    thread2: Interpreter
+</pre></td>
+<td nowrap valign=top width=10><pre>    thread1: package group 0, core group 0
+    thread2: package group 0, core group 0
+</pre></td>
+<td        valign=top width=10>
+<pre>[-XX:+StressLCM, -XX:+StressGCM, -XX:+StressIGVN, -XX:+StressCCP, -XX:StressSeed=1096710724]</pre>
+</td>
+<td align='center' bgColor='green '>OK</td>
+<td align='right' width='50.0%' bgColor=#00ffff>43062</td>
+<td align='right' width='50.0%' bgColor=#00ff00>46270429</td>
+</tr>
+<tr>
+<td nowrap valign=top width=10><pre>split
+    thread1: C2
+    thread2: Interpreter
+</pre></td>
+<td nowrap valign=top width=10><pre>    thread1: package group 0, core group 0
+    thread2: package group 0, core group 0
+</pre></td>
+<td        valign=top width=10>
+<pre>[-XX:+StressLCM, -XX:+StressGCM, -XX:+StressIGVN, -XX:+StressCCP, -XX:StressSeed=1528134037]</pre>
+</td>
+<td align='center' bgColor='green '>OK</td>
+<td align='right' width='50.0%' bgColor=#00ffff>33032</td>
+<td align='right' width='50.0%' bgColor=#00ff00>34832139</td>
+</tr>
+<tr>
+<td nowrap valign=top width=10><pre>split
+    thread1: C2
+    thread2: Interpreter
+</pre></td>
+<td nowrap valign=top width=10><pre>    thread1: package group 0, core group 0
+    thread2: package group 0, core group 0
+</pre></td>
+<td        valign=top width=10>
+<pre>[-XX:+StressLCM, -XX:+StressGCM, -XX:+StressIGVN, -XX:+StressCCP, -XX:StressSeed=738332274]</pre>
+</td>
+<td align='center' bgColor='green '>OK</td>
+<td align='right' width='50.0%' bgColor=#00ffff>29828</td>
+<td align='right' width='50.0%' bgColor=#00ff00>47604623</td>
+</tr>
+<tr>
+<td nowrap valign=top width=10><pre>split
+    thread1: C2
+    thread2: Interpreter
+</pre></td>
+<td nowrap valign=top width=10><pre>    thread1: package group 0, core group 0
+    thread2: package group 0, core group 0
+</pre></td>
+<td        valign=top width=10>
+<pre>[-XX:+StressLCM, -XX:+StressGCM, -XX:+StressIGVN, -XX:+StressCCP, -XX:StressSeed=847780743]</pre>
+</td>
+<td align='center' bgColor='green '>OK</td>
+<td align='right' width='50.0%' bgColor=#00ffff>39454</td>
+<td align='right' width='50.0%' bgColor=#00ff00>47922677</td>
+</tr>
+<tr>
+<td nowrap valign=top width=10><pre>split
+    thread1: C2
+    thread2: Interpreter
+</pre></td>
+<td nowrap valign=top width=10><pre>    thread1: package group 0, core group 0
+    thread2: package group 0, core group 0
+</pre></td>
+<td        valign=top width=10>
+<pre>[-XX:+StressLCM, -XX:+StressGCM, -XX:+StressIGVN, -XX:+StressCCP, -XX:StressSeed=989916321]</pre>
+</td>
+<td align='center' bgColor='green '>OK</td>
+<td align='right' width='50.0%' bgColor=#00ffff>36045</td>
+<td align='right' width='50.0%' bgColor=#00ff00>34777926</td>
+</tr>
+<tr>
+<td nowrap valign=top width=10><pre>split
+    thread1: C2
+    thread2: Interpreter
+</pre></td>
+<td nowrap valign=top width=10><pre>    thread1: package group 0, core group 0
+    thread2: package group 0, core group 1
+</pre></td>
+<td        valign=top width=10>
+</td>
+<td align='center' bgColor='green '>OK</td>
+<td align='right' width='50.0%' bgColor=#00ffff>875216</td>
+<td align='right' width='50.0%' bgColor=#00ff00>124142915</td>
+</tr>
+<tr>
+<td nowrap valign=top width=10><pre>split
+    thread1: C2
+    thread2: Interpreter
+</pre></td>
+<td nowrap valign=top width=10><pre>    thread1: package group 0, core group 0
+    thread2: package group 0, core group 1
+</pre></td>
+<td        valign=top width=10>
+<pre>[-XX:+StressLCM, -XX:+StressGCM, -XX:+StressIGVN, -XX:+StressCCP, -XX:StressSeed=1363678139]</pre>
+</td>
+<td align='center' bgColor='green '>OK</td>
+<td align='right' width='50.0%' bgColor=#00ffff>618804</td>
+<td align='right' width='50.0%' bgColor=#00ff00>136021727</td>
+</tr>
+<tr>
+<td nowrap valign=top width=10><pre>split
+    thread1: C2
+    thread2: Interpreter
+</pre></td>
+<td nowrap valign=top width=10><pre>    thread1: package group 0, core group 0
+    thread2: package group 0, core group 1
+</pre></td>
+<td        valign=top width=10>
+<pre>[-XX:+StressLCM, -XX:+StressGCM, -XX:+StressIGVN, -XX:+StressCCP, -XX:StressSeed=1449960059]</pre>
+</td>
+<td align='center' bgColor='green '>OK</td>
+<td align='right' width='50.0%' bgColor=#00ffff>609680</td>
+<td align='right' width='50.0%' bgColor=#00ff00>141058691</td>
+</tr>
+<tr>
+<td nowrap valign=top width=10><pre>split
+    thread1: C2
+    thread2: Interpreter
+</pre></td>
+<td nowrap valign=top width=10><pre>    thread1: package group 0, core group 0
+    thread2: package group 0, core group 1
+</pre></td>
+<td        valign=top width=10>
+<pre>[-XX:+StressLCM, -XX:+StressGCM, -XX:+StressIGVN, -XX:+StressCCP, -XX:StressSeed=469386583]</pre>
+</td>
+<td align='center' bgColor='green '>OK</td>
+<td align='right' width='50.0%' bgColor=#00ffff>550176</td>
+<td align='right' width='50.0%' bgColor=#00ff00>133980915</td>
+</tr>
+<tr>
+<td nowrap valign=top width=10><pre>split
+    thread1: C2
+    thread2: Interpreter
+</pre></td>
+<td nowrap valign=top width=10><pre>    thread1: package group 0, core group 0
+    thread2: package group 0, core group 1
+</pre></td>
+<td        valign=top width=10>
+<pre>[-XX:+StressLCM, -XX:+StressGCM, -XX:+StressIGVN, -XX:+StressCCP, -XX:StressSeed=621663182]</pre>
+</td>
+<td align='center' bgColor='green '>OK</td>
+<td align='right' width='50.0%' bgColor=#00ffff>279661</td>
+<td align='right' width='50.0%' bgColor=#00ff00>59335590</td>
+</tr>
+<tr>
+<td nowrap valign=top width=10><pre>split
+    thread1: C2
+    thread2: Interpreter
+</pre></td>
+<td nowrap valign=top width=10><pre>    thread1: package group 0, core group 0
+    thread2: package group 0, core group 1
+</pre></td>
+<td        valign=top width=10>
+<pre>[-XX:+StressLCM, -XX:+StressGCM, -XX:+StressIGVN, -XX:+StressCCP, -XX:StressSeed=983575207]</pre>
+</td>
+<td align='center' bgColor='green '>OK</td>
+<td align='right' width='50.0%' bgColor=#00ffff>772618</td>
+<td align='right' width='50.0%' bgColor=#00ff00>124501513</td>
+</tr>
+<tr>
+<td nowrap valign=top width=10><pre>split
+    thread1: Interpreter
+    thread2: C1
+</pre></td>
+<td nowrap valign=top width=10><pre>    thread1: package group 0, core group 0
+    thread2: package group 0, core group 0
+</pre></td>
+<td        valign=top width=10>
+</td>
+<td align='center' bgColor='green '>OK</td>
+<td align='right' width='50.0%' bgColor=#00ffff>51136</td>
+<td align='right' width='50.0%' bgColor=#00ff00>45197395</td>
+</tr>
+<tr>
+<td nowrap valign=top width=10><pre>split
+    thread1: Interpreter
+    thread2: C1
+</pre></td>
+<td nowrap valign=top width=10><pre>    thread1: package group 0, core group 0
+    thread2: package group 0, core group 1
+</pre></td>
+<td        valign=top width=10>
+</td>
+<td align='center' bgColor='green '>OK</td>
+<td align='right' width='50.0%' bgColor=#00ffff>860011</td>
+<td align='right' width='50.0%' bgColor=#00ff00>137992360</td>
+</tr>
+<tr>
+<td nowrap valign=top width=10><pre>split
+    thread1: C1
+    thread2: C1
+</pre></td>
+<td nowrap valign=top width=10><pre>    thread1: package group 0, core group 0
+    thread2: package group 0, core group 0
+</pre></td>
+<td        valign=top width=10>
+</td>
+<td align='center' bgColor='green '>OK</td>
+<td align='right' width='50.0%' bgColor=#00ffff>5136184</td>
+<td align='right' width='50.0%' bgColor=#00ff00>119523547</td>
+</tr>
+<tr>
+<td nowrap valign=top width=10><pre>split
+    thread1: C1
+    thread2: C1
+</pre></td>
+<td nowrap valign=top width=10><pre>    thread1: package group 0, core group 0
+    thread2: package group 0, core group 1
+</pre></td>
+<td        valign=top width=10>
+</td>
+<td align='center' bgColor='green '>OK</td>
+<td align='right' width='50.0%' bgColor=#00ffff>45476830</td>
+<td align='right' width='50.0%' bgColor=#00ff00>242101301</td>
+</tr>
+<tr>
+<td nowrap valign=top width=10><pre>split
+    thread1: C2
+    thread2: C1
+</pre></td>
+<td nowrap valign=top width=10><pre>    thread1: package group 0, core group 0
+    thread2: package group 0, core group 0
+</pre></td>
+<td        valign=top width=10>
+</td>
+<td align='center' bgColor='green '>OK</td>
+<td align='right' width='50.0%' bgColor=#00ffff>8352760</td>
+<td align='right' width='50.0%' bgColor=#00ff00>126925851</td>
+</tr>
+<tr>
+<td nowrap valign=top width=10><pre>split
+    thread1: C2
+    thread2: C1
+</pre></td>
+<td nowrap valign=top width=10><pre>    thread1: package group 0, core group 0
+    thread2: package group 0, core group 0
+</pre></td>
+<td        valign=top width=10>
+<pre>[-XX:+StressLCM, -XX:+StressGCM, -XX:+StressIGVN, -XX:+StressCCP, -XX:StressSeed=1234288971]</pre>
+</td>
+<td align='center' bgColor='green '>OK</td>
+<td align='right' width='50.0%' bgColor=#00ffff>5489230</td>
+<td align='right' width='50.0%' bgColor=#00ff00>85900741</td>
+</tr>
+<tr>
+<td nowrap valign=top width=10><pre>split
+    thread1: C2
+    thread2: C1
+</pre></td>
+<td nowrap valign=top width=10><pre>    thread1: package group 0, core group 0
+    thread2: package group 0, core group 0
+</pre></td>
+<td        valign=top width=10>
+<pre>[-XX:+StressLCM, -XX:+StressGCM, -XX:+StressIGVN, -XX:+StressCCP, -XX:StressSeed=1909124006]</pre>
+</td>
+<td align='center' bgColor='green '>OK</td>
+<td align='right' width='50.0%' bgColor=#00ffff>6352961</td>
+<td align='right' width='50.0%' bgColor=#00ff00>117170130</td>
+</tr>
+<tr>
+<td nowrap valign=top width=10><pre>split
+    thread1: C2
+    thread2: C1
+</pre></td>
+<td nowrap valign=top width=10><pre>    thread1: package group 0, core group 0
+    thread2: package group 0, core group 0
+</pre></td>
+<td        valign=top width=10>
+<pre>[-XX:+StressLCM, -XX:+StressGCM, -XX:+StressIGVN, -XX:+StressCCP, -XX:StressSeed=544987792]</pre>
+</td>
+<td align='center' bgColor='green '>OK</td>
+<td align='right' width='50.0%' bgColor=#00ffff>5186239</td>
+<td align='right' width='50.0%' bgColor=#00ff00>81984852</td>
+</tr>
+<tr>
+<td nowrap valign=top width=10><pre>split
+    thread1: C2
+    thread2: C1
+</pre></td>
+<td nowrap valign=top width=10><pre>    thread1: package group 0, core group 0
+    thread2: package group 0, core group 0
+</pre></td>
+<td        valign=top width=10>
+<pre>[-XX:+StressLCM, -XX:+StressGCM, -XX:+StressIGVN, -XX:+StressCCP, -XX:StressSeed=683531856]</pre>
+</td>
+<td align='center' bgColor='green '>OK</td>
+<td align='right' width='50.0%' bgColor=#00ffff>6769880</td>
+<td align='right' width='50.0%' bgColor=#00ff00>112094011</td>
+</tr>
+<tr>
+<td nowrap valign=top width=10><pre>split
+    thread1: C2
+    thread2: C1
+</pre></td>
+<td nowrap valign=top width=10><pre>    thread1: package group 0, core group 0
+    thread2: package group 0, core group 0
+</pre></td>
+<td        valign=top width=10>
+<pre>[-XX:+StressLCM, -XX:+StressGCM, -XX:+StressIGVN, -XX:+StressCCP, -XX:StressSeed=777945550]</pre>
+</td>
+<td align='center' bgColor='green '>OK</td>
+<td align='right' width='50.0%' bgColor=#00ffff>4988412</td>
+<td align='right' width='50.0%' bgColor=#00ff00>91070999</td>
+</tr>
+<tr>
+<td nowrap valign=top width=10><pre>split
+    thread1: C2
+    thread2: C1
+</pre></td>
+<td nowrap valign=top width=10><pre>    thread1: package group 0, core group 0
+    thread2: package group 0, core group 1
+</pre></td>
+<td        valign=top width=10>
+</td>
+<td align='center' bgColor='green '>OK</td>
+<td align='right' width='50.0%' bgColor=#00ffff>45991968</td>
+<td align='right' width='50.0%' bgColor=#00ff00>205049843</td>
+</tr>
+<tr>
+<td nowrap valign=top width=10><pre>split
+    thread1: C2
+    thread2: C1
+</pre></td>
+<td nowrap valign=top width=10><pre>    thread1: package group 0, core group 0
+    thread2: package group 0, core group 1
+</pre></td>
+<td        valign=top width=10>
+<pre>[-XX:+StressLCM, -XX:+StressGCM, -XX:+StressIGVN, -XX:+StressCCP, -XX:StressSeed=1654879911]</pre>
+</td>
+<td align='center' bgColor='green '>OK</td>
+<td align='right' width='50.0%' bgColor=#00ffff>49364219</td>
+<td align='right' width='50.0%' bgColor=#00ff00>211129112</td>
+</tr>
+<tr>
+<td nowrap valign=top width=10><pre>split
+    thread1: C2
+    thread2: C1
+</pre></td>
+<td nowrap valign=top width=10><pre>    thread1: package group 0, core group 0
+    thread2: package group 0, core group 1
+</pre></td>
+<td        valign=top width=10>
+<pre>[-XX:+StressLCM, -XX:+StressGCM, -XX:+StressIGVN, -XX:+StressCCP, -XX:StressSeed=375298655]</pre>
+</td>
+<td align='center' bgColor='green '>OK</td>
+<td align='right' width='50.0%' bgColor=#00ffff>40943679</td>
+<td align='right' width='50.0%' bgColor=#00ff00>195465172</td>
+</tr>
+<tr>
+<td nowrap valign=top width=10><pre>split
+    thread1: C2
+    thread2: C1
+</pre></td>
+<td nowrap valign=top width=10><pre>    thread1: package group 0, core group 0
+    thread2: package group 0, core group 1
+</pre></td>
+<td        valign=top width=10>
+<pre>[-XX:+StressLCM, -XX:+StressGCM, -XX:+StressIGVN, -XX:+StressCCP, -XX:StressSeed=583613490]</pre>
+</td>
+<td align='center' bgColor='green '>OK</td>
+<td align='right' width='50.0%' bgColor=#00ffff>41559173</td>
+<td align='right' width='50.0%' bgColor=#00ff00>216118158</td>
+</tr>
+<tr>
+<td nowrap valign=top width=10><pre>split
+    thread1: C2
+    thread2: C1
+</pre></td>
+<td nowrap valign=top width=10><pre>    thread1: package group 0, core group 0
+    thread2: package group 0, core group 1
+</pre></td>
+<td        valign=top width=10>
+<pre>[-XX:+StressLCM, -XX:+StressGCM, -XX:+StressIGVN, -XX:+StressCCP, -XX:StressSeed=586309063]</pre>
+</td>
+<td align='center' bgColor='green '>OK</td>
+<td align='right' width='50.0%' bgColor=#00ffff>40743476</td>
+<td align='right' width='50.0%' bgColor=#00ff00>182742495</td>
+</tr>
+<tr>
+<td nowrap valign=top width=10><pre>split
+    thread1: C2
+    thread2: C1
+</pre></td>
+<td nowrap valign=top width=10><pre>    thread1: package group 0, core group 0
+    thread2: package group 0, core group 1
+</pre></td>
+<td        valign=top width=10>
+<pre>[-XX:+StressLCM, -XX:+StressGCM, -XX:+StressIGVN, -XX:+StressCCP, -XX:StressSeed=913245281]</pre>
+</td>
+<td align='center' bgColor='green '>OK</td>
+<td align='right' width='50.0%' bgColor=#00ffff>46142409</td>
+<td align='right' width='50.0%' bgColor=#00ff00>268704842</td>
+</tr>
+<tr>
+<td nowrap valign=top width=10><pre>split
+    thread1: Interpreter
+    thread2: C2
+</pre></td>
+<td nowrap valign=top width=10><pre>    thread1: package group 0, core group 0
+    thread2: package group 0, core group 0
+</pre></td>
+<td        valign=top width=10>
+</td>
+<td align='center' bgColor='green '>OK</td>
+<td align='right' width='50.0%' bgColor=#00ffff>45280</td>
+<td align='right' width='50.0%' bgColor=#00ff00>52442931</td>
+</tr>
+<tr>
+<td nowrap valign=top width=10><pre>split
+    thread1: Interpreter
+    thread2: C2
+</pre></td>
+<td nowrap valign=top width=10><pre>    thread1: package group 0, core group 0
+    thread2: package group 0, core group 0
+</pre></td>
+<td        valign=top width=10>
+<pre>[-XX:+StressLCM, -XX:+StressGCM, -XX:+StressIGVN, -XX:+StressCCP, -XX:StressSeed=1644163565]</pre>
+</td>
+<td align='center' bgColor='green '>OK</td>
+<td align='right' width='50.0%' bgColor=#00ffff>40904</td>
+<td align='right' width='50.0%' bgColor=#00ff00>41859147</td>
+</tr>
+<tr>
+<td nowrap valign=top width=10><pre>split
+    thread1: Interpreter
+    thread2: C2
+</pre></td>
+<td nowrap valign=top width=10><pre>    thread1: package group 0, core group 0
+    thread2: package group 0, core group 0
+</pre></td>
+<td        valign=top width=10>
+<pre>[-XX:+StressLCM, -XX:+StressGCM, -XX:+StressIGVN, -XX:+StressCCP, -XX:StressSeed=2004383972]</pre>
+</td>
+<td align='center' bgColor='green '>OK</td>
+<td align='right' width='50.0%' bgColor=#00ffff>57360</td>
+<td align='right' width='50.0%' bgColor=#00ff00>61472771</td>
+</tr>
+<tr>
+<td nowrap valign=top width=10><pre>split
+    thread1: Interpreter
+    thread2: C2
+</pre></td>
+<td nowrap valign=top width=10><pre>    thread1: package group 0, core group 0
+    thread2: package group 0, core group 0
+</pre></td>
+<td        valign=top width=10>
+<pre>[-XX:+StressLCM, -XX:+StressGCM, -XX:+StressIGVN, -XX:+StressCCP, -XX:StressSeed=250649750]</pre>
+</td>
+<td align='center' bgColor='green '>OK</td>
+<td align='right' width='50.0%' bgColor=#00ffff>35735</td>
+<td align='right' width='50.0%' bgColor=#00ff00>48243836</td>
+</tr>
+<tr>
+<td nowrap valign=top width=10><pre>split
+    thread1: Interpreter
+    thread2: C2
+</pre></td>
+<td nowrap valign=top width=10><pre>    thread1: package group 0, core group 0
+    thread2: package group 0, core group 0
+</pre></td>
+<td        valign=top width=10>
+<pre>[-XX:+StressLCM, -XX:+StressGCM, -XX:+StressIGVN, -XX:+StressCCP, -XX:StressSeed=686865628]</pre>
+</td>
+<td align='center' bgColor='green '>OK</td>
+<td align='right' width='50.0%' bgColor=#00ffff>36768</td>
+<td align='right' width='50.0%' bgColor=#00ff00>50434163</td>
+</tr>
+<tr>
+<td nowrap valign=top width=10><pre>split
+    thread1: Interpreter
+    thread2: C2
+</pre></td>
+<td nowrap valign=top width=10><pre>    thread1: package group 0, core group 0
+    thread2: package group 0, core group 0
+</pre></td>
+<td        valign=top width=10>
+<pre>[-XX:+StressLCM, -XX:+StressGCM, -XX:+StressIGVN, -XX:+StressCCP, -XX:StressSeed=828467952]</pre>
+</td>
+<td align='center' bgColor='green '>OK</td>
+<td align='right' width='50.0%' bgColor=#00ffff>40085</td>
+<td align='right' width='50.0%' bgColor=#00ff00>44747646</td>
+</tr>
+<tr>
+<td nowrap valign=top width=10><pre>split
+    thread1: Interpreter
+    thread2: C2
+</pre></td>
+<td nowrap valign=top width=10><pre>    thread1: package group 0, core group 0
+    thread2: package group 0, core group 1
+</pre></td>
+<td        valign=top width=10>
+</td>
+<td align='center' bgColor='green '>OK</td>
+<td align='right' width='50.0%' bgColor=#00ffff>704097</td>
+<td align='right' width='50.0%' bgColor=#00ff00>145582514</td>
+</tr>
+<tr>
+<td nowrap valign=top width=10><pre>split
+    thread1: Interpreter
+    thread2: C2
+</pre></td>
+<td nowrap valign=top width=10><pre>    thread1: package group 0, core group 0
+    thread2: package group 0, core group 1
+</pre></td>
+<td        valign=top width=10>
+<pre>[-XX:+StressLCM, -XX:+StressGCM, -XX:+StressIGVN, -XX:+StressCCP, -XX:StressSeed=15153677]</pre>
+</td>
+<td align='center' bgColor='green '>OK</td>
+<td align='right' width='50.0%' bgColor=#00ffff>779939</td>
+<td align='right' width='50.0%' bgColor=#00ff00>143386992</td>
+</tr>
+<tr>
+<td nowrap valign=top width=10><pre>split
+    thread1: Interpreter
+    thread2: C2
+</pre></td>
+<td nowrap valign=top width=10><pre>    thread1: package group 0, core group 0
+    thread2: package group 0, core group 1
+</pre></td>
+<td        valign=top width=10>
+<pre>[-XX:+StressLCM, -XX:+StressGCM, -XX:+StressIGVN, -XX:+StressCCP, -XX:StressSeed=1549859135]</pre>
+</td>
+<td align='center' bgColor='green '>OK</td>
+<td align='right' width='50.0%' bgColor=#00ffff>570320</td>
+<td align='right' width='50.0%' bgColor=#00ff00>141384771</td>
+</tr>
+<tr>
+<td nowrap valign=top width=10><pre>split
+    thread1: Interpreter
+    thread2: C2
+</pre></td>
+<td nowrap valign=top width=10><pre>    thread1: package group 0, core group 0
+    thread2: package group 0, core group 1
+</pre></td>
+<td        valign=top width=10>
+<pre>[-XX:+StressLCM, -XX:+StressGCM, -XX:+StressIGVN, -XX:+StressCCP, -XX:StressSeed=1590715278]</pre>
+</td>
+<td align='center' bgColor='green '>OK</td>
+<td align='right' width='50.0%' bgColor=#00ffff>769557</td>
+<td align='right' width='50.0%' bgColor=#00ff00>146459134</td>
+</tr>
+<tr>
+<td nowrap valign=top width=10><pre>split
+    thread1: Interpreter
+    thread2: C2
+</pre></td>
+<td nowrap valign=top width=10><pre>    thread1: package group 0, core group 0
+    thread2: package group 0, core group 1
+</pre></td>
+<td        valign=top width=10>
+<pre>[-XX:+StressLCM, -XX:+StressGCM, -XX:+StressIGVN, -XX:+StressCCP, -XX:StressSeed=643943870]</pre>
+</td>
+<td align='center' bgColor='green '>OK</td>
+<td align='right' width='50.0%' bgColor=#00ffff>783448</td>
+<td align='right' width='50.0%' bgColor=#00ff00>126897083</td>
+</tr>
+<tr>
+<td nowrap valign=top width=10><pre>split
+    thread1: Interpreter
+    thread2: C2
+</pre></td>
+<td nowrap valign=top width=10><pre>    thread1: package group 0, core group 0
+    thread2: package group 0, core group 1
+</pre></td>
+<td        valign=top width=10>
+<pre>[-XX:+StressLCM, -XX:+StressGCM, -XX:+StressIGVN, -XX:+StressCCP, -XX:StressSeed=648532127]</pre>
+</td>
+<td align='center' bgColor='green '>OK</td>
+<td align='right' width='50.0%' bgColor=#00ffff>532772</td>
+<td align='right' width='50.0%' bgColor=#00ff00>113374959</td>
+</tr>
+<tr>
+<td nowrap valign=top width=10><pre>split
+    thread1: C1
+    thread2: C2
+</pre></td>
+<td nowrap valign=top width=10><pre>    thread1: package group 0, core group 0
+    thread2: package group 0, core group 0
+</pre></td>
+<td        valign=top width=10>
+</td>
+<td align='center' bgColor='green '>OK</td>
+<td align='right' width='50.0%' bgColor=#00ffff>9149898</td>
+<td align='right' width='50.0%' bgColor=#00ff00>141683273</td>
+</tr>
+<tr>
+<td nowrap valign=top width=10><pre>split
+    thread1: C1
+    thread2: C2
+</pre></td>
+<td nowrap valign=top width=10><pre>    thread1: package group 0, core group 0
+    thread2: package group 0, core group 0
+</pre></td>
+<td        valign=top width=10>
+<pre>[-XX:+StressLCM, -XX:+StressGCM, -XX:+StressIGVN, -XX:+StressCCP, -XX:StressSeed=1032518383]</pre>
+</td>
+<td align='center' bgColor='green '>OK</td>
+<td align='right' width='50.0%' bgColor=#00ffff>5196224</td>
+<td align='right' width='50.0%' bgColor=#00ff00>104953427</td>
+</tr>
+<tr>
+<td nowrap valign=top width=10><pre>split
+    thread1: C1
+    thread2: C2
+</pre></td>
+<td nowrap valign=top width=10><pre>    thread1: package group 0, core group 0
+    thread2: package group 0, core group 0
+</pre></td>
+<td        valign=top width=10>
+<pre>[-XX:+StressLCM, -XX:+StressGCM, -XX:+StressIGVN, -XX:+StressCCP, -XX:StressSeed=1170348294]</pre>
+</td>
+<td align='center' bgColor='green '>OK</td>
+<td align='right' width='50.0%' bgColor=#00ffff>6170727</td>
+<td align='right' width='50.0%' bgColor=#00ff00>92633004</td>
+</tr>
+<tr>
+<td nowrap valign=top width=10><pre>split
+    thread1: C1
+    thread2: C2
+</pre></td>
+<td nowrap valign=top width=10><pre>    thread1: package group 0, core group 0
+    thread2: package group 0, core group 0
+</pre></td>
+<td        valign=top width=10>
+<pre>[-XX:+StressLCM, -XX:+StressGCM, -XX:+StressIGVN, -XX:+StressCCP, -XX:StressSeed=1373877813]</pre>
+</td>
+<td align='center' bgColor='green '>OK</td>
+<td align='right' width='50.0%' bgColor=#00ffff>7059157</td>
+<td align='right' width='50.0%' bgColor=#00ff00>172056894</td>
+</tr>
+<tr>
+<td nowrap valign=top width=10><pre>split
+    thread1: C1
+    thread2: C2
+</pre></td>
+<td nowrap valign=top width=10><pre>    thread1: package group 0, core group 0
+    thread2: package group 0, core group 0
+</pre></td>
+<td        valign=top width=10>
+<pre>[-XX:+StressLCM, -XX:+StressGCM, -XX:+StressIGVN, -XX:+StressCCP, -XX:StressSeed=1787146409]</pre>
+</td>
+<td align='center' bgColor='green '>OK</td>
+<td align='right' width='50.0%' bgColor=#00ffff>5540212</td>
+<td align='right' width='50.0%' bgColor=#00ff00>87723679</td>
+</tr>
+<tr>
+<td nowrap valign=top width=10><pre>split
+    thread1: C1
+    thread2: C2
+</pre></td>
+<td nowrap valign=top width=10><pre>    thread1: package group 0, core group 0
+    thread2: package group 0, core group 0
+</pre></td>
+<td        valign=top width=10>
+<pre>[-XX:+StressLCM, -XX:+StressGCM, -XX:+StressIGVN, -XX:+StressCCP, -XX:StressSeed=407153880]</pre>
+</td>
+<td align='center' bgColor='green '>OK</td>
+<td align='right' width='50.0%' bgColor=#00ffff>6709227</td>
+<td align='right' width='50.0%' bgColor=#00ff00>119762984</td>
+</tr>
+<tr>
+<td nowrap valign=top width=10><pre>split
+    thread1: C1
+    thread2: C2
+</pre></td>
+<td nowrap valign=top width=10><pre>    thread1: package group 0, core group 0
+    thread2: package group 0, core group 1
+</pre></td>
+<td        valign=top width=10>
+</td>
+<td align='center' bgColor='green '>OK</td>
+<td align='right' width='50.0%' bgColor=#00ffff>55561826</td>
+<td align='right' width='50.0%' bgColor=#00ff00>353298865</td>
+</tr>
+<tr>
+<td nowrap valign=top width=10><pre>split
+    thread1: C1
+    thread2: C2
+</pre></td>
+<td nowrap valign=top width=10><pre>    thread1: package group 0, core group 0
+    thread2: package group 0, core group 1
+</pre></td>
+<td        valign=top width=10>
+<pre>[-XX:+StressLCM, -XX:+StressGCM, -XX:+StressIGVN, -XX:+StressCCP, -XX:StressSeed=1758381566]</pre>
+</td>
+<td align='center' bgColor='green '>OK</td>
+<td align='right' width='50.0%' bgColor=#00ffff>49544295</td>
+<td align='right' width='50.0%' bgColor=#00ff00>245140396</td>
+</tr>
+<tr>
+<td nowrap valign=top width=10><pre>split
+    thread1: C1
+    thread2: C2
+</pre></td>
+<td nowrap valign=top width=10><pre>    thread1: package group 0, core group 0
+    thread2: package group 0, core group 1
+</pre></td>
+<td        valign=top width=10>
+<pre>[-XX:+StressLCM, -XX:+StressGCM, -XX:+StressIGVN, -XX:+StressCCP, -XX:StressSeed=345644346]</pre>
+</td>
+<td align='center' bgColor='green '>OK</td>
+<td align='right' width='50.0%' bgColor=#00ffff>41789601</td>
+<td align='right' width='50.0%' bgColor=#00ff00>177149810</td>
+</tr>
+<tr>
+<td nowrap valign=top width=10><pre>split
+    thread1: C1
+    thread2: C2
+</pre></td>
+<td nowrap valign=top width=10><pre>    thread1: package group 0, core group 0
+    thread2: package group 0, core group 1
+</pre></td>
+<td        valign=top width=10>
+<pre>[-XX:+StressLCM, -XX:+StressGCM, -XX:+StressIGVN, -XX:+StressCCP, -XX:StressSeed=744360273]</pre>
+</td>
+<td align='center' bgColor='green '>OK</td>
+<td align='right' width='50.0%' bgColor=#00ffff>43906487</td>
+<td align='right' width='50.0%' bgColor=#00ff00>201953884</td>
+</tr>
+<tr>
+<td nowrap valign=top width=10><pre>split
+    thread1: C1
+    thread2: C2
+</pre></td>
+<td nowrap valign=top width=10><pre>    thread1: package group 0, core group 0
+    thread2: package group 0, core group 1
+</pre></td>
+<td        valign=top width=10>
+<pre>[-XX:+StressLCM, -XX:+StressGCM, -XX:+StressIGVN, -XX:+StressCCP, -XX:StressSeed=784195349]</pre>
+</td>
+<td align='center' bgColor='green '>OK</td>
+<td align='right' width='50.0%' bgColor=#00ffff>50503995</td>
+<td align='right' width='50.0%' bgColor=#00ff00>235415256</td>
+</tr>
+<tr>
+<td nowrap valign=top width=10><pre>split
+    thread1: C1
+    thread2: C2
+</pre></td>
+<td nowrap valign=top width=10><pre>    thread1: package group 0, core group 0
+    thread2: package group 0, core group 1
+</pre></td>
+<td        valign=top width=10>
+<pre>[-XX:+StressLCM, -XX:+StressGCM, -XX:+StressIGVN, -XX:+StressCCP, -XX:StressSeed=795626790]</pre>
+</td>
+<td align='center' bgColor='green '>OK</td>
+<td align='right' width='50.0%' bgColor=#00ffff>42892391</td>
+<td align='right' width='50.0%' bgColor=#00ff00>211231660</td>
+</tr>
+<tr>
+<td nowrap valign=top width=10><pre>split
+    thread1: C2
+    thread2: C2
+</pre></td>
+<td nowrap valign=top width=10><pre>    thread1: package group 0, core group 0
+    thread2: package group 0, core group 0
+</pre></td>
+<td        valign=top width=10>
+</td>
+<td align='center' bgColor='green '>OK</td>
+<td align='right' width='50.0%' bgColor=#00ffff>6581741</td>
+<td align='right' width='50.0%' bgColor=#00ff00>125450790</td>
+</tr>
+<tr>
+<td nowrap valign=top width=10><pre>split
+    thread1: C2
+    thread2: C2
+</pre></td>
+<td nowrap valign=top width=10><pre>    thread1: package group 0, core group 0
+    thread2: package group 0, core group 0
+</pre></td>
+<td        valign=top width=10>
+<pre>[-XX:+StressLCM, -XX:+StressGCM, -XX:+StressIGVN, -XX:+StressCCP, -XX:StressSeed=1002020438]</pre>
+</td>
+<td align='center' bgColor='green '>OK</td>
+<td align='right' width='50.0%' bgColor=#00ffff>5780573</td>
+<td align='right' width='50.0%' bgColor=#00ff00>103048118</td>
+</tr>
+<tr>
+<td nowrap valign=top width=10><pre>split
+    thread1: C2
+    thread2: C2
+</pre></td>
+<td nowrap valign=top width=10><pre>    thread1: package group 0, core group 0
+    thread2: package group 0, core group 0
+</pre></td>
+<td        valign=top width=10>
+<pre>[-XX:+StressLCM, -XX:+StressGCM, -XX:+StressIGVN, -XX:+StressCCP, -XX:StressSeed=175698738]</pre>
+</td>
+<td align='center' bgColor='green '>OK</td>
+<td align='right' width='50.0%' bgColor=#00ffff>5340308</td>
+<td align='right' width='50.0%' bgColor=#00ff00>122555263</td>
+</tr>
+<tr>
+<td nowrap valign=top width=10><pre>split
+    thread1: C2
+    thread2: C2
+</pre></td>
+<td nowrap valign=top width=10><pre>    thread1: package group 0, core group 0
+    thread2: package group 0, core group 0
+</pre></td>
+<td        valign=top width=10>
+<pre>[-XX:+StressLCM, -XX:+StressGCM, -XX:+StressIGVN, -XX:+StressCCP, -XX:StressSeed=1797684994]</pre>
+</td>
+<td align='center' bgColor='green '>OK</td>
+<td align='right' width='50.0%' bgColor=#00ffff>4240613</td>
+<td align='right' width='50.0%' bgColor=#00ff00>96498478</td>
+</tr>
+<tr>
+<td nowrap valign=top width=10><pre>split
+    thread1: C2
+    thread2: C2
+</pre></td>
+<td nowrap valign=top width=10><pre>    thread1: package group 0, core group 0
+    thread2: package group 0, core group 0
+</pre></td>
+<td        valign=top width=10>
+<pre>[-XX:+StressLCM, -XX:+StressGCM, -XX:+StressIGVN, -XX:+StressCCP, -XX:StressSeed=2060394305]</pre>
+</td>
+<td align='center' bgColor='green '>OK</td>
+<td align='right' width='50.0%' bgColor=#00ffff>4798234</td>
+<td align='right' width='50.0%' bgColor=#00ff00>129394937</td>
+</tr>
+<tr>
+<td nowrap valign=top width=10><pre>split
+    thread1: C2
+    thread2: C2
+</pre></td>
+<td nowrap valign=top width=10><pre>    thread1: package group 0, core group 0
+    thread2: package group 0, core group 0
+</pre></td>
+<td        valign=top width=10>
+<pre>[-XX:+StressLCM, -XX:+StressGCM, -XX:+StressIGVN, -XX:+StressCCP, -XX:StressSeed=963501731]</pre>
+</td>
+<td align='center' bgColor='green '>OK</td>
+<td align='right' width='50.0%' bgColor=#00ffff>3670165</td>
+<td align='right' width='50.0%' bgColor=#00ff00>95000446</td>
+</tr>
+<tr>
+<td nowrap valign=top width=10><pre>split
+    thread1: C2
+    thread2: C2
+</pre></td>
+<td nowrap valign=top width=10><pre>    thread1: package group 0, core group 0
+    thread2: package group 0, core group 1
+</pre></td>
+<td        valign=top width=10>
+</td>
+<td align='center' bgColor='green '>OK</td>
+<td align='right' width='50.0%' bgColor=#00ffff>51459600</td>
+<td align='right' width='50.0%' bgColor=#00ff00>203688451</td>
+</tr>
+<tr>
+<td nowrap valign=top width=10><pre>split
+    thread1: C2
+    thread2: C2
+</pre></td>
+<td nowrap valign=top width=10><pre>    thread1: package group 0, core group 0
+    thread2: package group 0, core group 1
+</pre></td>
+<td        valign=top width=10>
+<pre>[-XX:+StressLCM, -XX:+StressGCM, -XX:+StressIGVN, -XX:+StressCCP, -XX:StressSeed=1077444639]</pre>
+</td>
+<td align='center' bgColor='green '>OK</td>
+<td align='right' width='50.0%' bgColor=#00ffff>48561211</td>
+<td align='right' width='50.0%' bgColor=#00ff00>251816920</td>
+</tr>
+<tr>
+<td nowrap valign=top width=10><pre>split
+    thread1: C2
+    thread2: C2
+</pre></td>
+<td nowrap valign=top width=10><pre>    thread1: package group 0, core group 0
+    thread2: package group 0, core group 1
+</pre></td>
+<td        valign=top width=10>
+<pre>[-XX:+StressLCM, -XX:+StressGCM, -XX:+StressIGVN, -XX:+StressCCP, -XX:StressSeed=1079839622]</pre>
+</td>
+<td align='center' bgColor='green '>OK</td>
+<td align='right' width='50.0%' bgColor=#00ffff>43102596</td>
+<td align='right' width='50.0%' bgColor=#00ff00>171648655</td>
+</tr>
+<tr>
+<td nowrap valign=top width=10><pre>split
+    thread1: C2
+    thread2: C2
+</pre></td>
+<td nowrap valign=top width=10><pre>    thread1: package group 0, core group 0
+    thread2: package group 0, core group 1
+</pre></td>
+<td        valign=top width=10>
+<pre>[-XX:+StressLCM, -XX:+StressGCM, -XX:+StressIGVN, -XX:+StressCCP, -XX:StressSeed=1675940592]</pre>
+</td>
+<td align='center' bgColor='green '>OK</td>
+<td align='right' width='50.0%' bgColor=#00ffff>44028415</td>
+<td align='right' width='50.0%' bgColor=#00ff00>208938516</td>
+</tr>
+<tr>
+<td nowrap valign=top width=10><pre>split
+    thread1: C2
+    thread2: C2
+</pre></td>
+<td nowrap valign=top width=10><pre>    thread1: package group 0, core group 0
+    thread2: package group 0, core group 1
+</pre></td>
+<td        valign=top width=10>
+<pre>[-XX:+StressLCM, -XX:+StressGCM, -XX:+StressIGVN, -XX:+StressCCP, -XX:StressSeed=1766897315]</pre>
+</td>
+<td align='center' bgColor='green '>OK</td>
+<td align='right' width='50.0%' bgColor=#00ffff>55053315</td>
+<td align='right' width='50.0%' bgColor=#00ff00>225561616</td>
+</tr>
+<tr>
+<td nowrap valign=top width=10><pre>split
+    thread1: C2
+    thread2: C2
+</pre></td>
+<td nowrap valign=top width=10><pre>    thread1: package group 0, core group 0
+    thread2: package group 0, core group 1
+</pre></td>
+<td        valign=top width=10>
+<pre>[-XX:+StressLCM, -XX:+StressGCM, -XX:+StressIGVN, -XX:+StressCCP, -XX:StressSeed=2138897222]</pre>
+</td>
+<td align='center' bgColor='green '>OK</td>
+<td align='right' width='50.0%' bgColor=#00ffff>44688788</td>
+<td align='right' width='50.0%' bgColor=#00ff00>219429503</td>
+</tr>
+</table>
+<h3>Messages</h3>
+<h3>VM Output Streams</h3>
+<h3>VM Error Streams</h3>
+<p><b>
+<pre>split
+    thread1: Interpreter
+    thread2: Interpreter
+</pre>
+<pre>    thread1: package group 0, core group 0
+    thread2: package group 0, core group 0
+</pre>
+
+</b></p>
+<pre>
+WARNING: A restricted method in java.lang.System has been called
+WARNING: java.lang.System::load has been called by com.sun.jna.Native in an unnamed module (file:/home/raquel/git/prog-concorrente/BestMatching/best-matching-java/target/jcstress.jar)
+WARNING: Use --enable-native-access=ALL-UNNAMED to avoid a warning for callers in this module
+WARNING: Restricted methods will be blocked in a future release unless native access is enabled
+
+</pre>
+
+<p><b>
+<pre>split
+    thread1: Interpreter
+    thread2: Interpreter
+</pre>
+<pre>    thread1: package group 0, core group 0
+    thread2: package group 0, core group 1
+</pre>
+
+</b></p>
+<pre>
+WARNING: A restricted method in java.lang.System has been called
+WARNING: java.lang.System::load has been called by com.sun.jna.Native in an unnamed module (file:/home/raquel/git/prog-concorrente/BestMatching/best-matching-java/target/jcstress.jar)
+WARNING: Use --enable-native-access=ALL-UNNAMED to avoid a warning for callers in this module
+WARNING: Restricted methods will be blocked in a future release unless native access is enabled
+
+</pre>
+
+<p><b>
+<pre>split
+    thread1: C1
+    thread2: Interpreter
+</pre>
+<pre>    thread1: package group 0, core group 0
+    thread2: package group 0, core group 0
+</pre>
+
+</b></p>
+<pre>
+WARNING: A restricted method in java.lang.System has been called
+WARNING: java.lang.System::load has been called by com.sun.jna.Native in an unnamed module (file:/home/raquel/git/prog-concorrente/BestMatching/best-matching-java/target/jcstress.jar)
+WARNING: Use --enable-native-access=ALL-UNNAMED to avoid a warning for callers in this module
+WARNING: Restricted methods will be blocked in a future release unless native access is enabled
+
+</pre>
+
+<p><b>
+<pre>split
+    thread1: C1
+    thread2: Interpreter
+</pre>
+<pre>    thread1: package group 0, core group 0
+    thread2: package group 0, core group 1
+</pre>
+
+</b></p>
+<pre>
+WARNING: A restricted method in java.lang.System has been called
+WARNING: java.lang.System::load has been called by com.sun.jna.Native in an unnamed module (file:/home/raquel/git/prog-concorrente/BestMatching/best-matching-java/target/jcstress.jar)
+WARNING: Use --enable-native-access=ALL-UNNAMED to avoid a warning for callers in this module
+WARNING: Restricted methods will be blocked in a future release unless native access is enabled
+
+</pre>
+
+<p><b>
+<pre>split
+    thread1: C2
+    thread2: Interpreter
+</pre>
+<pre>    thread1: package group 0, core group 0
+    thread2: package group 0, core group 0
+</pre>
+
+</b></p>
+<pre>
+WARNING: A restricted method in java.lang.System has been called
+WARNING: java.lang.System::load has been called by com.sun.jna.Native in an unnamed module (file:/home/raquel/git/prog-concorrente/BestMatching/best-matching-java/target/jcstress.jar)
+WARNING: Use --enable-native-access=ALL-UNNAMED to avoid a warning for callers in this module
+WARNING: Restricted methods will be blocked in a future release unless native access is enabled
+
+</pre>
+
+<p><b>
+<pre>split
+    thread1: C2
+    thread2: Interpreter
+</pre>
+<pre>    thread1: package group 0, core group 0
+    thread2: package group 0, core group 0
+</pre>
+
+<pre>[-XX:+StressLCM, -XX:+StressGCM, -XX:+StressIGVN, -XX:+StressCCP, -XX:StressSeed=1096710724]</pre>
+</b></p>
+<pre>
+WARNING: A restricted method in java.lang.System has been called
+WARNING: java.lang.System::load has been called by com.sun.jna.Native in an unnamed module (file:/home/raquel/git/prog-concorrente/BestMatching/best-matching-java/target/jcstress.jar)
+WARNING: Use --enable-native-access=ALL-UNNAMED to avoid a warning for callers in this module
+WARNING: Restricted methods will be blocked in a future release unless native access is enabled
+
+</pre>
+
+<p><b>
+<pre>split
+    thread1: C2
+    thread2: Interpreter
+</pre>
+<pre>    thread1: package group 0, core group 0
+    thread2: package group 0, core group 0
+</pre>
+
+<pre>[-XX:+StressLCM, -XX:+StressGCM, -XX:+StressIGVN, -XX:+StressCCP, -XX:StressSeed=1528134037]</pre>
+</b></p>
+<pre>
+WARNING: A restricted method in java.lang.System has been called
+WARNING: java.lang.System::load has been called by com.sun.jna.Native in an unnamed module (file:/home/raquel/git/prog-concorrente/BestMatching/best-matching-java/target/jcstress.jar)
+WARNING: Use --enable-native-access=ALL-UNNAMED to avoid a warning for callers in this module
+WARNING: Restricted methods will be blocked in a future release unless native access is enabled
+
+</pre>
+
+<p><b>
+<pre>split
+    thread1: C2
+    thread2: Interpreter
+</pre>
+<pre>    thread1: package group 0, core group 0
+    thread2: package group 0, core group 0
+</pre>
+
+<pre>[-XX:+StressLCM, -XX:+StressGCM, -XX:+StressIGVN, -XX:+StressCCP, -XX:StressSeed=738332274]</pre>
+</b></p>
+<pre>
+WARNING: A restricted method in java.lang.System has been called
+WARNING: java.lang.System::load has been called by com.sun.jna.Native in an unnamed module (file:/home/raquel/git/prog-concorrente/BestMatching/best-matching-java/target/jcstress.jar)
+WARNING: Use --enable-native-access=ALL-UNNAMED to avoid a warning for callers in this module
+WARNING: Restricted methods will be blocked in a future release unless native access is enabled
+
+</pre>
+
+<p><b>
+<pre>split
+    thread1: C2
+    thread2: Interpreter
+</pre>
+<pre>    thread1: package group 0, core group 0
+    thread2: package group 0, core group 0
+</pre>
+
+<pre>[-XX:+StressLCM, -XX:+StressGCM, -XX:+StressIGVN, -XX:+StressCCP, -XX:StressSeed=847780743]</pre>
+</b></p>
+<pre>
+WARNING: A restricted method in java.lang.System has been called
+WARNING: java.lang.System::load has been called by com.sun.jna.Native in an unnamed module (file:/home/raquel/git/prog-concorrente/BestMatching/best-matching-java/target/jcstress.jar)
+WARNING: Use --enable-native-access=ALL-UNNAMED to avoid a warning for callers in this module
+WARNING: Restricted methods will be blocked in a future release unless native access is enabled
+
+</pre>
+
+<p><b>
+<pre>split
+    thread1: C2
+    thread2: Interpreter
+</pre>
+<pre>    thread1: package group 0, core group 0
+    thread2: package group 0, core group 0
+</pre>
+
+<pre>[-XX:+StressLCM, -XX:+StressGCM, -XX:+StressIGVN, -XX:+StressCCP, -XX:StressSeed=989916321]</pre>
+</b></p>
+<pre>
+WARNING: A restricted method in java.lang.System has been called
+WARNING: java.lang.System::load has been called by com.sun.jna.Native in an unnamed module (file:/home/raquel/git/prog-concorrente/BestMatching/best-matching-java/target/jcstress.jar)
+WARNING: Use --enable-native-access=ALL-UNNAMED to avoid a warning for callers in this module
+WARNING: Restricted methods will be blocked in a future release unless native access is enabled
+
+</pre>
+
+<p><b>
+<pre>split
+    thread1: C2
+    thread2: Interpreter
+</pre>
+<pre>    thread1: package group 0, core group 0
+    thread2: package group 0, core group 1
+</pre>
+
+</b></p>
+<pre>
+WARNING: A restricted method in java.lang.System has been called
+WARNING: java.lang.System::load has been called by com.sun.jna.Native in an unnamed module (file:/home/raquel/git/prog-concorrente/BestMatching/best-matching-java/target/jcstress.jar)
+WARNING: Use --enable-native-access=ALL-UNNAMED to avoid a warning for callers in this module
+WARNING: Restricted methods will be blocked in a future release unless native access is enabled
+
+</pre>
+
+<p><b>
+<pre>split
+    thread1: C2
+    thread2: Interpreter
+</pre>
+<pre>    thread1: package group 0, core group 0
+    thread2: package group 0, core group 1
+</pre>
+
+<pre>[-XX:+StressLCM, -XX:+StressGCM, -XX:+StressIGVN, -XX:+StressCCP, -XX:StressSeed=1363678139]</pre>
+</b></p>
+<pre>
+WARNING: A restricted method in java.lang.System has been called
+WARNING: java.lang.System::load has been called by com.sun.jna.Native in an unnamed module (file:/home/raquel/git/prog-concorrente/BestMatching/best-matching-java/target/jcstress.jar)
+WARNING: Use --enable-native-access=ALL-UNNAMED to avoid a warning for callers in this module
+WARNING: Restricted methods will be blocked in a future release unless native access is enabled
+
+</pre>
+
+<p><b>
+<pre>split
+    thread1: C2
+    thread2: Interpreter
+</pre>
+<pre>    thread1: package group 0, core group 0
+    thread2: package group 0, core group 1
+</pre>
+
+<pre>[-XX:+StressLCM, -XX:+StressGCM, -XX:+StressIGVN, -XX:+StressCCP, -XX:StressSeed=1449960059]</pre>
+</b></p>
+<pre>
+WARNING: A restricted method in java.lang.System has been called
+WARNING: java.lang.System::load has been called by com.sun.jna.Native in an unnamed module (file:/home/raquel/git/prog-concorrente/BestMatching/best-matching-java/target/jcstress.jar)
+WARNING: Use --enable-native-access=ALL-UNNAMED to avoid a warning for callers in this module
+WARNING: Restricted methods will be blocked in a future release unless native access is enabled
+
+</pre>
+
+<p><b>
+<pre>split
+    thread1: C2
+    thread2: Interpreter
+</pre>
+<pre>    thread1: package group 0, core group 0
+    thread2: package group 0, core group 1
+</pre>
+
+<pre>[-XX:+StressLCM, -XX:+StressGCM, -XX:+StressIGVN, -XX:+StressCCP, -XX:StressSeed=469386583]</pre>
+</b></p>
+<pre>
+WARNING: A restricted method in java.lang.System has been called
+WARNING: java.lang.System::load has been called by com.sun.jna.Native in an unnamed module (file:/home/raquel/git/prog-concorrente/BestMatching/best-matching-java/target/jcstress.jar)
+WARNING: Use --enable-native-access=ALL-UNNAMED to avoid a warning for callers in this module
+WARNING: Restricted methods will be blocked in a future release unless native access is enabled
+
+</pre>
+
+<p><b>
+<pre>split
+    thread1: C2
+    thread2: Interpreter
+</pre>
+<pre>    thread1: package group 0, core group 0
+    thread2: package group 0, core group 1
+</pre>
+
+<pre>[-XX:+StressLCM, -XX:+StressGCM, -XX:+StressIGVN, -XX:+StressCCP, -XX:StressSeed=621663182]</pre>
+</b></p>
+<pre>
+WARNING: A restricted method in java.lang.System has been called
+WARNING: java.lang.System::load has been called by com.sun.jna.Native in an unnamed module (file:/home/raquel/git/prog-concorrente/BestMatching/best-matching-java/target/jcstress.jar)
+WARNING: Use --enable-native-access=ALL-UNNAMED to avoid a warning for callers in this module
+WARNING: Restricted methods will be blocked in a future release unless native access is enabled
+
+</pre>
+
+<p><b>
+<pre>split
+    thread1: C2
+    thread2: Interpreter
+</pre>
+<pre>    thread1: package group 0, core group 0
+    thread2: package group 0, core group 1
+</pre>
+
+<pre>[-XX:+StressLCM, -XX:+StressGCM, -XX:+StressIGVN, -XX:+StressCCP, -XX:StressSeed=983575207]</pre>
+</b></p>
+<pre>
+WARNING: A restricted method in java.lang.System has been called
+WARNING: java.lang.System::load has been called by com.sun.jna.Native in an unnamed module (file:/home/raquel/git/prog-concorrente/BestMatching/best-matching-java/target/jcstress.jar)
+WARNING: Use --enable-native-access=ALL-UNNAMED to avoid a warning for callers in this module
+WARNING: Restricted methods will be blocked in a future release unless native access is enabled
+
+</pre>
+
+<p><b>
+<pre>split
+    thread1: Interpreter
+    thread2: C1
+</pre>
+<pre>    thread1: package group 0, core group 0
+    thread2: package group 0, core group 0
+</pre>
+
+</b></p>
+<pre>
+WARNING: A restricted method in java.lang.System has been called
+WARNING: java.lang.System::load has been called by com.sun.jna.Native in an unnamed module (file:/home/raquel/git/prog-concorrente/BestMatching/best-matching-java/target/jcstress.jar)
+WARNING: Use --enable-native-access=ALL-UNNAMED to avoid a warning for callers in this module
+WARNING: Restricted methods will be blocked in a future release unless native access is enabled
+
+</pre>
+
+<p><b>
+<pre>split
+    thread1: Interpreter
+    thread2: C1
+</pre>
+<pre>    thread1: package group 0, core group 0
+    thread2: package group 0, core group 1
+</pre>
+
+</b></p>
+<pre>
+WARNING: A restricted method in java.lang.System has been called
+WARNING: java.lang.System::load has been called by com.sun.jna.Native in an unnamed module (file:/home/raquel/git/prog-concorrente/BestMatching/best-matching-java/target/jcstress.jar)
+WARNING: Use --enable-native-access=ALL-UNNAMED to avoid a warning for callers in this module
+WARNING: Restricted methods will be blocked in a future release unless native access is enabled
+
+</pre>
+
+<p><b>
+<pre>split
+    thread1: C1
+    thread2: C1
+</pre>
+<pre>    thread1: package group 0, core group 0
+    thread2: package group 0, core group 0
+</pre>
+
+</b></p>
+<pre>
+WARNING: A restricted method in java.lang.System has been called
+WARNING: java.lang.System::load has been called by com.sun.jna.Native in an unnamed module (file:/home/raquel/git/prog-concorrente/BestMatching/best-matching-java/target/jcstress.jar)
+WARNING: Use --enable-native-access=ALL-UNNAMED to avoid a warning for callers in this module
+WARNING: Restricted methods will be blocked in a future release unless native access is enabled
+
+</pre>
+
+<p><b>
+<pre>split
+    thread1: C1
+    thread2: C1
+</pre>
+<pre>    thread1: package group 0, core group 0
+    thread2: package group 0, core group 1
+</pre>
+
+</b></p>
+<pre>
+WARNING: A restricted method in java.lang.System has been called
+WARNING: java.lang.System::load has been called by com.sun.jna.Native in an unnamed module (file:/home/raquel/git/prog-concorrente/BestMatching/best-matching-java/target/jcstress.jar)
+WARNING: Use --enable-native-access=ALL-UNNAMED to avoid a warning for callers in this module
+WARNING: Restricted methods will be blocked in a future release unless native access is enabled
+
+</pre>
+
+<p><b>
+<pre>split
+    thread1: C2
+    thread2: C1
+</pre>
+<pre>    thread1: package group 0, core group 0
+    thread2: package group 0, core group 0
+</pre>
+
+</b></p>
+<pre>
+WARNING: A restricted method in java.lang.System has been called
+WARNING: java.lang.System::load has been called by com.sun.jna.Native in an unnamed module (file:/home/raquel/git/prog-concorrente/BestMatching/best-matching-java/target/jcstress.jar)
+WARNING: Use --enable-native-access=ALL-UNNAMED to avoid a warning for callers in this module
+WARNING: Restricted methods will be blocked in a future release unless native access is enabled
+
+</pre>
+
+<p><b>
+<pre>split
+    thread1: C2
+    thread2: C1
+</pre>
+<pre>    thread1: package group 0, core group 0
+    thread2: package group 0, core group 0
+</pre>
+
+<pre>[-XX:+StressLCM, -XX:+StressGCM, -XX:+StressIGVN, -XX:+StressCCP, -XX:StressSeed=1234288971]</pre>
+</b></p>
+<pre>
+WARNING: A restricted method in java.lang.System has been called
+WARNING: java.lang.System::load has been called by com.sun.jna.Native in an unnamed module (file:/home/raquel/git/prog-concorrente/BestMatching/best-matching-java/target/jcstress.jar)
+WARNING: Use --enable-native-access=ALL-UNNAMED to avoid a warning for callers in this module
+WARNING: Restricted methods will be blocked in a future release unless native access is enabled
+
+</pre>
+
+<p><b>
+<pre>split
+    thread1: C2
+    thread2: C1
+</pre>
+<pre>    thread1: package group 0, core group 0
+    thread2: package group 0, core group 0
+</pre>
+
+<pre>[-XX:+StressLCM, -XX:+StressGCM, -XX:+StressIGVN, -XX:+StressCCP, -XX:StressSeed=1909124006]</pre>
+</b></p>
+<pre>
+WARNING: A restricted method in java.lang.System has been called
+WARNING: java.lang.System::load has been called by com.sun.jna.Native in an unnamed module (file:/home/raquel/git/prog-concorrente/BestMatching/best-matching-java/target/jcstress.jar)
+WARNING: Use --enable-native-access=ALL-UNNAMED to avoid a warning for callers in this module
+WARNING: Restricted methods will be blocked in a future release unless native access is enabled
+
+</pre>
+
+<p><b>
+<pre>split
+    thread1: C2
+    thread2: C1
+</pre>
+<pre>    thread1: package group 0, core group 0
+    thread2: package group 0, core group 0
+</pre>
+
+<pre>[-XX:+StressLCM, -XX:+StressGCM, -XX:+StressIGVN, -XX:+StressCCP, -XX:StressSeed=544987792]</pre>
+</b></p>
+<pre>
+WARNING: A restricted method in java.lang.System has been called
+WARNING: java.lang.System::load has been called by com.sun.jna.Native in an unnamed module (file:/home/raquel/git/prog-concorrente/BestMatching/best-matching-java/target/jcstress.jar)
+WARNING: Use --enable-native-access=ALL-UNNAMED to avoid a warning for callers in this module
+WARNING: Restricted methods will be blocked in a future release unless native access is enabled
+
+</pre>
+
+<p><b>
+<pre>split
+    thread1: C2
+    thread2: C1
+</pre>
+<pre>    thread1: package group 0, core group 0
+    thread2: package group 0, core group 0
+</pre>
+
+<pre>[-XX:+StressLCM, -XX:+StressGCM, -XX:+StressIGVN, -XX:+StressCCP, -XX:StressSeed=683531856]</pre>
+</b></p>
+<pre>
+WARNING: A restricted method in java.lang.System has been called
+WARNING: java.lang.System::load has been called by com.sun.jna.Native in an unnamed module (file:/home/raquel/git/prog-concorrente/BestMatching/best-matching-java/target/jcstress.jar)
+WARNING: Use --enable-native-access=ALL-UNNAMED to avoid a warning for callers in this module
+WARNING: Restricted methods will be blocked in a future release unless native access is enabled
+
+</pre>
+
+<p><b>
+<pre>split
+    thread1: C2
+    thread2: C1
+</pre>
+<pre>    thread1: package group 0, core group 0
+    thread2: package group 0, core group 0
+</pre>
+
+<pre>[-XX:+StressLCM, -XX:+StressGCM, -XX:+StressIGVN, -XX:+StressCCP, -XX:StressSeed=777945550]</pre>
+</b></p>
+<pre>
+WARNING: A restricted method in java.lang.System has been called
+WARNING: java.lang.System::load has been called by com.sun.jna.Native in an unnamed module (file:/home/raquel/git/prog-concorrente/BestMatching/best-matching-java/target/jcstress.jar)
+WARNING: Use --enable-native-access=ALL-UNNAMED to avoid a warning for callers in this module
+WARNING: Restricted methods will be blocked in a future release unless native access is enabled
+
+</pre>
+
+<p><b>
+<pre>split
+    thread1: C2
+    thread2: C1
+</pre>
+<pre>    thread1: package group 0, core group 0
+    thread2: package group 0, core group 1
+</pre>
+
+</b></p>
+<pre>
+WARNING: A restricted method in java.lang.System has been called
+WARNING: java.lang.System::load has been called by com.sun.jna.Native in an unnamed module (file:/home/raquel/git/prog-concorrente/BestMatching/best-matching-java/target/jcstress.jar)
+WARNING: Use --enable-native-access=ALL-UNNAMED to avoid a warning for callers in this module
+WARNING: Restricted methods will be blocked in a future release unless native access is enabled
+
+</pre>
+
+<p><b>
+<pre>split
+    thread1: C2
+    thread2: C1
+</pre>
+<pre>    thread1: package group 0, core group 0
+    thread2: package group 0, core group 1
+</pre>
+
+<pre>[-XX:+StressLCM, -XX:+StressGCM, -XX:+StressIGVN, -XX:+StressCCP, -XX:StressSeed=1654879911]</pre>
+</b></p>
+<pre>
+WARNING: A restricted method in java.lang.System has been called
+WARNING: java.lang.System::load has been called by com.sun.jna.Native in an unnamed module (file:/home/raquel/git/prog-concorrente/BestMatching/best-matching-java/target/jcstress.jar)
+WARNING: Use --enable-native-access=ALL-UNNAMED to avoid a warning for callers in this module
+WARNING: Restricted methods will be blocked in a future release unless native access is enabled
+
+</pre>
+
+<p><b>
+<pre>split
+    thread1: C2
+    thread2: C1
+</pre>
+<pre>    thread1: package group 0, core group 0
+    thread2: package group 0, core group 1
+</pre>
+
+<pre>[-XX:+StressLCM, -XX:+StressGCM, -XX:+StressIGVN, -XX:+StressCCP, -XX:StressSeed=375298655]</pre>
+</b></p>
+<pre>
+WARNING: A restricted method in java.lang.System has been called
+WARNING: java.lang.System::load has been called by com.sun.jna.Native in an unnamed module (file:/home/raquel/git/prog-concorrente/BestMatching/best-matching-java/target/jcstress.jar)
+WARNING: Use --enable-native-access=ALL-UNNAMED to avoid a warning for callers in this module
+WARNING: Restricted methods will be blocked in a future release unless native access is enabled
+
+</pre>
+
+<p><b>
+<pre>split
+    thread1: C2
+    thread2: C1
+</pre>
+<pre>    thread1: package group 0, core group 0
+    thread2: package group 0, core group 1
+</pre>
+
+<pre>[-XX:+StressLCM, -XX:+StressGCM, -XX:+StressIGVN, -XX:+StressCCP, -XX:StressSeed=583613490]</pre>
+</b></p>
+<pre>
+WARNING: A restricted method in java.lang.System has been called
+WARNING: java.lang.System::load has been called by com.sun.jna.Native in an unnamed module (file:/home/raquel/git/prog-concorrente/BestMatching/best-matching-java/target/jcstress.jar)
+WARNING: Use --enable-native-access=ALL-UNNAMED to avoid a warning for callers in this module
+WARNING: Restricted methods will be blocked in a future release unless native access is enabled
+
+</pre>
+
+<p><b>
+<pre>split
+    thread1: C2
+    thread2: C1
+</pre>
+<pre>    thread1: package group 0, core group 0
+    thread2: package group 0, core group 1
+</pre>
+
+<pre>[-XX:+StressLCM, -XX:+StressGCM, -XX:+StressIGVN, -XX:+StressCCP, -XX:StressSeed=586309063]</pre>
+</b></p>
+<pre>
+WARNING: A restricted method in java.lang.System has been called
+WARNING: java.lang.System::load has been called by com.sun.jna.Native in an unnamed module (file:/home/raquel/git/prog-concorrente/BestMatching/best-matching-java/target/jcstress.jar)
+WARNING: Use --enable-native-access=ALL-UNNAMED to avoid a warning for callers in this module
+WARNING: Restricted methods will be blocked in a future release unless native access is enabled
+
+</pre>
+
+<p><b>
+<pre>split
+    thread1: C2
+    thread2: C1
+</pre>
+<pre>    thread1: package group 0, core group 0
+    thread2: package group 0, core group 1
+</pre>
+
+<pre>[-XX:+StressLCM, -XX:+StressGCM, -XX:+StressIGVN, -XX:+StressCCP, -XX:StressSeed=913245281]</pre>
+</b></p>
+<pre>
+WARNING: A restricted method in java.lang.System has been called
+WARNING: java.lang.System::load has been called by com.sun.jna.Native in an unnamed module (file:/home/raquel/git/prog-concorrente/BestMatching/best-matching-java/target/jcstress.jar)
+WARNING: Use --enable-native-access=ALL-UNNAMED to avoid a warning for callers in this module
+WARNING: Restricted methods will be blocked in a future release unless native access is enabled
+
+</pre>
+
+<p><b>
+<pre>split
+    thread1: Interpreter
+    thread2: C2
+</pre>
+<pre>    thread1: package group 0, core group 0
+    thread2: package group 0, core group 0
+</pre>
+
+</b></p>
+<pre>
+WARNING: A restricted method in java.lang.System has been called
+WARNING: java.lang.System::load has been called by com.sun.jna.Native in an unnamed module (file:/home/raquel/git/prog-concorrente/BestMatching/best-matching-java/target/jcstress.jar)
+WARNING: Use --enable-native-access=ALL-UNNAMED to avoid a warning for callers in this module
+WARNING: Restricted methods will be blocked in a future release unless native access is enabled
+
+</pre>
+
+<p><b>
+<pre>split
+    thread1: Interpreter
+    thread2: C2
+</pre>
+<pre>    thread1: package group 0, core group 0
+    thread2: package group 0, core group 0
+</pre>
+
+<pre>[-XX:+StressLCM, -XX:+StressGCM, -XX:+StressIGVN, -XX:+StressCCP, -XX:StressSeed=1644163565]</pre>
+</b></p>
+<pre>
+WARNING: A restricted method in java.lang.System has been called
+WARNING: java.lang.System::load has been called by com.sun.jna.Native in an unnamed module (file:/home/raquel/git/prog-concorrente/BestMatching/best-matching-java/target/jcstress.jar)
+WARNING: Use --enable-native-access=ALL-UNNAMED to avoid a warning for callers in this module
+WARNING: Restricted methods will be blocked in a future release unless native access is enabled
+
+</pre>
+
+<p><b>
+<pre>split
+    thread1: Interpreter
+    thread2: C2
+</pre>
+<pre>    thread1: package group 0, core group 0
+    thread2: package group 0, core group 0
+</pre>
+
+<pre>[-XX:+StressLCM, -XX:+StressGCM, -XX:+StressIGVN, -XX:+StressCCP, -XX:StressSeed=2004383972]</pre>
+</b></p>
+<pre>
+WARNING: A restricted method in java.lang.System has been called
+WARNING: java.lang.System::load has been called by com.sun.jna.Native in an unnamed module (file:/home/raquel/git/prog-concorrente/BestMatching/best-matching-java/target/jcstress.jar)
+WARNING: Use --enable-native-access=ALL-UNNAMED to avoid a warning for callers in this module
+WARNING: Restricted methods will be blocked in a future release unless native access is enabled
+
+</pre>
+
+<p><b>
+<pre>split
+    thread1: Interpreter
+    thread2: C2
+</pre>
+<pre>    thread1: package group 0, core group 0
+    thread2: package group 0, core group 0
+</pre>
+
+<pre>[-XX:+StressLCM, -XX:+StressGCM, -XX:+StressIGVN, -XX:+StressCCP, -XX:StressSeed=250649750]</pre>
+</b></p>
+<pre>
+WARNING: A restricted method in java.lang.System has been called
+WARNING: java.lang.System::load has been called by com.sun.jna.Native in an unnamed module (file:/home/raquel/git/prog-concorrente/BestMatching/best-matching-java/target/jcstress.jar)
+WARNING: Use --enable-native-access=ALL-UNNAMED to avoid a warning for callers in this module
+WARNING: Restricted methods will be blocked in a future release unless native access is enabled
+
+</pre>
+
+<p><b>
+<pre>split
+    thread1: Interpreter
+    thread2: C2
+</pre>
+<pre>    thread1: package group 0, core group 0
+    thread2: package group 0, core group 0
+</pre>
+
+<pre>[-XX:+StressLCM, -XX:+StressGCM, -XX:+StressIGVN, -XX:+StressCCP, -XX:StressSeed=686865628]</pre>
+</b></p>
+<pre>
+WARNING: A restricted method in java.lang.System has been called
+WARNING: java.lang.System::load has been called by com.sun.jna.Native in an unnamed module (file:/home/raquel/git/prog-concorrente/BestMatching/best-matching-java/target/jcstress.jar)
+WARNING: Use --enable-native-access=ALL-UNNAMED to avoid a warning for callers in this module
+WARNING: Restricted methods will be blocked in a future release unless native access is enabled
+
+</pre>
+
+<p><b>
+<pre>split
+    thread1: Interpreter
+    thread2: C2
+</pre>
+<pre>    thread1: package group 0, core group 0
+    thread2: package group 0, core group 0
+</pre>
+
+<pre>[-XX:+StressLCM, -XX:+StressGCM, -XX:+StressIGVN, -XX:+StressCCP, -XX:StressSeed=828467952]</pre>
+</b></p>
+<pre>
+WARNING: A restricted method in java.lang.System has been called
+WARNING: java.lang.System::load has been called by com.sun.jna.Native in an unnamed module (file:/home/raquel/git/prog-concorrente/BestMatching/best-matching-java/target/jcstress.jar)
+WARNING: Use --enable-native-access=ALL-UNNAMED to avoid a warning for callers in this module
+WARNING: Restricted methods will be blocked in a future release unless native access is enabled
+
+</pre>
+
+<p><b>
+<pre>split
+    thread1: Interpreter
+    thread2: C2
+</pre>
+<pre>    thread1: package group 0, core group 0
+    thread2: package group 0, core group 1
+</pre>
+
+</b></p>
+<pre>
+WARNING: A restricted method in java.lang.System has been called
+WARNING: java.lang.System::load has been called by com.sun.jna.Native in an unnamed module (file:/home/raquel/git/prog-concorrente/BestMatching/best-matching-java/target/jcstress.jar)
+WARNING: Use --enable-native-access=ALL-UNNAMED to avoid a warning for callers in this module
+WARNING: Restricted methods will be blocked in a future release unless native access is enabled
+
+</pre>
+
+<p><b>
+<pre>split
+    thread1: Interpreter
+    thread2: C2
+</pre>
+<pre>    thread1: package group 0, core group 0
+    thread2: package group 0, core group 1
+</pre>
+
+<pre>[-XX:+StressLCM, -XX:+StressGCM, -XX:+StressIGVN, -XX:+StressCCP, -XX:StressSeed=15153677]</pre>
+</b></p>
+<pre>
+WARNING: A restricted method in java.lang.System has been called
+WARNING: java.lang.System::load has been called by com.sun.jna.Native in an unnamed module (file:/home/raquel/git/prog-concorrente/BestMatching/best-matching-java/target/jcstress.jar)
+WARNING: Use --enable-native-access=ALL-UNNAMED to avoid a warning for callers in this module
+WARNING: Restricted methods will be blocked in a future release unless native access is enabled
+
+</pre>
+
+<p><b>
+<pre>split
+    thread1: Interpreter
+    thread2: C2
+</pre>
+<pre>    thread1: package group 0, core group 0
+    thread2: package group 0, core group 1
+</pre>
+
+<pre>[-XX:+StressLCM, -XX:+StressGCM, -XX:+StressIGVN, -XX:+StressCCP, -XX:StressSeed=1549859135]</pre>
+</b></p>
+<pre>
+WARNING: A restricted method in java.lang.System has been called
+WARNING: java.lang.System::load has been called by com.sun.jna.Native in an unnamed module (file:/home/raquel/git/prog-concorrente/BestMatching/best-matching-java/target/jcstress.jar)
+WARNING: Use --enable-native-access=ALL-UNNAMED to avoid a warning for callers in this module
+WARNING: Restricted methods will be blocked in a future release unless native access is enabled
+
+</pre>
+
+<p><b>
+<pre>split
+    thread1: Interpreter
+    thread2: C2
+</pre>
+<pre>    thread1: package group 0, core group 0
+    thread2: package group 0, core group 1
+</pre>
+
+<pre>[-XX:+StressLCM, -XX:+StressGCM, -XX:+StressIGVN, -XX:+StressCCP, -XX:StressSeed=1590715278]</pre>
+</b></p>
+<pre>
+WARNING: A restricted method in java.lang.System has been called
+WARNING: java.lang.System::load has been called by com.sun.jna.Native in an unnamed module (file:/home/raquel/git/prog-concorrente/BestMatching/best-matching-java/target/jcstress.jar)
+WARNING: Use --enable-native-access=ALL-UNNAMED to avoid a warning for callers in this module
+WARNING: Restricted methods will be blocked in a future release unless native access is enabled
+
+</pre>
+
+<p><b>
+<pre>split
+    thread1: Interpreter
+    thread2: C2
+</pre>
+<pre>    thread1: package group 0, core group 0
+    thread2: package group 0, core group 1
+</pre>
+
+<pre>[-XX:+StressLCM, -XX:+StressGCM, -XX:+StressIGVN, -XX:+StressCCP, -XX:StressSeed=643943870]</pre>
+</b></p>
+<pre>
+WARNING: A restricted method in java.lang.System has been called
+WARNING: java.lang.System::load has been called by com.sun.jna.Native in an unnamed module (file:/home/raquel/git/prog-concorrente/BestMatching/best-matching-java/target/jcstress.jar)
+WARNING: Use --enable-native-access=ALL-UNNAMED to avoid a warning for callers in this module
+WARNING: Restricted methods will be blocked in a future release unless native access is enabled
+
+</pre>
+
+<p><b>
+<pre>split
+    thread1: Interpreter
+    thread2: C2
+</pre>
+<pre>    thread1: package group 0, core group 0
+    thread2: package group 0, core group 1
+</pre>
+
+<pre>[-XX:+StressLCM, -XX:+StressGCM, -XX:+StressIGVN, -XX:+StressCCP, -XX:StressSeed=648532127]</pre>
+</b></p>
+<pre>
+WARNING: A restricted method in java.lang.System has been called
+WARNING: java.lang.System::load has been called by com.sun.jna.Native in an unnamed module (file:/home/raquel/git/prog-concorrente/BestMatching/best-matching-java/target/jcstress.jar)
+WARNING: Use --enable-native-access=ALL-UNNAMED to avoid a warning for callers in this module
+WARNING: Restricted methods will be blocked in a future release unless native access is enabled
+
+</pre>
+
+<p><b>
+<pre>split
+    thread1: C1
+    thread2: C2
+</pre>
+<pre>    thread1: package group 0, core group 0
+    thread2: package group 0, core group 0
+</pre>
+
+</b></p>
+<pre>
+WARNING: A restricted method in java.lang.System has been called
+WARNING: java.lang.System::load has been called by com.sun.jna.Native in an unnamed module (file:/home/raquel/git/prog-concorrente/BestMatching/best-matching-java/target/jcstress.jar)
+WARNING: Use --enable-native-access=ALL-UNNAMED to avoid a warning for callers in this module
+WARNING: Restricted methods will be blocked in a future release unless native access is enabled
+
+</pre>
+
+<p><b>
+<pre>split
+    thread1: C1
+    thread2: C2
+</pre>
+<pre>    thread1: package group 0, core group 0
+    thread2: package group 0, core group 0
+</pre>
+
+<pre>[-XX:+StressLCM, -XX:+StressGCM, -XX:+StressIGVN, -XX:+StressCCP, -XX:StressSeed=1032518383]</pre>
+</b></p>
+<pre>
+WARNING: A restricted method in java.lang.System has been called
+WARNING: java.lang.System::load has been called by com.sun.jna.Native in an unnamed module (file:/home/raquel/git/prog-concorrente/BestMatching/best-matching-java/target/jcstress.jar)
+WARNING: Use --enable-native-access=ALL-UNNAMED to avoid a warning for callers in this module
+WARNING: Restricted methods will be blocked in a future release unless native access is enabled
+
+</pre>
+
+<p><b>
+<pre>split
+    thread1: C1
+    thread2: C2
+</pre>
+<pre>    thread1: package group 0, core group 0
+    thread2: package group 0, core group 0
+</pre>
+
+<pre>[-XX:+StressLCM, -XX:+StressGCM, -XX:+StressIGVN, -XX:+StressCCP, -XX:StressSeed=1170348294]</pre>
+</b></p>
+<pre>
+WARNING: A restricted method in java.lang.System has been called
+WARNING: java.lang.System::load has been called by com.sun.jna.Native in an unnamed module (file:/home/raquel/git/prog-concorrente/BestMatching/best-matching-java/target/jcstress.jar)
+WARNING: Use --enable-native-access=ALL-UNNAMED to avoid a warning for callers in this module
+WARNING: Restricted methods will be blocked in a future release unless native access is enabled
+
+</pre>
+
+<p><b>
+<pre>split
+    thread1: C1
+    thread2: C2
+</pre>
+<pre>    thread1: package group 0, core group 0
+    thread2: package group 0, core group 0
+</pre>
+
+<pre>[-XX:+StressLCM, -XX:+StressGCM, -XX:+StressIGVN, -XX:+StressCCP, -XX:StressSeed=1373877813]</pre>
+</b></p>
+<pre>
+WARNING: A restricted method in java.lang.System has been called
+WARNING: java.lang.System::load has been called by com.sun.jna.Native in an unnamed module (file:/home/raquel/git/prog-concorrente/BestMatching/best-matching-java/target/jcstress.jar)
+WARNING: Use --enable-native-access=ALL-UNNAMED to avoid a warning for callers in this module
+WARNING: Restricted methods will be blocked in a future release unless native access is enabled
+
+</pre>
+
+<p><b>
+<pre>split
+    thread1: C1
+    thread2: C2
+</pre>
+<pre>    thread1: package group 0, core group 0
+    thread2: package group 0, core group 0
+</pre>
+
+<pre>[-XX:+StressLCM, -XX:+StressGCM, -XX:+StressIGVN, -XX:+StressCCP, -XX:StressSeed=1787146409]</pre>
+</b></p>
+<pre>
+WARNING: A restricted method in java.lang.System has been called
+WARNING: java.lang.System::load has been called by com.sun.jna.Native in an unnamed module (file:/home/raquel/git/prog-concorrente/BestMatching/best-matching-java/target/jcstress.jar)
+WARNING: Use --enable-native-access=ALL-UNNAMED to avoid a warning for callers in this module
+WARNING: Restricted methods will be blocked in a future release unless native access is enabled
+
+</pre>
+
+<p><b>
+<pre>split
+    thread1: C1
+    thread2: C2
+</pre>
+<pre>    thread1: package group 0, core group 0
+    thread2: package group 0, core group 0
+</pre>
+
+<pre>[-XX:+StressLCM, -XX:+StressGCM, -XX:+StressIGVN, -XX:+StressCCP, -XX:StressSeed=407153880]</pre>
+</b></p>
+<pre>
+WARNING: A restricted method in java.lang.System has been called
+WARNING: java.lang.System::load has been called by com.sun.jna.Native in an unnamed module (file:/home/raquel/git/prog-concorrente/BestMatching/best-matching-java/target/jcstress.jar)
+WARNING: Use --enable-native-access=ALL-UNNAMED to avoid a warning for callers in this module
+WARNING: Restricted methods will be blocked in a future release unless native access is enabled
+
+</pre>
+
+<p><b>
+<pre>split
+    thread1: C1
+    thread2: C2
+</pre>
+<pre>    thread1: package group 0, core group 0
+    thread2: package group 0, core group 1
+</pre>
+
+</b></p>
+<pre>
+WARNING: A restricted method in java.lang.System has been called
+WARNING: java.lang.System::load has been called by com.sun.jna.Native in an unnamed module (file:/home/raquel/git/prog-concorrente/BestMatching/best-matching-java/target/jcstress.jar)
+WARNING: Use --enable-native-access=ALL-UNNAMED to avoid a warning for callers in this module
+WARNING: Restricted methods will be blocked in a future release unless native access is enabled
+
+</pre>
+
+<p><b>
+<pre>split
+    thread1: C1
+    thread2: C2
+</pre>
+<pre>    thread1: package group 0, core group 0
+    thread2: package group 0, core group 1
+</pre>
+
+<pre>[-XX:+StressLCM, -XX:+StressGCM, -XX:+StressIGVN, -XX:+StressCCP, -XX:StressSeed=1758381566]</pre>
+</b></p>
+<pre>
+WARNING: A restricted method in java.lang.System has been called
+WARNING: java.lang.System::load has been called by com.sun.jna.Native in an unnamed module (file:/home/raquel/git/prog-concorrente/BestMatching/best-matching-java/target/jcstress.jar)
+WARNING: Use --enable-native-access=ALL-UNNAMED to avoid a warning for callers in this module
+WARNING: Restricted methods will be blocked in a future release unless native access is enabled
+
+</pre>
+
+<p><b>
+<pre>split
+    thread1: C1
+    thread2: C2
+</pre>
+<pre>    thread1: package group 0, core group 0
+    thread2: package group 0, core group 1
+</pre>
+
+<pre>[-XX:+StressLCM, -XX:+StressGCM, -XX:+StressIGVN, -XX:+StressCCP, -XX:StressSeed=345644346]</pre>
+</b></p>
+<pre>
+WARNING: A restricted method in java.lang.System has been called
+WARNING: java.lang.System::load has been called by com.sun.jna.Native in an unnamed module (file:/home/raquel/git/prog-concorrente/BestMatching/best-matching-java/target/jcstress.jar)
+WARNING: Use --enable-native-access=ALL-UNNAMED to avoid a warning for callers in this module
+WARNING: Restricted methods will be blocked in a future release unless native access is enabled
+
+</pre>
+
+<p><b>
+<pre>split
+    thread1: C1
+    thread2: C2
+</pre>
+<pre>    thread1: package group 0, core group 0
+    thread2: package group 0, core group 1
+</pre>
+
+<pre>[-XX:+StressLCM, -XX:+StressGCM, -XX:+StressIGVN, -XX:+StressCCP, -XX:StressSeed=744360273]</pre>
+</b></p>
+<pre>
+WARNING: A restricted method in java.lang.System has been called
+WARNING: java.lang.System::load has been called by com.sun.jna.Native in an unnamed module (file:/home/raquel/git/prog-concorrente/BestMatching/best-matching-java/target/jcstress.jar)
+WARNING: Use --enable-native-access=ALL-UNNAMED to avoid a warning for callers in this module
+WARNING: Restricted methods will be blocked in a future release unless native access is enabled
+
+</pre>
+
+<p><b>
+<pre>split
+    thread1: C1
+    thread2: C2
+</pre>
+<pre>    thread1: package group 0, core group 0
+    thread2: package group 0, core group 1
+</pre>
+
+<pre>[-XX:+StressLCM, -XX:+StressGCM, -XX:+StressIGVN, -XX:+StressCCP, -XX:StressSeed=784195349]</pre>
+</b></p>
+<pre>
+WARNING: A restricted method in java.lang.System has been called
+WARNING: java.lang.System::load has been called by com.sun.jna.Native in an unnamed module (file:/home/raquel/git/prog-concorrente/BestMatching/best-matching-java/target/jcstress.jar)
+WARNING: Use --enable-native-access=ALL-UNNAMED to avoid a warning for callers in this module
+WARNING: Restricted methods will be blocked in a future release unless native access is enabled
+
+</pre>
+
+<p><b>
+<pre>split
+    thread1: C1
+    thread2: C2
+</pre>
+<pre>    thread1: package group 0, core group 0
+    thread2: package group 0, core group 1
+</pre>
+
+<pre>[-XX:+StressLCM, -XX:+StressGCM, -XX:+StressIGVN, -XX:+StressCCP, -XX:StressSeed=795626790]</pre>
+</b></p>
+<pre>
+WARNING: A restricted method in java.lang.System has been called
+WARNING: java.lang.System::load has been called by com.sun.jna.Native in an unnamed module (file:/home/raquel/git/prog-concorrente/BestMatching/best-matching-java/target/jcstress.jar)
+WARNING: Use --enable-native-access=ALL-UNNAMED to avoid a warning for callers in this module
+WARNING: Restricted methods will be blocked in a future release unless native access is enabled
+
+</pre>
+
+<p><b>
+<pre>split
+    thread1: C2
+    thread2: C2
+</pre>
+<pre>    thread1: package group 0, core group 0
+    thread2: package group 0, core group 0
+</pre>
+
+</b></p>
+<pre>
+WARNING: A restricted method in java.lang.System has been called
+WARNING: java.lang.System::load has been called by com.sun.jna.Native in an unnamed module (file:/home/raquel/git/prog-concorrente/BestMatching/best-matching-java/target/jcstress.jar)
+WARNING: Use --enable-native-access=ALL-UNNAMED to avoid a warning for callers in this module
+WARNING: Restricted methods will be blocked in a future release unless native access is enabled
+
+</pre>
+
+<p><b>
+<pre>split
+    thread1: C2
+    thread2: C2
+</pre>
+<pre>    thread1: package group 0, core group 0
+    thread2: package group 0, core group 0
+</pre>
+
+<pre>[-XX:+StressLCM, -XX:+StressGCM, -XX:+StressIGVN, -XX:+StressCCP, -XX:StressSeed=1002020438]</pre>
+</b></p>
+<pre>
+WARNING: A restricted method in java.lang.System has been called
+WARNING: java.lang.System::load has been called by com.sun.jna.Native in an unnamed module (file:/home/raquel/git/prog-concorrente/BestMatching/best-matching-java/target/jcstress.jar)
+WARNING: Use --enable-native-access=ALL-UNNAMED to avoid a warning for callers in this module
+WARNING: Restricted methods will be blocked in a future release unless native access is enabled
+
+</pre>
+
+<p><b>
+<pre>split
+    thread1: C2
+    thread2: C2
+</pre>
+<pre>    thread1: package group 0, core group 0
+    thread2: package group 0, core group 0
+</pre>
+
+<pre>[-XX:+StressLCM, -XX:+StressGCM, -XX:+StressIGVN, -XX:+StressCCP, -XX:StressSeed=175698738]</pre>
+</b></p>
+<pre>
+WARNING: A restricted method in java.lang.System has been called
+WARNING: java.lang.System::load has been called by com.sun.jna.Native in an unnamed module (file:/home/raquel/git/prog-concorrente/BestMatching/best-matching-java/target/jcstress.jar)
+WARNING: Use --enable-native-access=ALL-UNNAMED to avoid a warning for callers in this module
+WARNING: Restricted methods will be blocked in a future release unless native access is enabled
+
+</pre>
+
+<p><b>
+<pre>split
+    thread1: C2
+    thread2: C2
+</pre>
+<pre>    thread1: package group 0, core group 0
+    thread2: package group 0, core group 0
+</pre>
+
+<pre>[-XX:+StressLCM, -XX:+StressGCM, -XX:+StressIGVN, -XX:+StressCCP, -XX:StressSeed=1797684994]</pre>
+</b></p>
+<pre>
+WARNING: A restricted method in java.lang.System has been called
+WARNING: java.lang.System::load has been called by com.sun.jna.Native in an unnamed module (file:/home/raquel/git/prog-concorrente/BestMatching/best-matching-java/target/jcstress.jar)
+WARNING: Use --enable-native-access=ALL-UNNAMED to avoid a warning for callers in this module
+WARNING: Restricted methods will be blocked in a future release unless native access is enabled
+
+</pre>
+
+<p><b>
+<pre>split
+    thread1: C2
+    thread2: C2
+</pre>
+<pre>    thread1: package group 0, core group 0
+    thread2: package group 0, core group 0
+</pre>
+
+<pre>[-XX:+StressLCM, -XX:+StressGCM, -XX:+StressIGVN, -XX:+StressCCP, -XX:StressSeed=2060394305]</pre>
+</b></p>
+<pre>
+WARNING: A restricted method in java.lang.System has been called
+WARNING: java.lang.System::load has been called by com.sun.jna.Native in an unnamed module (file:/home/raquel/git/prog-concorrente/BestMatching/best-matching-java/target/jcstress.jar)
+WARNING: Use --enable-native-access=ALL-UNNAMED to avoid a warning for callers in this module
+WARNING: Restricted methods will be blocked in a future release unless native access is enabled
+
+</pre>
+
+<p><b>
+<pre>split
+    thread1: C2
+    thread2: C2
+</pre>
+<pre>    thread1: package group 0, core group 0
+    thread2: package group 0, core group 0
+</pre>
+
+<pre>[-XX:+StressLCM, -XX:+StressGCM, -XX:+StressIGVN, -XX:+StressCCP, -XX:StressSeed=963501731]</pre>
+</b></p>
+<pre>
+WARNING: A restricted method in java.lang.System has been called
+WARNING: java.lang.System::load has been called by com.sun.jna.Native in an unnamed module (file:/home/raquel/git/prog-concorrente/BestMatching/best-matching-java/target/jcstress.jar)
+WARNING: Use --enable-native-access=ALL-UNNAMED to avoid a warning for callers in this module
+WARNING: Restricted methods will be blocked in a future release unless native access is enabled
+
+</pre>
+
+<p><b>
+<pre>split
+    thread1: C2
+    thread2: C2
+</pre>
+<pre>    thread1: package group 0, core group 0
+    thread2: package group 0, core group 1
+</pre>
+
+</b></p>
+<pre>
+WARNING: A restricted method in java.lang.System has been called
+WARNING: java.lang.System::load has been called by com.sun.jna.Native in an unnamed module (file:/home/raquel/git/prog-concorrente/BestMatching/best-matching-java/target/jcstress.jar)
+WARNING: Use --enable-native-access=ALL-UNNAMED to avoid a warning for callers in this module
+WARNING: Restricted methods will be blocked in a future release unless native access is enabled
+
+</pre>
+
+<p><b>
+<pre>split
+    thread1: C2
+    thread2: C2
+</pre>
+<pre>    thread1: package group 0, core group 0
+    thread2: package group 0, core group 1
+</pre>
+
+<pre>[-XX:+StressLCM, -XX:+StressGCM, -XX:+StressIGVN, -XX:+StressCCP, -XX:StressSeed=1077444639]</pre>
+</b></p>
+<pre>
+WARNING: A restricted method in java.lang.System has been called
+WARNING: java.lang.System::load has been called by com.sun.jna.Native in an unnamed module (file:/home/raquel/git/prog-concorrente/BestMatching/best-matching-java/target/jcstress.jar)
+WARNING: Use --enable-native-access=ALL-UNNAMED to avoid a warning for callers in this module
+WARNING: Restricted methods will be blocked in a future release unless native access is enabled
+
+</pre>
+
+<p><b>
+<pre>split
+    thread1: C2
+    thread2: C2
+</pre>
+<pre>    thread1: package group 0, core group 0
+    thread2: package group 0, core group 1
+</pre>
+
+<pre>[-XX:+StressLCM, -XX:+StressGCM, -XX:+StressIGVN, -XX:+StressCCP, -XX:StressSeed=1079839622]</pre>
+</b></p>
+<pre>
+WARNING: A restricted method in java.lang.System has been called
+WARNING: java.lang.System::load has been called by com.sun.jna.Native in an unnamed module (file:/home/raquel/git/prog-concorrente/BestMatching/best-matching-java/target/jcstress.jar)
+WARNING: Use --enable-native-access=ALL-UNNAMED to avoid a warning for callers in this module
+WARNING: Restricted methods will be blocked in a future release unless native access is enabled
+
+</pre>
+
+<p><b>
+<pre>split
+    thread1: C2
+    thread2: C2
+</pre>
+<pre>    thread1: package group 0, core group 0
+    thread2: package group 0, core group 1
+</pre>
+
+<pre>[-XX:+StressLCM, -XX:+StressGCM, -XX:+StressIGVN, -XX:+StressCCP, -XX:StressSeed=1675940592]</pre>
+</b></p>
+<pre>
+WARNING: A restricted method in java.lang.System has been called
+WARNING: java.lang.System::load has been called by com.sun.jna.Native in an unnamed module (file:/home/raquel/git/prog-concorrente/BestMatching/best-matching-java/target/jcstress.jar)
+WARNING: Use --enable-native-access=ALL-UNNAMED to avoid a warning for callers in this module
+WARNING: Restricted methods will be blocked in a future release unless native access is enabled
+
+</pre>
+
+<p><b>
+<pre>split
+    thread1: C2
+    thread2: C2
+</pre>
+<pre>    thread1: package group 0, core group 0
+    thread2: package group 0, core group 1
+</pre>
+
+<pre>[-XX:+StressLCM, -XX:+StressGCM, -XX:+StressIGVN, -XX:+StressCCP, -XX:StressSeed=1766897315]</pre>
+</b></p>
+<pre>
+WARNING: A restricted method in java.lang.System has been called
+WARNING: java.lang.System::load has been called by com.sun.jna.Native in an unnamed module (file:/home/raquel/git/prog-concorrente/BestMatching/best-matching-java/target/jcstress.jar)
+WARNING: Use --enable-native-access=ALL-UNNAMED to avoid a warning for callers in this module
+WARNING: Restricted methods will be blocked in a future release unless native access is enabled
+
+</pre>
+
+<p><b>
+<pre>split
+    thread1: C2
+    thread2: C2
+</pre>
+<pre>    thread1: package group 0, core group 0
+    thread2: package group 0, core group 1
+</pre>
+
+<pre>[-XX:+StressLCM, -XX:+StressGCM, -XX:+StressIGVN, -XX:+StressCCP, -XX:StressSeed=2138897222]</pre>
+</b></p>
+<pre>
+WARNING: A restricted method in java.lang.System has been called
+WARNING: java.lang.System::load has been called by com.sun.jna.Native in an unnamed module (file:/home/raquel/git/prog-concorrente/BestMatching/best-matching-java/target/jcstress.jar)
+WARNING: Use --enable-native-access=ALL-UNNAMED to avoid a warning for callers in this module
+WARNING: Restricted methods will be blocked in a future release unless native access is enabled
+
+</pre>
+
+</body>
+</html>

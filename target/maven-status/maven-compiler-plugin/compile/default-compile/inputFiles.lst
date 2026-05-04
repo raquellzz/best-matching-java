@@ -14,6 +14,7 @@
 /home/raquel/git/prog-concorrente/BestMatching/best-matching-java/src/main/java/imd/ufrn/core/BestMatcherStrategy.java
 /home/raquel/git/prog-concorrente/BestMatching/best-matching-java/src/main/java/imd/ufrn/server/JMeterServer.java
 /home/raquel/git/prog-concorrente/BestMatching/best-matching-java/src/main/java/imd/ufrn/concurrent/PlatformThreadsExecutor/PTEAtomicMatcher.java
+/home/raquel/git/prog-concorrente/BestMatching/best-matching-java/src/main/java/imd/ufrn/jcstress/ListAdditionStressTest.java
 /home/raquel/git/prog-concorrente/BestMatching/best-matching-java/src/main/java/imd/ufrn/concurrent/PlatformThreadsExecutor/PTESemaphoreMatcher.java
 /home/raquel/git/prog-concorrente/BestMatching/best-matching-java/src/main/java/imd/ufrn/core/LevenshteinAlgorithm.java
 /home/raquel/git/prog-concorrente/BestMatching/best-matching-java/src/main/java/imd/ufrn/concurrent/PlatformThreads/PTAtomicMatcher.java
@@ -27,5 +28,6 @@
 /home/raquel/git/prog-concorrente/BestMatching/best-matching-java/src/main/java/imd/ufrn/benchmark/MatcherBenchmark.java
 /home/raquel/git/prog-concorrente/BestMatching/best-matching-java/src/main/java/imd/ufrn/concurrent/PlatformThreadsExecutor/PTEBasicoMatcher.java
 /home/raquel/git/prog-concorrente/BestMatching/best-matching-java/src/main/java/imd/ufrn/concurrent/VirtualThreads/VTVolatileMatcher.java
+/home/raquel/git/prog-concorrente/BestMatching/best-matching-java/src/main/java/imd/ufrn/JCStressRunner.java
 /home/raquel/git/prog-concorrente/BestMatching/best-matching-java/src/main/java/imd/ufrn/concurrent/VirtualThreads/VTMutexMatcher.java
 /home/raquel/git/prog-concorrente/BestMatching/best-matching-java/src/main/java/imd/ufrn/Menu.java

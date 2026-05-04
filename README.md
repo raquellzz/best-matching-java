@@ -39,6 +39,14 @@ java -XX:+UseParallelGC -jar target/benchmarks.jar -prof gc -rf csv -rff resulta
 ```bash
 java -XX:+UseZGC -jar target/benchmarks.jar -prof gc -rf csv -rff resultados_zgc.csv
 ```
+### Running MacroBenchmarks (JMeter)
+
+
+### Running Stress Test (JCStress)
+To identify race conditions
+```bash
+java -jar target/jcstress.jar -t "ListAdditionStressTest"
+```
 
 ### Running the Application
 To run the main application logic:

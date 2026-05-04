@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="imd.ufrn.AppTest" time="0.031" tests="1" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="imd.ufrn.AppTest" time="0.066" tests="1" errors="0" skipped="0" failures="0">
   <properties>
     <property name="java.specification.version" value="25"/>
     <property name="sun.jnu.encoding" value="UTF-8"/>
-    <property name="java.class.path" value="/home/raquel/git/prog-concorrente/BestMatching/best-matching-java/target/test-classes:/home/raquel/git/prog-concorrente/BestMatching/best-matching-java/target/classes:/home/raquel/.m2/repository/junit/junit/4.11/junit-4.11.jar:/home/raquel/.m2/repository/org/hamcrest/hamcrest-core/1.3/hamcrest-core-1.3.jar:/home/raquel/.m2/repository/org/openjdk/jmh/jmh-core/1.37/jmh-core-1.37.jar:/home/raquel/.m2/repository/net/sf/jopt-simple/jopt-simple/5.0.4/jopt-simple-5.0.4.jar:/home/raquel/.m2/repository/org/apache/commons/commons-math3/3.6.1/commons-math3-3.6.1.jar:/home/raquel/.m2/repository/org/openjdk/jmh/jmh-generator-annprocess/1.37/jmh-generator-annprocess-1.37.jar:"/>
+    <property name="java.class.path" value="/home/raquel/git/prog-concorrente/BestMatching/best-matching-java/target/test-classes:/home/raquel/git/prog-concorrente/BestMatching/best-matching-java/target/classes:/home/raquel/.m2/repository/junit/junit/4.11/junit-4.11.jar:/home/raquel/.m2/repository/org/hamcrest/hamcrest-core/1.3/hamcrest-core-1.3.jar:/home/raquel/.m2/repository/org/openjdk/jmh/jmh-core/1.37/jmh-core-1.37.jar:/home/raquel/.m2/repository/net/sf/jopt-simple/jopt-simple/5.0.4/jopt-simple-5.0.4.jar:/home/raquel/.m2/repository/org/apache/commons/commons-math3/3.6.1/commons-math3-3.6.1.jar:/home/raquel/.m2/repository/org/openjdk/jmh/jmh-generator-annprocess/1.37/jmh-generator-annprocess-1.37.jar:/home/raquel/.m2/repository/org/openjdk/jcstress/jcstress-core/0.16/jcstress-core-0.16.jar:/home/raquel/.m2/repository/net/java/dev/jna/jna/5.8.0/jna-5.8.0.jar:/home/raquel/.m2/repository/net/java/dev/jna/jna-platform/5.8.0/jna-platform-5.8.0.jar:"/>
     <property name="java.vm.vendor" value="Ubuntu"/>
     <property name="sun.arch.data.model" value="64"/>
     <property name="java.vendor.url" value="https://ubuntu.com/"/>
@@ -13,9 +13,9 @@
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="user.country" value="US"/>
     <property name="sun.boot.library.path" value="/usr/lib/jvm/java-25-openjdk-amd64/lib"/>
-    <property name="sun.java.command" value="/home/raquel/git/prog-concorrente/BestMatching/best-matching-java/target/surefire/surefirebooter4487212640607576269.jar /home/raquel/git/prog-concorrente/BestMatching/best-matching-java/target/surefire 2026-05-01T18-39-40_347-jvmRun1 surefire11277802491493443389tmp surefire_010631821032698713859tmp"/>
+    <property name="sun.java.command" value="/home/raquel/git/prog-concorrente/BestMatching/best-matching-java/target/surefire/surefirebooter920934180735266243.jar /home/raquel/git/prog-concorrente/BestMatching/best-matching-java/target/surefire 2026-05-01T20-28-59_003-jvmRun1 surefire3224416357330382799tmp surefire_05983759761449197957tmp"/>
     <property name="jdk.debug" value="release"/>
-    <property name="surefire.test.class.path" value="/home/raquel/git/prog-concorrente/BestMatching/best-matching-java/target/test-classes:/home/raquel/git/prog-concorrente/BestMatching/best-matching-java/target/classes:/home/raquel/.m2/repository/junit/junit/4.11/junit-4.11.jar:/home/raquel/.m2/repository/org/hamcrest/hamcrest-core/1.3/hamcrest-core-1.3.jar:/home/raquel/.m2/repository/org/openjdk/jmh/jmh-core/1.37/jmh-core-1.37.jar:/home/raquel/.m2/repository/net/sf/jopt-simple/jopt-simple/5.0.4/jopt-simple-5.0.4.jar:/home/raquel/.m2/repository/org/apache/commons/commons-math3/3.6.1/commons-math3-3.6.1.jar:/home/raquel/.m2/repository/org/openjdk/jmh/jmh-generator-annprocess/1.37/jmh-generator-annprocess-1.37.jar:"/>
+    <property name="surefire.test.class.path" value="/home/raquel/git/prog-concorrente/BestMatching/best-matching-java/target/test-classes:/home/raquel/git/prog-concorrente/BestMatching/best-matching-java/target/classes:/home/raquel/.m2/repository/junit/junit/4.11/junit-4.11.jar:/home/raquel/.m2/repository/org/hamcrest/hamcrest-core/1.3/hamcrest-core-1.3.jar:/home/raquel/.m2/repository/org/openjdk/jmh/jmh-core/1.37/jmh-core-1.37.jar:/home/raquel/.m2/repository/net/sf/jopt-simple/jopt-simple/5.0.4/jopt-simple-5.0.4.jar:/home/raquel/.m2/repository/org/apache/commons/commons-math3/3.6.1/commons-math3-3.6.1.jar:/home/raquel/.m2/repository/org/openjdk/jmh/jmh-generator-annprocess/1.37/jmh-generator-annprocess-1.37.jar:/home/raquel/.m2/repository/org/openjdk/jcstress/jcstress-core/0.16/jcstress-core-0.16.jar:/home/raquel/.m2/repository/net/java/dev/jna/jna/5.8.0/jna-5.8.0.jar:/home/raquel/.m2/repository/net/java/dev/jna/jna-platform/5.8.0/jna-platform-5.8.0.jar:"/>
     <property name="sun.cpu.endian" value="little"/>
     <property name="user.home" value="/home/raquel"/>
     <property name="user.language" value="en"/>
@@ -28,7 +28,7 @@
     <property name="line.separator" value="&#10;"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
-    <property name="surefire.real.class.path" value="/home/raquel/git/prog-concorrente/BestMatching/best-matching-java/target/surefire/surefirebooter4487212640607576269.jar"/>
+    <property name="surefire.real.class.path" value="/home/raquel/git/prog-concorrente/BestMatching/best-matching-java/target/surefire/surefirebooter920934180735266243.jar"/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
     <property name="java.runtime.version" value="25.0.2+10-Ubuntu-124.04"/>
     <property name="user.name" value="raquel"/>
@@ -56,5 +56,5 @@
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
     <property name="java.class.version" value="69.0"/>
   </properties>
-  <testcase name="shouldAnswerWithTrue" classname="imd.ufrn.AppTest" time="0.004"/>
+  <testcase name="shouldAnswerWithTrue" classname="imd.ufrn.AppTest" time="0.008"/>
 </testsuite>
