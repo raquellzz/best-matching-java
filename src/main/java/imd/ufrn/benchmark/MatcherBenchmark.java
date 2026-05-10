@@ -58,6 +58,14 @@ public class MatcherBenchmark {
     private BestMatcherStrategy vtVolatileStrategy;
     private BestMatcherStrategy vtLatchStrategy;
 
+    private BestMatcherStrategy vtEBasicoStrategy;
+    private BestMatcherStrategy vtEAtomicStrategy;
+    private BestMatcherStrategy vtEMutexStrategy;
+    private BestMatcherStrategy vtEReentrantStrategy;
+    private BestMatcherStrategy vtESemaphoreStrategy;
+    private BestMatcherStrategy vtEVolatileStrategy;
+    private BestMatcherStrategy vtELatchStrategy;
+
     private BestMatcherStrategy hybridStrategy;
 
     @Setup(Level.Trial)
@@ -89,6 +97,14 @@ public class MatcherBenchmark {
         vtSemaphoreStrategy = new imd.ufrn.concurrent.VirtualThreads.VTSemaphoreMatcher();
         vtVolatileStrategy = new imd.ufrn.concurrent.VirtualThreads.VTVolatileMatcher();
         vtLatchStrategy = new imd.ufrn.concurrent.VirtualThreads.VTLatchMatcher();
+
+        vtEBasicoStrategy = new imd.ufrn.concurrent.VirtualThreadsExecutor.VTEBasicoMatcher();
+        vtEAtomicStrategy = new imd.ufrn.concurrent.VirtualThreadsExecutor.VTEAtomicMatcher();
+        vtEMutexStrategy = new imd.ufrn.concurrent.VirtualThreadsExecutor.VTEMutexMatcher();
+        vtEReentrantStrategy = new imd.ufrn.concurrent.VirtualThreadsExecutor.VTEReentrantMatcher();
+        vtESemaphoreStrategy = new imd.ufrn.concurrent.VirtualThreadsExecutor.VTESemaphoreMatcher();
+        vtEVolatileStrategy = new imd.ufrn.concurrent.VirtualThreadsExecutor.VTEVolatileMatcher();
+        vtELatchStrategy = new imd.ufrn.concurrent.VirtualThreadsExecutor.VTELatchMatcher();
 
         hybridStrategy = new imd.ufrn.concurrent.HybridMatcher("src/main/resources/Os-Miseraveis-clean.txt");
     }
@@ -201,6 +217,41 @@ public class MatcherBenchmark {
     @Benchmark
     public List<String> testVTLatchMatcher() {
         return vtLatchStrategy.findMatches(targetWord, dataset, maxDistance);
+    }
+
+    @Benchmark
+    public List<String> testVTEBasicoMatcher() {
+        return vtEBasicoStrategy.findMatches(targetWord, dataset, maxDistance);
+    }
+
+    @Benchmark
+    public List<String> testVTEAtomicMatcher() {
+        return vtEAtomicStrategy.findMatches(targetWord, dataset, maxDistance);
+    }
+
+    @Benchmark
+    public List<String> testVTEMutexMatcher() {
+        return vtEMutexStrategy.findMatches(targetWord, dataset, maxDistance);
+    }
+
+    @Benchmark
+    public List<String> testVTEReentrantMatcher() {
+        return vtEReentrantStrategy.findMatches(targetWord, dataset, maxDistance);
+    }
+
+    @Benchmark
+    public List<String> testVTESemaphoreMatcher() {
+        return vtESemaphoreStrategy.findMatches(targetWord, dataset, maxDistance);
+    }
+
+    @Benchmark
+    public List<String> testVTEVolatileMatcher() {
+        return vtEVolatileStrategy.findMatches(targetWord, dataset, maxDistance);
+    }
+
+    @Benchmark
+    public List<String> testVTELatchMatcher() {
+        return vtELatchStrategy.findMatches(targetWord, dataset, maxDistance);
     }
 
     @Benchmark

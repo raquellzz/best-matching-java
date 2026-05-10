@@ -2,8 +2,6 @@ package imd.ufrn.concurrent.VirtualThreads;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 import java.util.concurrent.locks.ReentrantLock;
 
 import imd.ufrn.core.BestMatcherStrategy;
@@ -15,27 +13,50 @@ public class VTReentrantMatcher implements BestMatcherStrategy {
     public List<String> findMatches(String target, List<String> textDatabase, int maxDistance) {
         List<String> sharedMatches = new ArrayList<>();
         String targetLower = target.toLowerCase();
+        final ReentrantLock rLock = new ReentrantLock();
 
-        try (ExecutorService executor = Executors.newVirtualThreadPerTaskExecutor()) {
-            
-            for (String word : textDatabase) {
-                if (word == null || word.isEmpty()) continue;
+        int numChunks = Runtime.getRuntime().availableProcessors();
+        int totalWords = textDatabase.size();
+        int chunkSize = (int) Math.ceil((double) totalWords / numChunks);
 
-                executor.submit(() -> {
+        List<Thread> vThreads = new ArrayList<>();
+        for (int i = 0; i < numChunks; i++) {
+            final int start = i * chunkSize;
+            final int end = Math.min(start + chunkSize, totalWords);
+
+            if (start >= end) break;
+
+            Thread vt = Thread.ofVirtual().unstarted(() -> {
+                for (int j = start; j < end; j++) {
+                    String word = textDatabase.get(j);
+                    if (word == null || word.isEmpty()) continue;
+
                     int distance = LevenshteinAlgorithm.calculate(targetLower, word.toLowerCase());
                     
                     if (distance <= maxDistance) {
-                        rLock.lock();
-                        try{
-                            sharedMatches.add(word); 
+                        try {
+                            rLock.lock();
+                            sharedMatches.add(word);
+                        } catch (Exception e) {
+                            e.printStackTrace();
                         } finally {
                             rLock.unlock();
-                        } 
+                        }
                     }
-                });
-            }
-        } 
+                }
+            });
+            vThreads.add(vt);
+            vt.start();
+        }
 
+        for (Thread vt : vThreads) {
+            try {
+                vt.join();
+            } catch (InterruptedException e) {
+                Thread.currentThread().interrupt();
+                e.printStackTrace();
+            }
+        }
         return sharedMatches;
     }
 }

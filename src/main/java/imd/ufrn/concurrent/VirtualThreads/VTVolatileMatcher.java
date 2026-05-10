@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Queue;
 import java.util.concurrent.ConcurrentLinkedQueue;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 
 import imd.ufrn.core.BestMatcherStrategy;
 import imd.ufrn.core.LevenshteinAlgorithm;
@@ -15,27 +13,47 @@ public class VTVolatileMatcher implements BestMatcherStrategy {
     @Override
     public List<String> findMatches(String target, List<String> textDatabase, int maxDistance) {
         Queue<String> sharedMatches = new ConcurrentLinkedQueue<>();
+        exactMatchFound = false;
         String targetLower = target.toLowerCase();
 
-        exactMatchFound = false;
+        int numChunks = Runtime.getRuntime().availableProcessors();
+        int totalWords = textDatabase.size();
+        int chunkSize = (int) Math.ceil((double) totalWords / numChunks);
 
-        try (ExecutorService executor = Executors.newVirtualThreadPerTaskExecutor()) {
-            
-            for (String word : textDatabase) {
-                if (word == null || word.isEmpty()) continue;
-                if (exactMatchFound) break;
+        List<Thread> vThreads = new ArrayList<>();
+        for (int i = 0; i < numChunks; i++) {
+            final int start = i * chunkSize;
+            final int end = Math.min(start + chunkSize, totalWords);
 
-                executor.submit(() -> {
+            if (start >= end) break;
+
+            Thread vt = Thread.ofVirtual().unstarted(() -> {
+                for (int j = start; j < end; j++) {
+                    String word = textDatabase.get(j);
+                    if (word == null || word.isEmpty()) continue;
+                    if (exactMatchFound) break;
+
                     int distance = LevenshteinAlgorithm.calculate(targetLower, word.toLowerCase());
                     
                     if (distance <= maxDistance) {
-                        // região crítica
-                        sharedMatches.add(word); 
+                        sharedMatches.add(word);
                         if (distance == 0) {
                             exactMatchFound = true; 
                         }
                     }
-                });
+                }
+            });
+
+            vThreads.add(vt);
+            vt.start();
+        }
+
+        for (Thread vt : vThreads) {
+            try {
+                vt.join();
+            } catch (InterruptedException e) {
+                Thread.currentThread().interrupt();
+                e.printStackTrace();
             }
         }
 
