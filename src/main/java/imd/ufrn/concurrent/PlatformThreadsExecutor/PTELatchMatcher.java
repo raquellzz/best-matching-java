@@ -17,9 +17,10 @@ public class PTELatchMatcher implements BestMatcherStrategy {
         Queue<String> sharedMatches = new ConcurrentLinkedQueue<>();
         String targetLower = target.toLowerCase();
 
+        int numThreads = Runtime.getRuntime().availableProcessors();
         CountDownLatch latch = new CountDownLatch(textDatabase.size());
 
-        try (ExecutorService executor = Executors.newFixedThreadPool(10000)) {
+        try (ExecutorService executor = Executors.newFixedThreadPool(numThreads)) {
             for (String word : textDatabase) {
                 if (word == null || word.isEmpty()) continue;
 

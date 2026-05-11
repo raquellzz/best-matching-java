@@ -13,9 +13,10 @@ public class PTEMutexMatcher implements BestMatcherStrategy {
     public List<String> findMatches(String target, List<String> textDatabase, int maxDistance) {
         List<String> sharedMatches = new ArrayList<>();
         String targetLower = target.toLowerCase();
+        int numThreads = Runtime.getRuntime().availableProcessors();
         final Object lock = new Object();
 
-        try (ExecutorService executor = Executors.newFixedThreadPool(10000)) {
+        try (ExecutorService executor = Executors.newFixedThreadPool(numThreads)) {
             for (String word : textDatabase) {
                 if (word == null || word.isEmpty()) continue;
 
