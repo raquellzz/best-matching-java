@@ -14,7 +14,7 @@ public class SerialMatcher implements BestMatcherStrategy {
         String targetLower = target.toLowerCase();
         for (String word : textDatabase) {
             if(word == null || word.isEmpty()) continue;
-            int distance = LevenshteinAlgorithm.calculate(target, word.toLowerCase());
+            int distance = LevenshteinAlgorithm.calculate(targetLower, word.toLowerCase());
             if (distance <= maxDistance) {
                 matches.add(word);
             }

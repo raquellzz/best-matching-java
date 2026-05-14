@@ -9,9 +9,21 @@ import org.apache.jmeter.protocol.java.sampler.AbstractJavaSamplerClient;
 import org.apache.jmeter.protocol.java.sampler.JavaSamplerContext;
 import org.apache.jmeter.samplers.SampleResult;
 
+import imd.ufrn.concurrent.HybridMatcher;
+import imd.ufrn.concurrent.PlatformThreads.PTAtomicMatcher;
+import imd.ufrn.concurrent.PlatformThreads.PTBasicoMatcher;
+import imd.ufrn.concurrent.PlatformThreads.PTLatchMatcher;
 import imd.ufrn.concurrent.PlatformThreads.PTMutexMatcher;
+import imd.ufrn.concurrent.PlatformThreads.PTReentrantMatcher;
+import imd.ufrn.concurrent.PlatformThreads.PTSemaphoreMatcher;
+import imd.ufrn.concurrent.VirtualThreads.VTAtomicMatcher;
+import imd.ufrn.concurrent.VirtualThreads.VTLatchMatcher;
 import imd.ufrn.concurrent.VirtualThreads.VTMutexMatcher;
+import imd.ufrn.concurrent.VirtualThreads.VTReentrantMatcher;
+import imd.ufrn.concurrent.VirtualThreads.VTSemaphoreMatcher;
+import imd.ufrn.concurrent.VirtualThreads.VTVolatileMatcher;
 import imd.ufrn.core.BestMatcherStrategy;
+import imd.ufrn.serial.SerialMatcher;
 import imd.ufrn.utils.DatasetLoader;
 
 
@@ -21,35 +33,72 @@ public class BestMatchingSampler extends AbstractJavaSamplerClient implements Se
 
     @Override
     public void setupTest(JavaSamplerContext context) {
-        // Este método roda antes do teste começar. Ideal para carregar a base!
         if (textDatabase == null) {
             try {
-                // Mude para o seu método real de carregar o txt
                 textDatabase = DatasetLoader.loadTextDatabase("/home/raquel/git/prog-concorrente/BestMatching/best-matching-java/src/main/resources/Os-Miseraveis-clean.txt");
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }
-        // Escolhe a estratégia baseada no parâmetro do JMeter
         String strategyName = context.getParameter("Estrategia");
-        if (strategyName.equalsIgnoreCase("VTMutex")) {
-            strategy = new VTMutexMatcher();
-        } else {
-            strategy = new PTMutexMatcher();
+        switch (strategyName) {
+            case "Serial":
+                strategy = new SerialMatcher();
+                break;
+            case "PTMutex":
+                strategy = new PTMutexMatcher(); 
+                break;
+            case "PTAtomic":
+                strategy = new PTAtomicMatcher();
+                break;
+            case "PTBasico":
+                strategy = new PTBasicoMatcher();
+                break;
+            case "PTReentrant":
+                strategy = new PTReentrantMatcher();
+                break;
+            case "PTSemaphore":
+                strategy = new PTSemaphoreMatcher();
+                break;
+            case "PTLatch":
+                strategy = new PTLatchMatcher();
+                break;
+            case "VTSemaphore":
+                strategy = new VTSemaphoreMatcher();
+                break;
+            case "VTVolatile":
+                strategy = new VTVolatileMatcher();
+                break;
+            case "VTAtomic":
+                strategy = new VTAtomicMatcher();
+                break;
+            case "VTLatch":
+                strategy = new VTLatchMatcher();
+                break;
+            case "VTMutex":
+                strategy = new VTMutexMatcher();
+                break;
+            case "VTReentrant":
+                strategy = new VTReentrantMatcher();
+                break;
+            case "Hybrid":
+                String caminhoArquivo = "/home/raquel/git/prog-concorrente/BestMatching/best-matching-java/src/main/resources/Os-Miseraveis-clean.txt";
+                strategy = new HybridMatcher(caminhoArquivo);
+                break;
+            default:
+                strategy = new PTMutexMatcher();
         }
     }
 
-    // Define os campos que vão aparecer na tela gráfica do JMeter
     @Override
     public Arguments getDefaultParameters() {
         Arguments defaultParameters = new Arguments();
         defaultParameters.addArgument("PalavraAlvo", "morte");
         defaultParameters.addArgument("DistanciaMax", "2");
-        defaultParameters.addArgument("Estrategia", "VTEBasico");
+        defaultParameters.addArgument("Estrategia", "PTBasico");
         return defaultParameters;
     }
 
-    // Onde a mágica (e a cronometragem) acontece!
     @Override
     public SampleResult runTest(JavaSamplerContext context) {
         String targetWord = context.getParameter("PalavraAlvo");
@@ -60,7 +109,6 @@ public class BestMatchingSampler extends AbstractJavaSamplerClient implements Se
         result.setSampleLabel("Teste " + context.getParameter("Estrategia"));
 
         try {
-            // Executa o seu algoritmo
             List<String> matches = strategy.findMatches(targetWord, textDatabase, maxDistance);
 
             result.sampleEnd(); // Para o cronómetro
