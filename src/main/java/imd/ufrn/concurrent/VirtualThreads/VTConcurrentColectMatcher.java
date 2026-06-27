@@ -8,7 +8,7 @@ import java.util.concurrent.ConcurrentLinkedQueue;
 import imd.ufrn.core.BestMatcherStrategy;
 import imd.ufrn.core.LevenshteinAlgorithm;
 
-public class VTAtomicMatcher implements BestMatcherStrategy {
+public class VTConcurrentColectMatcher implements BestMatcherStrategy {
 
     @Override
     public List<String> findMatches(String target, List<String> textDatabase, int maxDistance) {

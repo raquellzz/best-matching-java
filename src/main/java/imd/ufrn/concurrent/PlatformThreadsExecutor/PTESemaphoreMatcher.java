@@ -29,7 +29,7 @@ public class PTESemaphoreMatcher implements BestMatcherStrategy {
                             sharedMatches.add(word);
                         } catch (InterruptedException e) {
                             Thread.currentThread().interrupt();
-                            e.printStackTrace();
+                            e.printStackTrace(System.err); 
                         }
                         finally {
                             semaphore.release();
@@ -38,7 +38,7 @@ public class PTESemaphoreMatcher implements BestMatcherStrategy {
                 });
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            e.printStackTrace(System.err); 
         }
         return sharedMatches;
     }

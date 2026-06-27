@@ -39,7 +39,7 @@ public class VTELatchMatcher implements BestMatcherStrategy {
             latch.await();
         } catch (InterruptedException e) {
             Thread.currentThread().interrupt();
-            e.printStackTrace();
+            e.printStackTrace(System.err); 
         }
 
         return new ArrayList<> (sharedMatches);

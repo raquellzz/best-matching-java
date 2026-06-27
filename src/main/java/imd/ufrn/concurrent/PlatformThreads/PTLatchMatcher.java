@@ -25,24 +25,26 @@ public class PTLatchMatcher implements BestMatcherStrategy {
             final int start = i * chunkSize;
             final int end = Math.min(start + chunkSize, totalWords);
 
-            if (start >= end) break;
+            if (start >= end)
+                break;
 
             new Thread(() -> {
-                try{
+                try {
                     for (int j = start; j < end; j++) {
                         String word = textDatabase.get(j);
-                        if (word == null || word.isEmpty()) continue;
+                        if (word == null || word.isEmpty())
+                            continue;
 
                         int distance = LevenshteinAlgorithm.calculate(targetLower, word.toLowerCase());
-                        
+
                         if (distance <= maxDistance) {
-                            sharedMatches.add(word); 
+                            sharedMatches.add(word);
                         }
                     }
                 } finally {
                     latch.countDown();
                 }
-                
+
             }).start();
         }
 
@@ -50,7 +52,7 @@ public class PTLatchMatcher implements BestMatcherStrategy {
             latch.await();
         } catch (InterruptedException e) {
             Thread.currentThread().interrupt();
-            e.printStackTrace();
+            e.printStackTrace(System.err);
         }
 
         return new ArrayList<>(sharedMatches);

@@ -174,7 +174,7 @@ public class Menu {
                 continue;
             } catch (Exception e) {
                 System.out.println("Ocorreu um erro durante a execução: " + e.getMessage());
-                e.printStackTrace();
+                e.printStackTrace(System.err);
             } 
             scanner.close();
         }

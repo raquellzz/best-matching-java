@@ -3,10 +3,10 @@ package imd.ufrn.concurrent.VirtualThreads;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Queue;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 import imd.ufrn.core.BestMatcherStrategy;
 import imd.ufrn.core.LevenshteinAlgorithm;
@@ -39,7 +39,7 @@ public class VTLatchMatcher implements BestMatcherStrategy {
             latch.await();
         } catch (InterruptedException e) {
             Thread.currentThread().interrupt();
-            e.printStackTrace();
+            e.printStackTrace(System.err); 
         }
 
         return new ArrayList<> (sharedMatches);

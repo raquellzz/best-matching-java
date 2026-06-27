@@ -1,4 +1,4 @@
-package imd.ufrn.concurrent.VirtualThreads;
+package imd.ufrn.concurrent.PlatformThreads;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,26 +8,26 @@ import java.util.concurrent.ConcurrentLinkedQueue;
 import imd.ufrn.core.BestMatcherStrategy;
 import imd.ufrn.core.LevenshteinAlgorithm;
 
-public class VTAtomicMatcher implements BestMatcherStrategy {
-
+public class PTConcurrentColectMatcher implements BestMatcherStrategy {
     @Override
     public List<String> findMatches(String target, List<String> textDatabase, int maxDistance) {
+        //List<String> sharedMatches = new ArrayList<>();
         Queue<String> sharedMatches = new ConcurrentLinkedQueue<>();
         String targetLower = target.toLowerCase();
-        final Object lock = new Object();
 
-        int numChunks = Runtime.getRuntime().availableProcessors();
+        int numThreads = Runtime.getRuntime().availableProcessors();
         int totalWords = textDatabase.size();
-        int chunkSize = (int) Math.ceil((double) totalWords / numChunks);
+        int chunkSize = (int) Math.ceil((double) totalWords / numThreads);
 
-        List<Thread> vThreads = new ArrayList<>();
-        for (int i = 0; i < numChunks; i++) {
+        List<Thread> threads = new ArrayList<>();
+
+        for (int i = 0; i < numThreads; i++) {
             final int start = i * chunkSize;
             final int end = Math.min(start + chunkSize, totalWords);
 
             if (start >= end) break;
 
-            Thread vt = Thread.ofVirtual().unstarted(() -> {
+            Thread t = new Thread(() -> {
                 for (int j = start; j < end; j++) {
                     String word = textDatabase.get(j);
                     if (word == null || word.isEmpty()) continue;
@@ -35,26 +35,24 @@ public class VTAtomicMatcher implements BestMatcherStrategy {
                     int distance = LevenshteinAlgorithm.calculate(targetLower, word.toLowerCase());
                     
                     if (distance <= maxDistance) {
-                        synchronized (lock) {
-                            sharedMatches.add(word); 
-                        }
+                        // região crítica
+                        sharedMatches.add(word); 
                     }
                 }
             });
 
-            vThreads.add(vt);
-            vt.start();
+            threads.add(t);
+            t.start();
         }
 
-        for (Thread vt : vThreads) {
+        for (Thread t : threads) {
             try {
-                vt.join();
+                t.join();
             } catch (InterruptedException e) {
                 Thread.currentThread().interrupt();
-                e.printStackTrace(System.err); 
-            }
+e.printStackTrace(System.err);            }
         }
 
-        return new ArrayList<> (sharedMatches);
+        return new ArrayList<>(sharedMatches);
     }
 }

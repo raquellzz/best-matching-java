@@ -51,8 +51,7 @@ public class PTMutexMatcher implements BestMatcherStrategy {
                 t.join();
             } catch (InterruptedException e) {
                 Thread.currentThread().interrupt();
-                e.printStackTrace();
-            }
+e.printStackTrace(System.err);            }
         }
 
         return sharedMatches;

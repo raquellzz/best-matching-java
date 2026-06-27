@@ -53,7 +53,7 @@ public class VTVolatileMatcher implements BestMatcherStrategy {
                 vt.join();
             } catch (InterruptedException e) {
                 Thread.currentThread().interrupt();
-                e.printStackTrace();
+                e.printStackTrace(System.err); 
             }
         }
 

@@ -2,10 +2,10 @@ package imd.ufrn.concurrent.PlatformThreads;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.locks.ReentrantLock;
 
 import imd.ufrn.core.BestMatcherStrategy;
 import imd.ufrn.core.LevenshteinAlgorithm;
-import java.util.concurrent.locks.ReentrantLock;
 
 public class PTReentrantMatcher implements BestMatcherStrategy {
     private final ReentrantLock rLock = new ReentrantLock();
@@ -53,8 +53,7 @@ public class PTReentrantMatcher implements BestMatcherStrategy {
                 t.join();
             } catch (InterruptedException e) {
                 Thread.currentThread().interrupt();
-                e.printStackTrace();
-            }
+e.printStackTrace(System.err);            }
         }
 
         return sharedMatches;

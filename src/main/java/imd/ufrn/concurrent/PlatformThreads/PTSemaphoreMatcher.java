@@ -41,7 +41,7 @@ public class PTSemaphoreMatcher implements BestMatcherStrategy {
                             // operação crítica
                         } catch (InterruptedException e) {
                                 Thread.currentThread().interrupt();
-                                e.printStackTrace();
+                                e.printStackTrace(System.err); 
                             }
                         
                         finally {
@@ -60,7 +60,7 @@ public class PTSemaphoreMatcher implements BestMatcherStrategy {
                 t.join();
             } catch (InterruptedException e) {
                 Thread.currentThread().interrupt();
-                e.printStackTrace();
+                e.printStackTrace(System.err); 
             }
         }
 

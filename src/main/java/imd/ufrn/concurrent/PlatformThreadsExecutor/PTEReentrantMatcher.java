@@ -35,7 +35,7 @@ public class PTEReentrantMatcher implements BestMatcherStrategy {
                 });
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            e.printStackTrace(System.err); 
         }
         return sharedMatches;
     }

@@ -8,7 +8,6 @@ import imd.ufrn.core.BestMatcherStrategy;
 import imd.ufrn.core.LevenshteinAlgorithm;
 
 public class VTReentrantMatcher implements BestMatcherStrategy {
-    private final ReentrantLock rLock = new ReentrantLock();
     @Override
     public List<String> findMatches(String target, List<String> textDatabase, int maxDistance) {
         List<String> sharedMatches = new ArrayList<>();
@@ -38,7 +37,7 @@ public class VTReentrantMatcher implements BestMatcherStrategy {
                             rLock.lock();
                             sharedMatches.add(word);
                         } catch (Exception e) {
-                            e.printStackTrace();
+                            e.printStackTrace(System.err); 
                         } finally {
                             rLock.unlock();
                         }
@@ -54,7 +53,7 @@ public class VTReentrantMatcher implements BestMatcherStrategy {
                 vt.join();
             } catch (InterruptedException e) {
                 Thread.currentThread().interrupt();
-                e.printStackTrace();
+                e.printStackTrace(System.err); 
             }
         }
         return sharedMatches;

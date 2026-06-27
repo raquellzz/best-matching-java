@@ -37,7 +37,7 @@ public class BestMatchingSampler extends AbstractJavaSamplerClient implements Se
             try {
                 textDatabase = DatasetLoader.loadTextDatabase("/home/raquel/git/prog-concorrente/BestMatching/best-matching-java/src/main/resources/Os-Miseraveis-clean.txt");
             } catch (IOException e) {
-                e.printStackTrace();
+                e.printStackTrace(System.err); 
             }
         }
         String strategyName = context.getParameter("Estrategia");

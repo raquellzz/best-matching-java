@@ -38,7 +38,7 @@ public class VTSemaphoreMatcher implements BestMatcherStrategy {
                             sharedMatches.add(word);
                         } catch (InterruptedException e) {
                             Thread.currentThread().interrupt();
-                            e.printStackTrace();
+                            e.printStackTrace(System.err); 
                         }
                         finally {
                             semaphore.release();
@@ -56,7 +56,7 @@ public class VTSemaphoreMatcher implements BestMatcherStrategy {
                 vt.join();
             } catch (InterruptedException e) {
                 Thread.currentThread().interrupt();
-                e.printStackTrace();
+                e.printStackTrace(System.err); 
             }
         }
 

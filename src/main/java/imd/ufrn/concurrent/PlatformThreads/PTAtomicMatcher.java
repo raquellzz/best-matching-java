@@ -5,8 +5,8 @@ import java.util.List;
 import java.util.Queue;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
-import imd.ufrn.core.LevenshteinAlgorithm;
 import imd.ufrn.core.BestMatcherStrategy;
+import imd.ufrn.core.LevenshteinAlgorithm;
 
 public class PTAtomicMatcher implements BestMatcherStrategy {
     @Override
@@ -50,8 +50,7 @@ public class PTAtomicMatcher implements BestMatcherStrategy {
                 t.join();
             } catch (InterruptedException e) {
                 Thread.currentThread().interrupt();
-                e.printStackTrace();
-            }
+e.printStackTrace(System.err);            }
         }
 
         return new ArrayList<>(sharedMatches);

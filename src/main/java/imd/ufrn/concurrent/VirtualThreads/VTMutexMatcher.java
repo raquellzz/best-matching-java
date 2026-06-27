@@ -48,7 +48,7 @@ public class VTMutexMatcher implements BestMatcherStrategy {
                 vt.join();
             } catch (InterruptedException e) {
                 Thread.currentThread().interrupt();
-                e.printStackTrace();
+                e.printStackTrace(System.err); 
             }
         }
         return sharedMatches;

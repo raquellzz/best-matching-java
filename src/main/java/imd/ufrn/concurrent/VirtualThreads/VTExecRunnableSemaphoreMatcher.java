@@ -1,4 +1,4 @@
-package imd.ufrn.concurrent.VirtualThreadsExecutor;
+package imd.ufrn.concurrent.VirtualThreads;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,7 +9,7 @@ import java.util.concurrent.Semaphore;
 import imd.ufrn.core.BestMatcherStrategy;
 import imd.ufrn.core.LevenshteinAlgorithm;
 
-public class VTESemaphoreMatcher implements BestMatcherStrategy {
+public class VTExecRunnableSemaphoreMatcher implements BestMatcherStrategy {
     private final Semaphore semaphore = new Semaphore(1);
     @Override
     public List<String> findMatches(String target, List<String> textDatabase, int maxDistance) {

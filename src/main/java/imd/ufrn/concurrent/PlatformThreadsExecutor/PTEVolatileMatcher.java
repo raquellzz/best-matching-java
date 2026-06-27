@@ -39,7 +39,7 @@ public class PTEVolatileMatcher implements BestMatcherStrategy {
                 });
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            e.printStackTrace(System.err); 
         }
         return new ArrayList<>(sharedMatches);
     }

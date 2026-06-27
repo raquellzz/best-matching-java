@@ -63,7 +63,7 @@ public class HybridMatcher implements BestMatcherStrategy {
                 }
                 workQueue.put(POISON_PILL);
             } catch (Exception e) {
-                e.printStackTrace();
+                e.printStackTrace(System.err);
             }
         });
         try {
