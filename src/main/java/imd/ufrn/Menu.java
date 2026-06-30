@@ -1,12 +1,19 @@
 package imd.ufrn;
 
+import java.io.FileWriter;
 import java.io.IOException;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
 
+import imd.ufrn.concurrent.ForkJoinMatcher;
 import imd.ufrn.concurrent.HybridMatcher;
 import imd.ufrn.concurrent.PlatformThreads.PTAtomicMatcher;
 import imd.ufrn.concurrent.PlatformThreads.PTBasicoMatcher;
+import imd.ufrn.concurrent.PlatformThreads.PTCompletableFutureMatcher;
+import imd.ufrn.concurrent.PlatformThreads.PTExecRunnableMutexMatcher;
+import imd.ufrn.concurrent.PlatformThreads.PTExecutorCallableMatcher;
 import imd.ufrn.concurrent.PlatformThreads.PTLatchMatcher;
 import imd.ufrn.concurrent.PlatformThreads.PTMutexMatcher;
 import imd.ufrn.concurrent.PlatformThreads.PTReentrantMatcher;
@@ -19,8 +26,12 @@ import imd.ufrn.concurrent.PlatformThreadsExecutor.PTEMutexMatcher;
 import imd.ufrn.concurrent.PlatformThreadsExecutor.PTEReentrantMatcher;
 import imd.ufrn.concurrent.PlatformThreadsExecutor.PTESemaphoreMatcher;
 import imd.ufrn.concurrent.PlatformThreadsExecutor.PTEVolatileMatcher;
+import imd.ufrn.concurrent.SparkMatcher;
 import imd.ufrn.concurrent.VirtualThreads.VTAtomicMatcher;
 import imd.ufrn.concurrent.VirtualThreads.VTBasicoMatcher;
+import imd.ufrn.concurrent.VirtualThreads.VTCompletableFutureMatcher;
+import imd.ufrn.concurrent.VirtualThreads.VTExecRunnableSemaphoreMatcher;
+import imd.ufrn.concurrent.VirtualThreads.VTExecutorCallableMatcher;
 import imd.ufrn.concurrent.VirtualThreads.VTLatchMatcher;
 import imd.ufrn.concurrent.VirtualThreads.VTMutexMatcher;
 import imd.ufrn.concurrent.VirtualThreads.VTReentrantMatcher;
@@ -58,7 +69,6 @@ public class Menu {
             }
 
             // Parâmetros de Busca
-
             String targetWord = "morte"; // default
             System.out.print("\n[2] Digite a palavra alvo (ex: morte): ");
             targetWord = scanner.nextLine();
@@ -72,11 +82,21 @@ public class Menu {
             System.out.println("0. <-- Voltar ao Menu Principal");
             System.out.println("1. Serial (Baseline de 1 Thread)");
             System.out.println("2. Platform Threads (SO)");
-            System.out.println("3. Platform Threads (Pool de Threads Executor)");
+            System.out.println("3. Platform Threads (Pool de Threads Executor Antigo)");
             System.out.println("4. Virtual Threads");
             System.out.println("5. Híbrido - Virtual Threads + Platform Threads");
+            System.out.println("6. Tecnologias da Unidade 3 (Executors, ForkJoin, CompletableFuture, Spark)");
+            System.out.println("7. Executar TODAS as versões e Exportar para CSV (Benchmark Automático)");
             System.out.print("Opção: ");
             int modelOption = scanner.nextInt();
+
+            if (modelOption == 7) {
+                executarTodasEGerarCSV(targetWord, textDatabase, maxDistance);
+                System.out.println("\nPressione ENTER para voltar ao menu principal...");
+                scanner.nextLine();
+                scanner.nextLine();
+                continue;
+            }
 
             BestMatcherStrategy strategy = null;
             int stratOption = 0;
@@ -106,9 +126,8 @@ public class Menu {
                         case 7 -> strategy = new PTLatchMatcher();
                     }
                 }
-
                 case 3 -> {
-                    System.out.println("\n--- Estratégias para Platform Threads (Pool de Threads Executor) ---");
+                    System.out.println("\n--- Estratégias para Platform Threads (Pool de Threads Executor Antigo) ---");
                     System.out.println("0. <-- Voltar ao Menu Principal");
                     System.out.println("1. Básica (Com Race Condition)");
                     System.out.println("2. Mutex (synchronized)");
@@ -130,7 +149,6 @@ public class Menu {
                         case 7 -> strategy = new PTELatchMatcher();
                     }
                 }
-
                 case 4 -> {
                     System.out.println("\n--- Estratégias para Virtual Threads ---");
                     System.out.println("0. <-- Voltar ao Menu Principal");
@@ -154,32 +172,54 @@ public class Menu {
                         case 7 -> strategy = new VTLatchMatcher();
                     }
                 }
-
                 case 5 -> {
-                    HybridMatcher hybridMatcher =  new HybridMatcher("src/main/resources/Os-Miseraveis-clean.txt");
-                    strategy = hybridMatcher;
+                    strategy = new HybridMatcher("src/main/resources/Os-Miseraveis-clean.txt");
+                }
+                case 6 -> {
+                    System.out.println("\n--- Estratégias da Unidade 3 ---");
+                    System.out.println("0. <-- Voltar ao Menu Principal");
+                    System.out.println("1. PT Executor (Runnable)");
+                    System.out.println("2. VT Executor (Runnable)");
+                    System.out.println("3. PT Executor (Callable + Future)");
+                    System.out.println("4. VT Executor (Callable + Future)");
+                    System.out.println("5. Fork/Join Framework");
+                    System.out.println("6. PT CompletableFuture");
+                    System.out.println("7. VT CompletableFuture");
+                    System.out.println("8. Apache Spark");
+                    System.out.print("Opção: ");
+                    stratOption = scanner.nextInt();
+                    if (stratOption == 0) continue;
+                    switch (stratOption) {
+                        case 1 -> strategy = new PTExecRunnableMutexMatcher();
+                        case 2 -> strategy = new VTExecRunnableSemaphoreMatcher();
+                        case 3 -> strategy = new PTExecutorCallableMatcher();
+                        case 4 -> strategy = new VTExecutorCallableMatcher();
+                        case 5 -> strategy = new ForkJoinMatcher();
+                        case 6 -> strategy = new PTCompletableFutureMatcher();
+                        case 7 -> strategy = new VTCompletableFutureMatcher();
+                        case 8 -> strategy = new SparkMatcher();
+                    }
                 }
             }
+
             if (strategy == null) {
-                System.out.println("Estratégia não definida ou não comentada no código.");
+                System.out.println("Estratégia não definida ou opção inválida.");
                 continue;
             }
             
             try {
                 executarMatcher(strategy, targetWord, textDatabase, maxDistance);
-
                 System.out.println("Pressione ENTER para voltar ao menu principal...");
                 scanner.nextLine();
                 scanner.nextLine();
-                continue;
             } catch (Exception e) {
                 System.out.println("Ocorreu um erro durante a execução: " + e.getMessage());
                 e.printStackTrace(System.err);
             } 
-            scanner.close();
         }
     }
-    private static void executarMatcher(BestMatcherStrategy strategy , String target, List<String> textDatabase, int maxDistance) {
+
+    private static void executarMatcher(BestMatcherStrategy strategy, String target, List<String> textDatabase, int maxDistance) {
         System.out.println("\nCarregando base de dados...");
         System.out.println("Total de linhas carregadas: " + textDatabase.size());
 
@@ -198,25 +238,92 @@ public class Menu {
         System.out.println("=================================================\n");
     }
 
+    private static void executarTodasEGerarCSV(String target, List<String> textDatabase, int maxDistance) {
+        System.out.println("\nIniciando benchmark automático de TODAS as estratégias...");
+        
+        // Usamos LinkedHashMap para garantir a ordem de inserção no CSV
+        Map<String, BestMatcherStrategy> benchmarkList = new LinkedHashMap<>();
+        
+        // Baseline
+        benchmarkList.put("Serial", new SerialMatcher());
+        
+        // Platform Threads (Principais representativas)
+        benchmarkList.put("PT Básica (Race Condition)", new PTBasicoMatcher());
+        benchmarkList.put("PT Mutex", new PTMutexMatcher());
+        benchmarkList.put("PT Semaphore", new PTSemaphoreMatcher());
+        
+        // Virtual Threads (Principais representativas)
+        benchmarkList.put("VT Básica (Race Condition)", new VTBasicoMatcher());
+        benchmarkList.put("VT Semaphore", new VTSemaphoreMatcher());
+        
+        // Híbrida
+        benchmarkList.put("Híbrida (Produtor-Consumidor)", new HybridMatcher("src/main/resources/Os-Miseraveis-clean.txt"));
+        
+        // Estruturas da Unidade 3
+        benchmarkList.put("PT Executor (Runnable)", new PTExecRunnableMutexMatcher());
+        benchmarkList.put("VT Executor (Runnable)", new VTExecRunnableSemaphoreMatcher());
+        benchmarkList.put("PT Executor (Callable)", new PTExecutorCallableMatcher());
+        benchmarkList.put("VT Executor (Callable)", new VTExecutorCallableMatcher());
+        benchmarkList.put("ForkJoin Framework", new ForkJoinMatcher());
+        benchmarkList.put("PT CompletableFuture", new PTCompletableFutureMatcher());
+        benchmarkList.put("VT CompletableFuture", new VTCompletableFutureMatcher());
+        benchmarkList.put("Apache Spark", new SparkMatcher());
+
+        String csvFileName = "resultados_benchmark.csv";
+
+        try (FileWriter writer = new FileWriter(csvFileName)) {
+            writer.append("Estrategia,TempoExecucao_ms,MatchesEncontrados\n");
+
+            for (Map.Entry<String, BestMatcherStrategy> entry : benchmarkList.entrySet()) {
+                String nome = entry.getKey();
+                BestMatcherStrategy strategy = entry.getValue();
+
+                System.out.print("Testando [" + nome + "] ... ");
+
+                try {
+                    long startTime = System.currentTimeMillis();
+                    List<String> matches = strategy.findMatches(target, textDatabase, maxDistance);
+                    long endTime = System.currentTimeMillis();
+                    
+                    long tempoDecorrido = endTime - startTime;
+                    writer.append(nome).append(",")
+                          .append(String.valueOf(tempoDecorrido)).append(",")
+                          .append(String.valueOf(matches.size())).append("\n");
+                          
+                    System.out.println("OK (" + tempoDecorrido + " ms | " + matches.size() + " matches)");
+                } catch (Exception e) {
+                    writer.append(nome).append(",ERRO,0\n");
+                    System.out.println("FALHOU (" + e.getMessage() + ")");
+                }
+
+                // Invoca o GC manualmente entre os testes para tentar limpar a Heap e isolar as medições
+                System.gc();
+                try {
+                    Thread.sleep(500);
+                } catch (InterruptedException ignored) {}
+            }
+            
+            System.out.println("\n✅ Benchmark concluído com sucesso!");
+            System.out.println("📊 Arquivo gerado: " + csvFileName);
+
+        } catch (IOException e) {
+            System.out.println("Erro crítico ao escrever o CSV: " + e.getMessage());
+        }
+    }
+
     private static List<String> carregarBaseDeDados(int bookOption) {
         String caminho = "";
         switch (bookOption) {
-            case 1:
-                caminho = "Os-Miseraveis-clean.txt";
-                break;
-            case 2:
-                caminho = "iracema_clean.txt";
-                break;
-            case 3:
-                caminho = "theGreatGatsby.txt";
-                break;
-            default:
+            case 1 -> caminho = "Os-Miseraveis-clean.txt";
+            case 2 -> caminho = "iracema_clean.txt";
+            case 3 -> caminho = "theGreatGatsby.txt";
+            default -> {
                 System.out.println("Opção de livro inválida!");
-                break;
+                return null;
+            }
         }
         try {
-            List<String> database = DatasetLoader.loadTextDatabase("src/main/resources/" + caminho);
-            return database;
+            return DatasetLoader.loadTextDatabase("src/main/resources/" + caminho);
         } catch (IOException e) {
             System.out.println("Ficheiro não encontrado: " + caminho);
             return null;

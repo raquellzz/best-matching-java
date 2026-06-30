@@ -1,24 +1,33 @@
 package imd.ufrn.benchmark;
 
-import java.io.IOException;
-import java.util.List;
-import java.util.concurrent.TimeUnit;
-
-import org.openjdk.jmh.annotations.Benchmark;
-import org.openjdk.jmh.annotations.BenchmarkMode;
-import org.openjdk.jmh.annotations.Fork;
-import org.openjdk.jmh.annotations.Level;
-import org.openjdk.jmh.annotations.Measurement;
-import org.openjdk.jmh.annotations.Mode;
-import org.openjdk.jmh.annotations.OutputTimeUnit;
-import org.openjdk.jmh.annotations.Scope;
-import org.openjdk.jmh.annotations.Setup;
-import org.openjdk.jmh.annotations.State;
-import org.openjdk.jmh.annotations.Warmup;
+import org.openjdk.jmh.annotations.*;
 
 import imd.ufrn.core.BestMatcherStrategy;
 import imd.ufrn.serial.SerialMatcher;
 import imd.ufrn.utils.DatasetLoader;
+
+import imd.ufrn.concurrent.HybridMatcher;
+import imd.ufrn.concurrent.PlatformThreads.PTBasicoMatcher;
+import imd.ufrn.concurrent.PlatformThreads.PTMutexMatcher;
+import imd.ufrn.concurrent.PlatformThreads.PTSemaphoreMatcher;
+import imd.ufrn.concurrent.VirtualThreads.VTBasicoMatcher;
+import imd.ufrn.concurrent.VirtualThreads.VTMutexMatcher;
+import imd.ufrn.concurrent.VirtualThreads.VTSemaphoreMatcher;
+
+
+import imd.ufrn.concurrent.PlatformThreads.PTCompletableFutureMatcher;
+import imd.ufrn.concurrent.PlatformThreads.PTConcurrentColectMatcher;
+import imd.ufrn.concurrent.PlatformThreads.PTExecutorCallableMatcher;
+import imd.ufrn.concurrent.PlatformThreads.PTExecRunnableMutexMatcher;
+import imd.ufrn.concurrent.VirtualThreads.VTCompletableFutureMatcher;
+import imd.ufrn.concurrent.VirtualThreads.VTConcurrentColectMatcher;
+import imd.ufrn.concurrent.VirtualThreads.VTExecutorCallableMatcher;
+import imd.ufrn.concurrent.VirtualThreads.VTExecRunnableSemaphoreMatcher;
+import imd.ufrn.concurrent.ForkJoinMatcher;
+
+import java.io.IOException;
+import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 @BenchmarkMode(Mode.AverageTime)
 @OutputTimeUnit(TimeUnit.MILLISECONDS)
@@ -27,235 +36,55 @@ import imd.ufrn.utils.DatasetLoader;
 @Warmup(iterations = 3, time = 1, timeUnit = TimeUnit.SECONDS)
 @Measurement(iterations = 5, time = 1, timeUnit = TimeUnit.SECONDS)
 public class MatcherBenchmark {
+
+    @Param({
+        "01_PT_Concurrent_Collection",
+        "02_VT_Concurrent_Collection",
+        "03_PT_Executor_Runnable",
+        "04_VT_Executor_Runnable",
+        "05_PT_Executor_Callable(Confinamento)",
+        "06_VT_Executor_Callable(Confinamento)",
+        "07_ForkJoin(Work-Stealing)",
+        "08_PT_CompletableFuture",
+        "09_VT_CompletableFuture",
+    })
+    public String strategyType;
+
     private List<String> dataset;
-    // private String targetWord;
-    // private int maxDistance;
-    private String targetWord = "morte";
-    private int maxDistance = 2;
-
-    private BestMatcherStrategy serialStrategy;
-    private BestMatcherStrategy ptBasicoStrategy;
-    private BestMatcherStrategy ptAtomicStrategy;
-    private BestMatcherStrategy ptMutexStrategy;
-    private BestMatcherStrategy ptReentrantStrategy;
-    private BestMatcherStrategy ptSemaphoreStrategy;
-    private BestMatcherStrategy ptVolatileStrategy;
-    private BestMatcherStrategy ptLatchStrategy;
-
-    private BestMatcherStrategy ptEBasicoStrategy;
-    private BestMatcherStrategy ptEMutexStrategy;
-    private BestMatcherStrategy ptEReentrantStrategy;
-    private BestMatcherStrategy ptESemaphoreStrategy;
-    private BestMatcherStrategy ptEVolatileStrategy;
-    private BestMatcherStrategy ptELatchStrategy;
-    private BestMatcherStrategy ptEAtomicStrategy;
-
-    private BestMatcherStrategy vtBasicoStrategy;
-    private BestMatcherStrategy vtAtomicStrategy;
-    private BestMatcherStrategy vtMutexStrategy;
-    private BestMatcherStrategy vtReentrantStrategy;
-    private BestMatcherStrategy vtSemaphoreStrategy;
-    private BestMatcherStrategy vtVolatileStrategy;
-    private BestMatcherStrategy vtLatchStrategy;
-
-    private BestMatcherStrategy vtEBasicoStrategy;
-    private BestMatcherStrategy vtEAtomicStrategy;
-    private BestMatcherStrategy vtEMutexStrategy;
-    private BestMatcherStrategy vtEReentrantStrategy;
-    private BestMatcherStrategy vtESemaphoreStrategy;
-    private BestMatcherStrategy vtEVolatileStrategy;
-    private BestMatcherStrategy vtELatchStrategy;
-
-    private BestMatcherStrategy hybridStrategy;
+    private BestMatcherStrategy strategy;
+    private final String targetWord = "morte";
+    private final int maxDistance = 2;
 
     @Setup(Level.Trial)
     public void setup() throws IOException {
         dataset = DatasetLoader.loadTextDatabase("src/main/resources/Os-Miseraveis-clean.txt");
         
-        serialStrategy = new SerialMatcher();
-
-        ptBasicoStrategy = new imd.ufrn.concurrent.PlatformThreads.PTBasicoMatcher();
-        ptAtomicStrategy = new imd.ufrn.concurrent.PlatformThreads.PTAtomicMatcher();
-        ptMutexStrategy = new imd.ufrn.concurrent.PlatformThreads.PTMutexMatcher();
-        ptReentrantStrategy = new imd.ufrn.concurrent.PlatformThreads.PTReentrantMatcher();
-        ptSemaphoreStrategy = new imd.ufrn.concurrent.PlatformThreads.PTSemaphoreMatcher();
-        ptVolatileStrategy = new imd.ufrn.concurrent.PlatformThreads.PTVolatileMatcher();
-        ptLatchStrategy = new imd.ufrn.concurrent.PlatformThreads.PTLatchMatcher();
-
-        ptEBasicoStrategy = new imd.ufrn.concurrent.PlatformThreadsExecutor.PTEBasicoMatcher();
-        ptEMutexStrategy = new imd.ufrn.concurrent.PlatformThreadsExecutor.PTEMutexMatcher();
-        ptEReentrantStrategy = new imd.ufrn.concurrent.PlatformThreadsExecutor.PTEReentrantMatcher();
-        ptESemaphoreStrategy = new imd.ufrn.concurrent.PlatformThreadsExecutor.PTESemaphoreMatcher();
-        ptEVolatileStrategy = new imd.ufrn.concurrent.PlatformThreadsExecutor.PTEVolatileMatcher();
-        ptELatchStrategy = new imd.ufrn.concurrent.PlatformThreadsExecutor.PTELatchMatcher();
-        ptEAtomicStrategy = new imd.ufrn.concurrent.PlatformThreadsExecutor.PTEAtomicMatcher();
-
-        vtBasicoStrategy = new imd.ufrn.concurrent.VirtualThreads.VTBasicoMatcher();
-        vtAtomicStrategy = new imd.ufrn.concurrent.VirtualThreads.VTAtomicMatcher();
-        vtMutexStrategy = new imd.ufrn.concurrent.VirtualThreads.VTMutexMatcher();
-        vtReentrantStrategy = new imd.ufrn.concurrent.VirtualThreads.VTReentrantMatcher();
-        vtSemaphoreStrategy = new imd.ufrn.concurrent.VirtualThreads.VTSemaphoreMatcher();
-        vtVolatileStrategy = new imd.ufrn.concurrent.VirtualThreads.VTVolatileMatcher();
-        vtLatchStrategy = new imd.ufrn.concurrent.VirtualThreads.VTLatchMatcher();
-
-        vtEBasicoStrategy = new imd.ufrn.concurrent.VirtualThreadsExecutor.VTEBasicoMatcher();
-        vtEAtomicStrategy = new imd.ufrn.concurrent.VirtualThreadsExecutor.VTEAtomicMatcher();
-        vtEMutexStrategy = new imd.ufrn.concurrent.VirtualThreadsExecutor.VTEMutexMatcher();
-        vtEReentrantStrategy = new imd.ufrn.concurrent.VirtualThreadsExecutor.VTEReentrantMatcher();
-        vtESemaphoreStrategy = new imd.ufrn.concurrent.VirtualThreadsExecutor.VTESemaphoreMatcher();
-        vtEVolatileStrategy = new imd.ufrn.concurrent.VirtualThreadsExecutor.VTEVolatileMatcher();
-        vtELatchStrategy = new imd.ufrn.concurrent.VirtualThreadsExecutor.VTELatchMatcher();
-
-        hybridStrategy = new imd.ufrn.concurrent.HybridMatcher("src/main/resources/Os-Miseraveis-clean.txt");
+        switch (strategyType) {
+            case "01_PT_Concurrent_Collection": 
+                strategy = new PTConcurrentColectMatcher(); break;
+            case "02_VT_Concurrent_Collection": 
+                strategy = new VTConcurrentColectMatcher(); break;
+            case "03_PT_Executor_Runnable": 
+                strategy = new PTExecRunnableMutexMatcher(); break;
+            case "04_VT_Executor_Runnable": 
+                strategy = new VTExecRunnableSemaphoreMatcher(); break;
+            case "05_PT_Executor_Callable(Confinamento)": 
+                strategy = new PTExecutorCallableMatcher(); break;
+            case "06_VT_Executor_Callable(Confinamento)": 
+                strategy = new VTExecutorCallableMatcher(); break;
+            case "07_ForkJoin(Work-Stealing)": 
+                strategy = new ForkJoinMatcher(); break;
+            case "08_PT_CompletableFuture": 
+                strategy = new PTCompletableFutureMatcher(); break;
+            case "09_VT_CompletableFuture": 
+                strategy = new VTCompletableFutureMatcher(); break;
+            default: 
+                throw new IllegalArgumentException("Estratégia não mapeada: " + strategyType);
+        }
     }
 
     @Benchmark
-    public List<String> testSerialMatcher() {
-        return serialStrategy.findMatches(targetWord, dataset, maxDistance);
-    }
-
-    @Benchmark
-    public List<String> testPTBasicoMatcher() {
-        return ptBasicoStrategy.findMatches(targetWord, dataset, maxDistance);
-    }
-
-    @Benchmark
-    public List<String> testPTAtomicMatcher() {
-        return ptAtomicStrategy.findMatches(targetWord, dataset, maxDistance);
-    }
-
-    @Benchmark
-    public List<String> testPTMutexMatcher() {
-        return ptMutexStrategy.findMatches(targetWord, dataset, maxDistance);
-    }
-
-    @Benchmark
-    public List<String> testPTReentrantMatcher() {
-        return ptReentrantStrategy.findMatches(targetWord, dataset, maxDistance);
-    }
-
-    @Benchmark
-    public List<String> testPTSemaphoreMatcher() {
-        return ptSemaphoreStrategy.findMatches(targetWord, dataset, maxDistance);
-    }
-
-    @Benchmark
-    public List<String> testPTVolatileMatcher() {
-        return ptVolatileStrategy.findMatches(targetWord, dataset, maxDistance);
-    }
-
-    @Benchmark
-    public List<String> testPTLatchMatcher() {
-        return ptLatchStrategy.findMatches(targetWord, dataset, maxDistance);
-    }
-
-    @Benchmark
-    public List<String> testPTEBasicoMatcher() {
-        return ptEBasicoStrategy.findMatches(targetWord, dataset, maxDistance);
-    }
-
-    @Benchmark
-    public List<String> testPTEMutexMatcher() {
-        return ptEMutexStrategy.findMatches(targetWord, dataset, maxDistance);
-    }
-
-    @Benchmark
-    public List<String> testPTEReentrantMatcher() {
-        return ptEReentrantStrategy.findMatches(targetWord, dataset, maxDistance);
-    }
-
-    @Benchmark
-    public List<String> testPTESemaphoreMatcher() {
-        return ptESemaphoreStrategy.findMatches(targetWord, dataset, maxDistance);
-    }
-
-    @Benchmark
-    public List<String> testPTEVolatileMatcher() {
-        return ptEVolatileStrategy.findMatches(targetWord, dataset, maxDistance);
-    }
-
-    @Benchmark
-    public List<String> testPTELatchMatcher() {
-        return ptELatchStrategy.findMatches(targetWord, dataset, maxDistance);
-    }
-
-    @Benchmark
-    public List<String> testPTEAtomicMatcher() {
-        return ptEAtomicStrategy.findMatches(targetWord, dataset, maxDistance);
-    }
-
-    @Benchmark
-    public List<String> testVTBasicoMatcher() {
-        return vtBasicoStrategy.findMatches(targetWord, dataset, maxDistance);
-    }
-
-    @Benchmark
-    public List<String> testVTAtomicMatcher() {
-        return vtAtomicStrategy.findMatches(targetWord, dataset, maxDistance);
-    }
-
-    @Benchmark
-    public List<String> testVTMutexMatcher() {
-        return vtMutexStrategy.findMatches(targetWord, dataset, maxDistance);
-    }
-
-    @Benchmark
-    public List<String> testVTReentrantMatcher() {
-        return vtReentrantStrategy.findMatches(targetWord, dataset, maxDistance);
-    }
-
-    @Benchmark
-    public List<String> testVTSemaphoreMatcher() {
-        return vtSemaphoreStrategy.findMatches(targetWord, dataset, maxDistance);
-    }
-
-    @Benchmark
-    public List<String> testVTVolatileMatcher() {
-        return vtVolatileStrategy.findMatches(targetWord, dataset, maxDistance);
-    }
-
-    @Benchmark
-    public List<String> testVTLatchMatcher() {
-        return vtLatchStrategy.findMatches(targetWord, dataset, maxDistance);
-    }
-
-    @Benchmark
-    public List<String> testVTEBasicoMatcher() {
-        return vtEBasicoStrategy.findMatches(targetWord, dataset, maxDistance);
-    }
-
-    @Benchmark
-    public List<String> testVTEAtomicMatcher() {
-        return vtEAtomicStrategy.findMatches(targetWord, dataset, maxDistance);
-    }
-
-    @Benchmark
-    public List<String> testVTEMutexMatcher() {
-        return vtEMutexStrategy.findMatches(targetWord, dataset, maxDistance);
-    }
-
-    @Benchmark
-    public List<String> testVTEReentrantMatcher() {
-        return vtEReentrantStrategy.findMatches(targetWord, dataset, maxDistance);
-    }
-
-    @Benchmark
-    public List<String> testVTESemaphoreMatcher() {
-        return vtESemaphoreStrategy.findMatches(targetWord, dataset, maxDistance);
-    }
-
-    @Benchmark
-    public List<String> testVTEVolatileMatcher() {
-        return vtEVolatileStrategy.findMatches(targetWord, dataset, maxDistance);
-    }
-
-    @Benchmark
-    public List<String> testVTELatchMatcher() {
-        return vtELatchStrategy.findMatches(targetWord, dataset, maxDistance);
-    }
-
-    @Benchmark
-    public List<String> testHybridMatcher() {
-        return hybridStrategy.findMatches(targetWord, dataset, maxDistance);
+    public List<String> executeMatch() {
+        return strategy.findMatches(targetWord, dataset, maxDistance);
     }
 }

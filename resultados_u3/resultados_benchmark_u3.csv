@@ -1,0 +1,10 @@
+"Benchmark","Mode","Threads","Samples","Score","Score Error (99,9%)","Unit","Param: strategyType"
+"imd.ufrn.benchmark.MatcherBenchmark.executeMatch","avgt",1,5,"46,515728","32,797940","ms/op",01_PT_Concurrent_Collection
+"imd.ufrn.benchmark.MatcherBenchmark.executeMatch","avgt",1,5,"54,038128","10,338504","ms/op",02_VT_Concurrent_Collection
+"imd.ufrn.benchmark.MatcherBenchmark.executeMatch","avgt",1,5,"497,348815","271,576112","ms/op",03_PT_Executor_Runnable
+"imd.ufrn.benchmark.MatcherBenchmark.executeMatch","avgt",1,5,"197,663782","120,391448","ms/op",04_VT_Executor_Runnable
+"imd.ufrn.benchmark.MatcherBenchmark.executeMatch","avgt",1,5,"50,097085","3,337705","ms/op",05_PT_Executor_Callable(Confinamento)
+"imd.ufrn.benchmark.MatcherBenchmark.executeMatch","avgt",1,5,"49,869521","3,486035","ms/op",06_VT_Executor_Callable(Confinamento)
+"imd.ufrn.benchmark.MatcherBenchmark.executeMatch","avgt",1,5,"50,440466","2,711429","ms/op",07_ForkJoin(Work-Stealing)
+"imd.ufrn.benchmark.MatcherBenchmark.executeMatch","avgt",1,5,"28,833655","6,281189","ms/op",08_PT_CompletableFuture
+"imd.ufrn.benchmark.MatcherBenchmark.executeMatch","avgt",1,5,"27,851911","3,679986","ms/op",09_VT_CompletableFuture

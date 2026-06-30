@@ -5,3 +5,9 @@ func.md
 target/
 
 *.bin
+
+resultados_jmeter
+
+jmeterResults
+
+resultados_pt1

@@ -24,20 +24,28 @@ To get precise performance metrics, use the generated benchmark JAR:
 
 ```bash
 java -jar target/benchmarks.jar -rf csv -rff resultados_benchmark.csv
+
+java -jar target/benchmarks.jar MatcherBenchmark -rf csv -rff resultados_benchmark_u3.csv
 ```
 
 ## Running MicroBenchmarks with specifics GCs
     - G1GC
 ```bash
 java -XX:+UseG1GC -jar target/benchmarks.jar -prof gc -rf csv -rff resultados_g1gc.csv
+
+java -XX:+UseG1GC -jar target/benchmarks.jar MatcherBenchmark -rf csv -rff resultados_g1gc_u3.csv
 ```
     - ParallelGC
 ```bash
 java -XX:+UseParallelGC -jar target/benchmarks.jar -prof gc -rf csv -rff resultados_parallel.csv
+
+java -XX:+UseParallelGC -jar target/benchmarks.jar MatcherBenchmark -rf csv -rff resultados_parallel_u3.csv
 ```
     - ZGC
 ```bash
 java -XX:+UseZGC -jar target/benchmarks.jar -prof gc -rf csv -rff resultados_zgc.csv
+
+java -XX:+UseZGC -jar target/benchmarks.jar MatcherBenchmark -rf csv -rff resultados_zgc_u3.csv
 ```
 ### Running MacroBenchmarks (JMeter)
 
